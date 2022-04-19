@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-gwvk05ml*z-k1oxzz68sztp$+2ue%s2=+8%%%r9!xs+atoc=wj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True            # aws에서 False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []      # aws에서 '52.194.148.243'
 
 
 # Application definition
