@@ -1,5 +1,3 @@
-import pyximport
-pyximport.install(reload_support=True)
 from pyproj import Proj, transform
 
 from pyspark.sql import SparkSession
