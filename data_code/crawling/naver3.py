@@ -186,10 +186,18 @@ def s_info_get(naver_dict):
         driver.switch_to.default_content()
         driver.switch_to.frame('entryIframe')
         time.sleep(2)
+
         soup = BeautifulSoup(driver.page_source, 'html.parser')
         body = soup.find('body', class_='place_on_pcmap')
         time.sleep(3)
         review_li_arr = body.find_all('li', class_='_3FaRE')
+        for j in range(len(review_li_arr)): driver.find_elements(By.CSS_SELECTOR,'.WoYOw')[j].click()
+
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
+        body = soup.find('body', class_='place_on_pcmap')
+        time.sleep(3)
+        review_li_arr = body.find_all('li', class_='_3FaRE')
+
         for j in range(len(review_li_arr)):
             try:
                 review_text = review_li_arr[j].find('span', class_='WoYOw').get_text()
@@ -200,13 +208,16 @@ def s_info_get(naver_dict):
     # 더보기 버튼 없을 경우 (전체 리뷰 10개 이하)
     else:
         review_li_arr = body.find_all('li', class_='_3FaRE')
+        for j in range(len(review_li_arr)): driver.find_elements(By.CSS_SELECTOR, '.WoYOw')[j].click()
+
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
+        body = soup.find('body', class_='place_on_pcmap')
+        time.sleep(3)
+        review_li_arr = body.find_all('li', class_='_3FaRE')
 
         for j in range(len(review_li_arr)):
+            driver.find_elements(By.CSS_SELECTOR,'.WoYOw')[j].click()
             review_text = review_li_arr[j].find('span', class_='WoYOw').get_text()
-            # review_time_arr = review_li_arr[j].find_all('span', class_='place_blind')
-            # for k in range(len(review_time_arr)):
-            #     if review_time_arr[k].get_text() == '최근 방문일':
-            #         review_time = review_time_arr[k].find_next_sibling('span', class_='place_blind').get_text()
             review_arr.append(review_text)
     naver_dict['s_review'] = review_arr
     # -----------------------------------------------------------------------
@@ -360,18 +371,22 @@ def crwaling(driver,name):
 
 driver = driver_get()
 
-for sl in seoul[:50]:
+crwaling_cnt = 0
+for sl in seoul[5000:]:
     id, s_name, s_add_arr, s_add_gu, s_add_dong, s_add_ro = s_info_seoul_gyeonggi(sl)
-    # crwaling(driver,'seoul')
+    crwaling(driver,'seoul')
+    crwaling_cnt += 1
+    if crwaling_cnt % 100 == 0 : driver.refresh()
 
 
-for ic in incheon:
-    id,s_name,s_add_arr,s_add_gu,s_add_dong,s_add_ro = s_info_incheon()
-    # crwaling(driver,'incheon')
+
+# for ic in incheon[676:]:
+#     id,s_name,s_add_arr,s_add_gu,s_add_dong,s_add_ro = s_info_incheon()
+#     crwaling(driver,'incheon')
 
 
-for gg in gyeonggi:
-    id,s_name, s_add_arr, s_add_gu, s_add_dong, s_add_ro = s_info_seoul_gyeonggi(gg)
+# for gg in gyeonggi:
+#     id,s_name, s_add_arr, s_add_gu, s_add_dong, s_add_ro = s_info_seoul_gyeonggi(gg)
     # crwaling(driver,'gyeonggi')
 
 
