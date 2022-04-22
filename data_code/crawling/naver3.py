@@ -189,13 +189,15 @@ def s_info_get(naver_dict):
 
         soup = BeautifulSoup(driver.page_source, 'html.parser')
         body = soup.find('body', class_='place_on_pcmap')
-        time.sleep(3)
+        time.sleep(2)
         review_li_arr = body.find_all('li', class_='_3FaRE')
-        for j in range(len(review_li_arr)): driver.find_elements(By.CSS_SELECTOR,'.WoYOw')[j].click()
+        for j in range(len(review_li_arr)):
+            try : driver.find_elements(By.CSS_SELECTOR,'.WoYOw')[j].click()
+            except : pass
 
         soup = BeautifulSoup(driver.page_source, 'html.parser')
         body = soup.find('body', class_='place_on_pcmap')
-        time.sleep(3)
+        time.sleep(2)
         review_li_arr = body.find_all('li', class_='_3FaRE')
 
         for j in range(len(review_li_arr)):
