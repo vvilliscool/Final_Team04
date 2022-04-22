@@ -373,23 +373,28 @@ def crwaling(driver,name):
 
 driver = driver_get()
 
-crwaling_cnt = 0
-for sl in seoul[5000:]:
+# crwaling_cnt = 0
+for sl in seoul[5371:]:
     id, s_name, s_add_arr, s_add_gu, s_add_dong, s_add_ro = s_info_seoul_gyeonggi(sl)
     crwaling(driver,'seoul')
-    crwaling_cnt += 1
-    if crwaling_cnt % 100 == 0 : driver.refresh()
+    # crwaling_cnt += 1
+    # if crwaling_cnt % 100 == 0 : driver.refresh()
 
 
 
 # for ic in incheon[676:]:
 #     id,s_name,s_add_arr,s_add_gu,s_add_dong,s_add_ro = s_info_incheon()
 #     crwaling(driver,'incheon')
+#     crwaling_cnt += 1
+#     if crwaling_cnt % 100 == 0 : driver.refresh()
+
 
 
 # for gg in gyeonggi:
 #     id,s_name, s_add_arr, s_add_gu, s_add_dong, s_add_ro = s_info_seoul_gyeonggi(gg)
     # crwaling(driver,'gyeonggi')
+#     crwaling_cnt += 1
+#     if crwaling_cnt % 100 == 0 : driver.refresh()
 
 
 
