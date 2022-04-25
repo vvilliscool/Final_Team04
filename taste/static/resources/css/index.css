@@ -13,12 +13,10 @@ html,body{overflow-x:hidden; }
     padding:0px;
     font-family: SCD4;
 }
-
+/* ------------------------------body_top------------------------------- */
 #body_top{
     position:fixed; z-index:100;
-    /* width:100%; */
-    width:380px;
-    height: 130px;
+    width:400px; height: 130px;
     /* border:2px solid red; */
     /* background-color: aqua; */
 }
@@ -50,17 +48,21 @@ html,body{overflow-x:hidden; }
     opacity: 0.8;
     width:100%; height: 60px;
 }
-
-
+.menu_text{
+    background-color: aqua;
+    display: inline-block;
+    position: relative;
+}
+/* ------------------------------------------------------------------------ */
 
 #body_middle{
-    position:absolute; width:380px; top:130px;
+    position:absolute; width:400px; top:130px;
     height: 1000px;
     /* background-color:cadetblue; */
     /* border:2px solid black; */
 }
 #body_foot{
-    position:absolute; width:380px; top:1130px;
+    position:absolute; width:400px; top:1130px;
     height: 100px;
     border:2px solid red;
     /* background-color: red; */
