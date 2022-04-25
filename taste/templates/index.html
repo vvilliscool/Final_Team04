@@ -1,11 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'resources/css/index.css' %}">
     <title>먹잘알</title>
 </head>
@@ -17,7 +16,11 @@
             <span id="logo_text">먹잘알</span>
         </div>
         <div id="body_top_menu">
-            
+            <a href="{% url 'index' %}"><div class="menu_text">홈</div></a>
+             <a href="{% url 'ranking' %}"><div class="menu_text">랭킹</div></a> 
+            <a href="{% url 'map' %}"><div class="menu_text">맛지도</div></a> 
+            <a href="{% url 'mypage' %}"><div class="menu_text">마이페이지</div></a>
+
         </div>
     </div>
 
