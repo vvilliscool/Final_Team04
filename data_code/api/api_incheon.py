@@ -14,7 +14,6 @@ while True:
     resp.encoding = "UTF-8"
     total = int(resp.json()['totalCount'])
     store_lst = resp.json()['data']
-
     for store in store_lst:
         store_dict = dict()
         store_dict['id'] = i
@@ -22,8 +21,11 @@ while True:
             store_dict['s_name'] = store['업소명']
         else:
             store_dict['s_name'] = store['업소명'][3:]
+        store_dict['s_add'] = None
         store_dict['s_road'] = store['업소주소']
         store_dict['s_kind'] = store['업태']
+        store_dict['lat'] = None
+        store_dict['lot'] = None
         store_dict['s_status'] = store['영업상태']
         res_lst.append(store_dict)
         i += 1
