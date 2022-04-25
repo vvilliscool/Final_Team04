@@ -16,7 +16,7 @@ html,body{overflow-x:hidden; }
 /* ------------------------------body_top------------------------------- */
 #body_top{
     position:fixed; z-index:100;
-    width:450px; 
+    width:420px;
     /* width:100%; */
     height: 130px;
     /* border:2px solid red; */
@@ -68,13 +68,13 @@ html,body{overflow-x:hidden; }
 /* ------------------------------------------------------------------------ */
 
 #body_middle{
-    position:absolute; width:450px; top:130px;
+    position:absolute; width:420px; top:130px;
     height: 1000px;
     /* background-color:cadetblue; */
     /* border:2px solid black; */
 }
 #body_foot{
-    position:absolute; width:450px; top:1130px;
+    position:absolute; width:420px; top:1130px;
     height: 100px;
     border:2px solid red;
     /* background-color: red; */
