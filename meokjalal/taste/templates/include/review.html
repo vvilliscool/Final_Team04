@@ -50,20 +50,20 @@
 		{% endif %}
 	{% endwith %}
         
-        {% if review.comments.exists %}
+        {% for comment in comments %}
+        {% if review.pk == comment.review.pk %}
         <ul class="comment-list">
-            {% for comment in review.comments.all %}
             <li class="comment">
                 <span class="comment-author">{{ comment.author }}</span>
                 <span class="comment-content">{{ comment.content }}</span>
             </li>
-            {% endfor %}
         </ul>
         <hr>
         {% endif %}
+        {% endfor %}
         <form 
             action="{% url 'review:comment_create' review_pk=review.pk %}?next={% if review_type == 'list' %}{% url 'review:review_list' %}#review-{{ review.pk }} {% elif review_type == 'detail' %}{% url 'review:review_detail' review_pk=review.pk %}{% endif %}"
-            method="review" class="comment-form">
+            method="post" class="comment-form">
                 {% csrf_token %}
                 {{ comment_form.content }}
         </form>

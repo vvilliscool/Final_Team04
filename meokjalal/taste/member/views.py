@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as django_login, logout as django_logout, authenticate
+from django.db.models import Count
 
 from .forms import LoginForm, SignupForm
-
+from .models import User
+from review.models import Review, Comment
 
 def login(request):
     if request.method == 'POST':
@@ -91,3 +93,24 @@ def signup(request):
         'signup_form': signup_form,
     }
     return render(request, 'member/signup.html', context)
+
+
+
+def ranking(request):
+    users = User.objects.all()
+    reviews = Review.objects.all()
+    comments = Comment.objects.all()
+    
+    # 리뷰 작성 수를 기준으로 내림차순으로 정렬(작성자, 작성 리뷰 수)
+    review_count = Review.objects.values('author').order_by('author').annotate(count=Count('author'))
+    # 좋아요 수
+    
+
+
+    context = {
+        'users': users,
+        'reviews': reviews,
+        'comments': comments,
+        'review_count': review_count,
+    }
+    return render(request, 'member/ranking.html', context)

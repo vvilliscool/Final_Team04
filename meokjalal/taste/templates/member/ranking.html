@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="meok-rank">
+    <h1>먹보 랭킹 TOP 5🏆</h1>
+    {% for review_top in review_count %}
+        {{ review_top.author }}
+        {{ review_top.count }}
+    {% endfor %}
+    <br>
+    {% for user in users %}
+        {{ user.like_reviews }}
+    {% endfor %}
+</div>
+
+{% endblock %}

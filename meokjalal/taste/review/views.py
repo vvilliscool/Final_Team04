@@ -12,11 +12,11 @@ from .forms import CommentForm, ReviewForm
 def review_list(request):
     reviews = Review.objects.all()
     comment_form = CommentForm()
-    comment = Comment()
+    comments = Comment.objects.all()
     context = {
         'reviews': reviews,
         'comment_form': comment_form,
-        'comment': comment,
+        'comments': comments,
     }
     return render(request, 'review/review_list.html', context)
 
@@ -67,9 +67,11 @@ def comment_create(request, review_pk):
 def review_detail(request, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
     comment_form = CommentForm()
+    comments = Comment.objects.all()
     context = {
         'review': review,
         'comment_form': comment_form,
+        'comments': comments,
     }
     return render(request, 'review/review_detail.html', context)
 

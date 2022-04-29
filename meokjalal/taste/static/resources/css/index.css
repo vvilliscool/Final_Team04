@@ -38,9 +38,9 @@ html,body{overflow-x:hidden; }
 }
 #logo_text{
     position: absolute; 
-    width:50%; 
+    /* width:50%;  */
     top:25px; 
-    left:120px; 
+    left:45%; 
     text-align: center;
     font-size: 20px;
     font-family: SCD6; opacity: 1;
@@ -151,4 +151,10 @@ html,body{overflow-x:hidden; }
 
 #my-location{
     margin-top:130px;
+}
+
+
+/* 랭크 페이지 */
+.meok-rank{
+    position:absolute; top:130px;
 }
