@@ -1,0 +1,72 @@
+<div class="panel panel-default review-item">
+    <!--작성자 닉네임과 사진이 들어가야할듯-->
+    <p>작성자ID : {{ review.author }}</p>
+    <!--리뷰 사진-->
+    <a href="{% url 'review:review_detail' review_pk=review.pk %}">
+        <img src="{{ review.photo.url }}" alt="" class="review-image">
+    </a>
+    <div class="panel-body">
+        <div class="btn-container">
+            <form
+			action="{% url 'review:review_like_toggle' review_pk=review.pk %}?next=
+				{% if review_type == 'list' %}
+					{% url 'review:review_list' %}#review-{{ review.pk }}
+				{% elif review_type == 'detail' %}
+					{% url 'review:review_detail' review_pk=review.pk %}
+				{% endif %}"
+			method="post"
+			class="form-inline">
+            {% csrf_token %}
+            <button class="btn btn-default btn-review-toggle" aria-label="Like button">
+                <span
+                    class="glyphicon
+                      {% if review in user.like_reviews.all %}
+                        glyphicon-heart
+                          {% else %}
+                              glyphicon-heart-empty
+                          {% endif %}"
+                    aria-hidden="true"></span>
+            </button>
+        </form>
+        <a class="btn btn-default btn-review-toggle"
+		   onclick="document.getElementById('{{ comment_form.content.id_for_label }}').focus()">
+			<span class="glyphicon glyphicon-pencil"></span>
+		</a>
+        </div>
+        {% with like_count=review.like_users.count %}
+		{% if like_count %}
+		<p class="like-count">
+			{% if like_count < 10 %}
+				<b>
+				{% for user in review.like_users.all %}
+					{{ user.username }}{% if not forloop.last %}, {% endif %}
+				{% endfor %}
+				</b>
+				님이 좋아합니다
+			{% else %}
+				<b>좋아요 {{ review.like_users.all.count }}개</b>
+			{% endif %}
+		</p>
+		{% endif %}
+	{% endwith %}
+        
+        {% if review.comments.exists %}
+        <ul class="comment-list">
+            {% for comment in review.comments.all %}
+            <li class="comment">
+                <span class="comment-author">{{ comment.author }}</span>
+                <span class="comment-content">{{ comment.content }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+        <hr>
+        {% endif %}
+        <form 
+            action="{% url 'review:comment_create' review_pk=review.pk %}?next={% if review_type == 'list' %}{% url 'review:review_list' %}#review-{{ review.pk }} {% elif review_type == 'detail' %}{% url 'review:review_detail' review_pk=review.pk %}{% endif %}"
+            method="review" class="comment-form">
+                {% csrf_token %}
+                {{ comment_form.content }}
+        </form>
+    </div>
+</div>
+

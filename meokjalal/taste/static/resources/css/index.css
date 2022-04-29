@@ -1,0 +1,154 @@
+@font-face {font-family: 'SCD1'; src:url('../font/SCDream1.otf') format('truetype'); }
+@font-face {font-family: 'SCD2'; src:url('../font/SCDream2.otf') format('truetype'); }
+@font-face {font-family: 'SCD3'; src:url('../font/SCDream3.otf') format('truetype'); }
+@font-face {font-family: 'SCD4'; src:url('../font/SCDream4.otf') format('truetype'); }
+@font-face {font-family: 'SCD5'; src:url('../font/SCDream5.otf') format('truetype'); }
+@font-face {font-family: 'SCD6'; src:url('../font/SCDream6.otf') format('truetype'); }
+@font-face {font-family: 'SCD7'; src:url('../font/SCDream7.otf') format('truetype'); }
+@font-face {font-family: 'SCD8'; src:url('../font/SCDream8.otf') format('truetype'); }
+html,body{overflow-x:hidden; }
+
+*{
+    margin:0px;
+    padding:0px;
+    font-family: SCD4;
+}
+/* ------------------------------body_top------------------------------- */
+#body_top{
+    position:fixed; z-index:100;
+    /* width:420px; */
+    width:100%;
+    height: 130px;
+    /* border:2px solid red; */
+    /* background-color: aqua; */
+}
+#body_top_logo{
+    width:100%;
+    height: 70px;
+    background-color: rgba(220, 20, 60); 
+}
+#logo_image{
+    /* background-color:hotpink;  */
+    /* background-image: url('../images/body_top_logo_circle.jpg'); */
+    background-repeat: no-repeat;
+    background-size:contain;
+    position: relative;
+    width:18%; height: 90%; 
+    left:100px; top:5%;
+}
+#logo_text{
+    position: absolute; 
+    width:50%; 
+    top:25px; 
+    left:120px; 
+    text-align: center;
+    font-size: 20px;
+    font-family: SCD6; opacity: 1;
+}
+#body_top_menu{
+    background-color: white;
+    border-bottom: 2px solid crimson;
+    /* opacity: 0.8; */
+    width:100%; height: 60px;
+}
+.menu_text{
+    /* background-color: aqua; */
+    position: absolute; top:90px; left:15%;
+    font-family: SCD6;
+    font-size: 17px;
+    color: red;
+}
+#menu_text_02{left:35%;}
+#menu_text_03{left:55%;}
+#menu_text_04{
+    left:80%;
+    width:20%; height: 40px; top:80px;
+    background-image: url('../images/user.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+#body_top_menu > a {text-decoration:none; color:black;}
+.menu_text:hover {color:crimson;}
+/* ------------------------------------------------------------------------ */
+
+#body_middle{
+    position:absolute; width:100%; top:130px;
+    height: 1000px;
+    /* background-color:cadetblue; */
+    /* border:2px solid black; */
+}
+#body_foot{
+    position:absolute; width:100%; top:1130px;
+    height: 100px;
+    border:2px solid red;
+    /* background-color: red; */
+}
+/* 모바일 버전 이상 */
+/* @media (min-width: 450px) { 
+    #body_top{
+        background-color: red;
+    }
+} */
+
+
+
+
+/* 리뷰관련 css */
+.review-image {
+    width: 100%;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+.review-item hr {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.review-item .comment-form input.content {
+    border: 0;
+    width: 100%;
+    outline: none;
+}
+
+.review-item .comment-list {
+    vertical-align: middle;
+}
+
+.review-item .comment-list .comment .comment-author {
+    font-weight: bold;
+    margin-right: 3px;
+}
+
+
+
+/* 로그인 페이지 */
+.login{
+    position:absolute; width:100%; top:130px;
+}
+
+/* 회원가입 페이지 */
+.signup{
+    position:absolute; width:100%; top:130px;
+}
+
+/* 리뷰 등록 페이지 */
+.review-create{
+    position:absolute; width:100%; top:130px;
+}
+
+/* 리뷰 작성 버튼 */
+.re-cre-btn{
+    position:fixed; top:90%; right:5%;
+}
+
+/* 맛지도(카카오맵) 페이지 */
+#kakao_map{
+    width:100%;
+    height:400px;
+    top:130px;
+}
+
+#my-location{
+    margin-top:130px;
+}
