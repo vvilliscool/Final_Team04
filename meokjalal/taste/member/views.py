@@ -3,8 +3,9 @@ from django.contrib.auth import login as django_login, logout as django_logout, 
 from django.db.models import Count
 
 from .forms import LoginForm, SignupForm
-from .models import User
+from .models import User, Like
 from review.models import Review, Comment
+from collections import Counter
 
 def login(request):
     if request.method == 'POST':
@@ -102,15 +103,40 @@ def ranking(request):
     comments = Comment.objects.all()
     
     # 리뷰 작성 수를 기준으로 내림차순으로 정렬(작성자, 작성 리뷰 수)
-    review_count = Review.objects.values('author').order_by('author').annotate(count=Count('author'))
-    # 좋아요 수
+    review_counts = Review.objects.values('author').order_by('author').annotate(count=Count('author'))
+    print(review_counts)
+    # 좋아요 수 조인 도전
     
+
+
+
+    # 랭커 관련 정보 가져오기
+    like_join = Like.objects.select_related('review_id')
+    like_rank = []
+    for obj in like_join:
+        like_rank.append(obj.review_id.author.username)
+    rank = dict(Counter(like_rank).most_common())
+    # 유저 이름
+    rank_names = list(rank.keys())
+    # 유저가 받은 좋아요 수
+    rank_like_nums = list(rank.values())
+    # 유저 ID
+    rank_objs = User.objects.filter(username__in=rank_names)
+    rank_user_ids = []
+    for user in rank_objs:
+        rank_user_ids.append(user.id)
+    # 랭커의 이름, 좋아요 수, user_id를 zip화 시킨다.
+    rank_list = zip(rank_names, rank_like_nums, rank_user_ids)
 
 
     context = {
         'users': users,
         'reviews': reviews,
         'comments': comments,
-        'review_count': review_count,
+        'review_counts': review_counts,
+        'rank_objs':rank_objs,
+        'rank_like_nums':rank_like_nums,
+        'rank_names':rank_names,
+        'rank_list' : rank_list,
     }
     return render(request, 'member/ranking.html', context)

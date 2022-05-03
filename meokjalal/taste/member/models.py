@@ -21,10 +21,23 @@ class User(AbstractUser):
     # 중복 방지(unique)
     nickname = models.CharField(max_length=15, unique=True)
     birth_date = models.DateField(null=True, blank=True)
-    like_reviews = models.ManyToManyField('review.Review', blank=True, related_name='like_users')
-
+    like_reviews = models.ManyToManyField('review.Review', blank=True, related_name='like_users', through="Like")
 
     objects = UserManager()
     
     def __str__(self):
         return self.username
+
+
+class Like(models.Model):
+    user_id = models.ForeignKey('member.User', on_delete=models.CASCADE)
+    review_id = models.ForeignKey('review.Review', on_delete=models.CASCADE)
+
+
+    class Meta:
+        db_table = 'likelike'
+
+        # def __str__(self):
+        #     return self.name
+
+

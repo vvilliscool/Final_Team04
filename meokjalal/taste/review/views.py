@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 from utils.decorators import login_required
 
+from member.models import Like
 from .models import Review, Comment
 from .forms import CommentForm, ReviewForm
 # Create your views here.
@@ -110,7 +111,7 @@ def review_like_toggle(request, review_pk):
     # 요청한 사용자
     user = request.user
 
-    # 사용자의 like_reviews목록에서 like_toggle할 Review가 있는지 확인
+    # 사용자의 like_reviews목록에서 like_toggle할    Review가 있는지 확인
     filtered_like_reviews = user.like_reviews.filter(pk=review.pk)
     # 존재할경우, like_reviews목록에서 해당 Review를 삭제
     if filtered_like_reviews.exists():
