@@ -1,7 +1,7 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.types import *
 from pyspark import SparkContext
-from .pymongo import MongoClient
+from pymongo import MongoClient
 
 client = MongoClient('localhost', 27017)
 db = client['test']
