@@ -30,8 +30,8 @@ class User(AbstractUser):
 
 
 class Like(models.Model):
-    user_id = models.ForeignKey('member.User', on_delete=models.CASCADE)
-    review_id = models.ForeignKey('review.Review', on_delete=models.CASCADE)
+    user_id = models.ForeignKey('member.User', db_column='user_id_id', on_delete=models.CASCADE)
+    review_id = models.ForeignKey('review.Review', db_column='review_id_id', on_delete=models.CASCADE)
 
 
     class Meta:

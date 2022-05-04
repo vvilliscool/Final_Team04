@@ -36,4 +36,5 @@ class ReviewForm(forms.ModelForm):
         model = Review
         fields = (
             'photo',
+            'content',
         )

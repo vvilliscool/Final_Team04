@@ -1,10 +1,16 @@
+{% load static %}
 <div class="panel panel-default review-item">
     <!--작성자 닉네임과 사진이 들어가야할듯-->
-    <p>작성자ID : {{ review.author }}</p>
-    <!--리뷰 사진-->
-    <a href="{% url 'review:review_detail' review_pk=review.pk %}">
-        <img src="{{ review.photo.url }}" alt="" class="review-image">
-    </a>
+    <div class="panel-head">
+        <img class="review_author_img" {% if review.author.img_profile != '' %}src="/media/{{ review.author.img_profile }}" {% else %} src="{% static 'resources/images/user.png' %}" {% endif %} alt="" style="width:30px;height:30px;">
+        <p class="review_author_nickname">{{ review.author.nickname }}</p>
+    </div>
+    <div class="panel-img">
+            <!--리뷰 사진-->
+        <a href="{% url 'review:review_detail' review_pk=review.pk %}">
+            <img src="{{ review.photo.url }}" alt="" class="review-image">
+        </a>
+    </div>
     <div class="panel-body">
         <div class="btn-container">
             <form
@@ -39,7 +45,7 @@
 			{% if like_count < 10 %}
 				<b>
 				{% for user in review.like_users.all %}
-					{{ user.username }}{% if not forloop.last %}, {% endif %}
+					{{ user.nickname }}{% if not forloop.last %}, {% endif %}
 				{% endfor %}
 				</b>
 				님이 좋아합니다
@@ -49,12 +55,16 @@
 		</p>
 		{% endif %}
 	{% endwith %}
+        <div class="review-content">
+            <p><b>{{ review.author.nickname }}</b>  {{ review.content }}</p>
+        </div>
         
+
         {% for comment in comments %}
         {% if review.pk == comment.review.pk %}
         <ul class="comment-list">
             <li class="comment">
-                <span class="comment-author">{{ comment.author }}</span>
+                <span class="comment-author">{{ comment.author.nickname }}</span>
                 <span class="comment-content">{{ comment.content }}</span>
             </li>
         </ul>

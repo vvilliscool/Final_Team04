@@ -6,6 +6,11 @@ from django.db import models
 class Review(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     photo = models.ImageField(upload_to='review')
+    content = models.TextField(max_length=400)
+    service = models.IntegerField(null=False, blank=False)
+    taste = models.IntegerField(null=False, blank=False)
+    clean = models.IntegerField(null=False, blank=False)
+    price = models.IntegerField(null=False, blank=False)
 
     def __str__(self):
         return f'Review (PK: {self.pk}, Author: {self.author.username})'

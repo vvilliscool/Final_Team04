@@ -125,9 +125,11 @@ def ranking(request):
     rank_user_ids = []
     for user in rank_objs:
         rank_user_ids.append(user.id)
+    # 정렬
+    rank_user_ids.sort()
     # 랭커의 이름, 좋아요 수, user_id를 zip화 시킨다.
     rank_list = zip(rank_names, rank_like_nums, rank_user_ids)
-
+    
 
     context = {
         'users': users,

@@ -135,7 +135,7 @@ class SignupForm(UserCreationForm):
             'username',
             'password1',
             'password2',
-            'img_profile',
+            # 'img_profile',
             'nickname',
             'gender',
             'email',
