@@ -39,7 +39,7 @@ def jsonProcess(loca):
 
 
 if __name__ == '__main__':
-    spark = SparkSession.builder.master('local[1]').appName('jsonProcess').getOrCreate()
+    spark = SparkSession.builder.master('yarn').appName('jsonProcess').getOrCreate()
     json_names = ['Seoul', 'Gyeonggi']
     for name in json_names:
         jsonProcess(name)

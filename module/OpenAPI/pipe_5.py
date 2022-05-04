@@ -2,7 +2,6 @@ from pyspark.sql import SparkSession
 from pyspark.sql.types import *
 from pymongo import MongoClient
 
-spark = SparkSession.builder.master('local[1]').appName('mongo').getOrCreate()
 client = MongoClient('localhost', 27017)
 db = client['test']
 
@@ -46,4 +45,5 @@ def makeMongoSet():
     rest_mongo.insert_many(df_list)
 
 if __name__ == '__main__':
+    spark = SparkSession.builder.master('yarn').appName('jsonToMysql').getOrCreate()
     makeMongoSet()

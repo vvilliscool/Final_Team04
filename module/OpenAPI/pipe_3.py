@@ -123,7 +123,7 @@ def devSchema(loca):
         option("encoding", "UTF8").save(save_loca)
 
 if __name__ == '__main__':
-    spark = SparkSession.builder.master('local[1]').appName('getLocation').getOrCreate()
+    spark = SparkSession.builder.master('yarn').appName('getLocation').getOrCreate()
     json_names = ['Seoul', 'Gyeonggi', 'Incheon']
     for name in json_names:
         addCoordinate(name)

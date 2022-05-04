@@ -1,7 +1,6 @@
 import pandas as pd
 from pyspark.sql import SparkSession
 from pyspark.sql.types import *
-spark = SparkSession.builder.master('local[1]').appName('jsonToMysql').getOrCreate()
 
 json_names = ['Seoul', 'Gyeonggi', 'Incheon']
 
@@ -52,4 +51,5 @@ def save_mysql():
     df_data.write.jdbc(url, dbtable, "overwrite", properties={"driver": driver, "user": user, "password": password})
 
 if __name__ =='__main__':
+    spark = SparkSession.builder.master('yarn').appName('jsonToMysql').getOrCreate()
     save_mysql()
