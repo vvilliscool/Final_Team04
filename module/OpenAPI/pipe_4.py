@@ -46,7 +46,7 @@ def save_mysql():
     password = "1234"
     url="jdbc:mysql://localhost:3306/meok4"
     driver = "com.mysql.cj.jdbc.Driver"
-    dbtable = 'rest'
+    dbtable = 'store_store'
 
     df_data.write.jdbc(url, dbtable, "overwrite", properties={"driver": driver, "user": user, "password": password})
 
