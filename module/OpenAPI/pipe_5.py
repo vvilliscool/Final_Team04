@@ -3,7 +3,7 @@ from pyspark.sql.types import *
 from pyspark import SparkContext
 
 
-sc = SparkContext('yarn', 'getLocation')
+sc = SparkContext('local[1]', 'getLocation')
 sc.addFile('/home/ubuntu/anaconda3/lib/python3.7/site-packages')
 
 from pymongo import MongoClient
@@ -51,5 +51,5 @@ def makeMongoSet():
     rest_mongo.insert_many(df_list)
 
 if __name__ == '__main__':
-    spark = SparkSession.builder.master('yarn').appName('addMongodb').getOrCreate()
+    spark = SparkSession.builder.master('local[1]').appName('addMongodb').getOrCreate()
     makeMongoSet()
