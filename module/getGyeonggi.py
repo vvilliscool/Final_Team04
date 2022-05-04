@@ -1,7 +1,8 @@
 import json
 import requests
 
-location = './'         # 파일 생성 경로
+# location = './'         # 파일 생성 경로
+location = '/home/ubuntu/git/data/'
 url = 'https://openapi.gg.go.kr/GENRESTRT'
 key = 'ffd16fca90e9413f8cf1b42f3078894f'
 

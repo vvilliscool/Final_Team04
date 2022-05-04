@@ -3,8 +3,11 @@ import pandas as pd
 import json
 import math
 
+
+location = '/home/ubuntu/git/data/'
 serviceKey = "G8%2F6kLlqz2GninZfrl6HupkMdDQuH84vtXL9uJ7Pp8fYP7EhO8JJADYKZCJlTCZd0AbiIy9pCJP%2B151EAPYwRw%3D%3D"
 res_lst = []
+
 
 cnt = 1
 i = 0
@@ -38,11 +41,11 @@ res_dict = dict()
 res_dict = res_lst
 
 # json으로 저장하기
-result_json = json.dumps(res_dict, ensure_ascii=False)
-with open('incheon_total.json', 'w', encoding='utf-8') as f:
-    f.write(result_json)
+# result_json = json.dumps(res_dict, ensure_ascii=False)
+# with open(location+'incheon_total.json', 'w', encoding='utf-8') as f:
+#     f.write(result_json)
 
 # json to csv
 result_csv = json.loads(result_json)
 df = pd.json_normalize(result_csv)
-df.to_csv("incheon_total.csv", index=False)
+df.to_csv(location+"Incheon.csv", index=False)
