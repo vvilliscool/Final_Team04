@@ -44,7 +44,7 @@ def save_mysql():
 
     user = "root"
     password = "1234"
-    url="jdbc:mysql://localhost:3306/test"
+    url="jdbc:mysql://localhost:3306/meok4"
     driver = "com.mysql.cj.jdbc.Driver"
     dbtable = 'rest'
 

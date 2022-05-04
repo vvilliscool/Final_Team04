@@ -45,5 +45,5 @@ def makeMongoSet():
     rest_mongo.insert_many(df_list)
 
 if __name__ == '__main__':
-    spark = SparkSession.builder.master('yarn').appName('jsonToMysql').getOrCreate()
+    spark = SparkSession.builder.master('yarn').appName('addMongodb').getOrCreate()
     makeMongoSet()
