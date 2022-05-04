@@ -2,7 +2,7 @@ import json
 import requests
 
 # location = './'         # 파일 생성 경로
-location = '/home/ubuntu/git/Final_Team04/data/'
+location = '/home/ubuntu/git/Final_Team04/data/apiGyeonggi/'
 url = 'https://openapi.gg.go.kr/GENRESTRT'
 key = 'ffd16fca90e9413f8cf1b42f3078894f'
 

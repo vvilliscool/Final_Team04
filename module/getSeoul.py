@@ -2,7 +2,7 @@ import json
 import requests
 
 # location = './'
-location = '/home/ubuntu/git/Final_Team04/data/'
+location = '/home/ubuntu/git/Final_Team04/data/apiSeoul/'
 key = '754542594e6d6a6a34334368754b4b'
 
 # 총 개수와 응답받은 json key이름 반환
