@@ -5,14 +5,14 @@ from pyspark.sql import SparkSession
 def jsonProcess(loca):
     if loca == 'Seoul':
         chk = 0
-        location = '/apiSeoul/'         # hadoop에서 가지고올 파일 경로
+        location = '/data/apiSeoul/'         # hadoop에서 가지고올 파일 경로
         file_name = 'api_seoul'         # 위의 location안에 파일 이름
         sql_query = """SELECT BPLCNM as s_name, SITEWHLADDR as s_add, RDNWHLADDR as s_road, UPTAENM as s_kind,
                         X as lat, Y as lot, TRDSTATENM as s_status FROM local
                         WHERE TRDSTATEGBN = '01' AND (SITEWHLADDR is not null OR RDNWHLADDR is not null)"""
     elif loca == 'Gyeonggi':
         chk = 1
-        location = '/apiGyeonggi/'      # hadoop에서 가지고올 파일 경로
+        location = '/data/apiGyeonggi/'      # hadoop에서 가지고올 파일 경로
         file_name = 'api_gyeonggi'      # 위의 location안에 파일 이름
         sql_query = """SELECT BIZPLC_NM as s_name, REFINE_LOTNO_ADDR as s_add, REFINE_ROADNM_ADDR as s_road, 
                         BIZCOND_DIV_NM_INFO as s_kind, REFINE_WGS84_LAT as lat, REFINE_WGS84_LOGT as lot, 

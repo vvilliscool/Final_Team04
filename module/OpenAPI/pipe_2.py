@@ -37,7 +37,7 @@ def addressSlice(s_add):
 
 def strProcess(loca):
     if loca == 'Incheon':
-        load_loca = f"/{loca}"
+        load_loca = f"/data/{loca}"
         df = spark.read.option("header", "true").csv(load_loca + ".csv")
     else:
         load_loca = f"/data/toCsv/{loca}/"
