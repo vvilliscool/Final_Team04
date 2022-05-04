@@ -1,7 +1,7 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.types import *
 from pyspark import SparkContext
-from pymongo import MongoClient
+from pymongo import MongoClient, GEOSPHERE
 
 client = MongoClient('localhost', 27017)
 db = client['test']
@@ -42,6 +42,7 @@ def makeMongoSet():
     rest_mongo = db['rest']
     rest_mongo.drop()
     rest_mongo = db['rest']
+    rest_mongo.create_index([("location", GEOSPHERE)])
 
     rest_mongo.insert_many(df_list)
 
