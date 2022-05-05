@@ -16,7 +16,7 @@ class User(AbstractUser):
         # (GENDER_OTHER, '기타'),
     )
     img_profile = models.ImageField(upload_to='user', blank=True)
-    gender = models.CharField(max_length=1, choices=CHOICES_GENDER)
+    gender = models.CharField(max_length=1, choices=CHOICES_GENDER, default=GENDER_MALE)
     email = models.EmailField(unique=True)
     # 중복 방지(unique)
     nickname = models.CharField(max_length=15, unique=True)

@@ -1,6 +1,10 @@
+from msilib.schema import RadioButton
 from django import forms
 
 from .models import Comment, Review
+
+from django_starfield import Stars
+
 
 class CommentForm(forms.ModelForm):
     class Meta:
@@ -31,10 +35,28 @@ class CommentForm(forms.ModelForm):
 
 
 
+
 class ReviewForm(forms.ModelForm):
+
     class Meta:
         model = Review
         fields = (
             'photo',
             'content',
+            'service',
+            'taste',
+            'cleaned',
+            'price',
         )
+        widgets = {
+            'service':Stars,
+            'taste':Stars,
+            'cleaned':Stars,
+            'price':Stars,
+        }
+        labels={
+            'service':'서비스',
+            'taste':'맛',
+            'cleaned':'위생상태',
+            'price':'가격',
+        }

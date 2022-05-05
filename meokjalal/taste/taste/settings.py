@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'member',
     'review',
+    'django_starfield',
+    'mathfilters'
 ]
 
 MIDDLEWARE = [

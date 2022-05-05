@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load mathfilters %}
 {% block content %}
 <div class="meok-rank">
     <h1>먹보 랭킹🏆</h1>
@@ -51,6 +52,11 @@
                     <a href="{% url 'review:review_detail' review_pk=review.pk %}">
                         <img src="{{ review.photo.url }}" alt="" class="rank-review-image" style="width: 100%;">
                     </a>
+                    <div class="rating-average">
+                        {% with rsum=review.service|add:review.taste|add:review.cleaned|add:review.price %}
+                        {{ rsum|div:4|floatformat }}
+                        {% endwith %}
+                    </div>
                 </div>
                 {% endif %}
                 {% endfor %}

@@ -129,6 +129,7 @@ class SignupForm(UserCreationForm):
                 'class': 'form-control'
             })
 
+    
     class Meta:
         model = User
         fields = (
@@ -147,7 +148,7 @@ class SignupForm(UserCreationForm):
                     'class': 'form-control',
                 }
             ),
-            'gender': forms.Select(
+            'gender': forms.RadioSelect(
                 attrs={
                     'class': 'form-control',
                 }
@@ -163,8 +164,10 @@ class SignupForm(UserCreationForm):
                 }
             ),
             'birth_date': forms.DateInput(
+                format=('%m/%d/%Y'),
                 attrs={
                     'class': 'form-control',
+                    'type':'date',
                 }
             )
         }

@@ -80,10 +80,9 @@ def review_detail(request, review_pk):
 @login_required
 def review_create(request):
     if request.method == 'POST':
-        print(request.POST)
         # PostForm은 파일을 처리하므로 request.FILES도 함께 바인딩
         review_form = ReviewForm(request.POST, request.FILES)
-        print(review_form)
+        print(request.user)
         if review_form.is_valid():
             # author필드를 채우기 위해 인스턴스만 생성
             review = review_form.save(commit=False)
