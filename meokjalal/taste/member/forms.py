@@ -138,9 +138,10 @@ class SignupForm(UserCreationForm):
             'password2',
             # 'img_profile',
             'nickname',
-            'gender',
+            
             'email',
             'birth_date',
+            'gender',
         )
         widgets = {
             'username': forms.TextInput(

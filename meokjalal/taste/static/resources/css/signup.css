@@ -1,0 +1,88 @@
+#menu_text_01{color:black;}
+
+#body_middle{ 
+    height:500px;
+    /* background-color: rgb(209, 40, 74); */
+}
+#middle_content{
+    /* background-color: red; */
+    height: 100%; width: 95%; 
+    margin: 0 auto;
+    position: relative;
+}
+#middle_content_signup{
+    /* background-color: aqua; */
+    position: relative; top:10%; 
+    margin: 0 auto;
+    width: 80%; height: 80%;
+}
+
+#signup_form{
+    /* background-color: blueviolet; */
+    width: 100%;
+    position: relative;
+}
+
+/* 모든 입력창에 대해 */
+input{
+    /* background-color: coral; */
+    border: 1px solid grey;
+    padding-left:10px;
+    margin-bottom: 10px;
+} 
+
+/* 회원가입 버튼 */
+button{
+    background-color: crimson;
+    position: absolute; top:330px;
+    width:300px; height:40px;
+    border: none; border-radius: 5px;
+    color:white;
+}
+
+/* 돌아가기 버튼 */
+#btn_login{
+    border: 1px solid crimson; border-radius: 5px;
+    position: absolute;  
+    top:380px;
+    font-family: SCD5;
+    text-decoration: none;
+    color:black;
+    /* width:298px; height:40px; */
+    width: 100%; height: 40px;
+    background-color: white;
+}
+#login_text{
+    font-family: SCD3; font-size: 15px;
+    width: 100%; 
+    text-align: center; top:10px; position: absolute;
+}
+
+/* div:nth-child(6){
+    background-color: red;
+    height: 30px;
+    margin-bottom: 10px;
+} */
+
+select{
+    width: 100%; height: 100%;
+}
+/* 성별 */
+li{ 
+    list-style-type: none;
+    display: inline-block;
+    width:40%; height: 50px;
+    margin-bottom: 10px;
+}
+/* li:nth-child(1){
+    background-color: red;
+} */
+li:nth-child(2){
+    background-color: blue;
+    
+}
+li > label > input {
+    /* color:white; */
+    /* display: none; */
+    position: relative; left:30%;
+}
