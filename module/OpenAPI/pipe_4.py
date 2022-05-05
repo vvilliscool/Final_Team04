@@ -34,6 +34,7 @@ def save_mysql():
     df2 = df.rename_axis('id').reset_index()
     df2 = df2.astype(object).where(pd.notnull(df2), None)
     df3 = spark.createDataFrame(df2)
+    df3 = df3.withColumn("modification_time", current_timestamp())
 
     save_loca = f"/data/total_rest"
     df3.coalesce(1).write.format("com.databricks.spark.csv").mode("overwrite").option("header", "true"). \
