@@ -15,6 +15,7 @@ def save_mysql():
         StructField("lat", FloatType()),
         StructField("lot", FloatType()),
         StructField("s_status", StringType()),
+        StructField("modification_time", TimestampType()),
     ]
     devSchema = StructType(devColumns)
 
