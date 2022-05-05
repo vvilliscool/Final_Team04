@@ -14,8 +14,7 @@ def save_mysql():
         StructField("s_kind", StringType()),
         StructField("lat", FloatType()),
         StructField("lot", FloatType()),
-        StructField("s_status", StringType()),
-        StructField("modification_time", TimestampType()),
+        StructField("s_status", StringType())
     ]
     devSchema = StructType(devColumns)
 
@@ -36,6 +35,19 @@ def save_mysql():
     df2 = df.rename_axis('id').reset_index()
     df2 = df2.astype(object).where(pd.notnull(df2), None)
     df3 = spark.createDataFrame(df2)
+
+    devColumns = [
+        StructField("id", IntegerType()),
+        StructField("s_name", StringType()),
+        StructField("s_add", StringType()),
+        StructField("s_road", StringType()),
+        StructField("s_kind", StringType()),
+        StructField("lat", FloatType()),
+        StructField("lot", FloatType()),
+        StructField("s_status", StringType()),
+        StructField("modification_time", TimestampType())
+    ]
+    devSchema = StructType(devColumns)
     df3 = df3.withColumn("modification_time", current_timestamp())
 
     save_loca = f"/data/total_rest"
