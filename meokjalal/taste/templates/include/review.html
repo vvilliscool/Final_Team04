@@ -4,6 +4,12 @@
     <div class="panel-head">
         <img class="review_author_img" {% if review.author.img_profile != '' %}src="/media/{{ review.author.img_profile }}" {% else %} src="{% static 'resources/images/user.png' %}" {% endif %} alt="" style="width:30px;height:30px;">
         <p class="review_author_nickname">{{ review.author.nickname }}</p>
+        {% if user.is_authenticated %}
+        {% if review.author.nickname == user.nickname %}
+        <a href="{% url 'review:review_edit' review_pk=review.pk %}">수정</a>
+        <a href="{% url 'review:review_delete' review_pk=review.pk %}">삭제</a>
+        {% endif %}
+        {% endif %}
     </div>
     <div class="panel-img">
             <!--리뷰 사진-->
