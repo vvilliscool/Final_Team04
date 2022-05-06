@@ -151,11 +151,11 @@ def dropNa():
         StructField("id", IntegerType()),
         StructField("s_name", StringType()),
         StructField("s_tel", StringType()),
-        StructField("s_photo", MapType(StringType(), StringType())),
+        StructField("s_photo", StringType()),
         StructField("s_hour", StringType()),
         StructField("s_etc", StringType()),
-        StructField("s_menu", MapType(StringType(), StringType())),
-        StructField("s_price", MapType(StringType(), StringType()))
+        StructField("s_menu", StringType()),
+        StructField("s_price", StringType()),
     ]
     devSchema = StructType(devColumns)
 
