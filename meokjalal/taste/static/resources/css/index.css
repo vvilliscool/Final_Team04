@@ -199,3 +199,9 @@ html,body{overflow-x:hidden; }
 .star-rating label:hover ~ label {
     -webkit-text-fill-color: #fff58c;
 }
+
+
+/* 사용자정보(프로필) 수정 페이지 */
+.modify{
+    position:absolute; top:130px;
+}
