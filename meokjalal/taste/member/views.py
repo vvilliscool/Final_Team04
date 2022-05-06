@@ -1,8 +1,9 @@
+from re import U
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as django_login, logout as django_logout, authenticate
 from django.db.models import Count
 
-from .forms import LoginForm, SignupForm
+from .forms import LoginForm, SignupForm, ModifyForm
 from .models import User, Like
 from review.models import Review, Comment
 from collections import Counter
@@ -81,7 +82,7 @@ def signup(request):
             # Ver.2
             # 이미지를 DB에 저장하기 위해서..
             user = signup_form.save(commit=False)
-            user.img_profile = signup_form.cleaned_data['img_profile']
+            # user.img_profile = signup_form.cleaned_data['img_profile']
             user.save()
             django_login(request, user)
             
@@ -142,3 +143,48 @@ def ranking(request):
         'rank_list' : rank_list,
     }
     return render(request, 'member/ranking.html', context)
+
+
+# 마이 페이지
+def mypage(request):
+    # 현재 접속한 유저 정보(인덱싱으로 쿼리셋 풀어서 객체 하나만 보내기)
+    user = User.objects.filter(username=request.user)[0]
+    # 현재 접속한 유저가 작성한 리뷰들
+    reviews = Review.objects.filter(author=request.user)
+    # 현재 접속한 유저가 작성한 리뷰 수
+    review_counts = len(reviews)
+    
+    # 현재 접속한 유저가 리뷰를 작성해서 받은 좋아요 수
+    likes = Like.objects.select_related('review_id')
+    like_counts = 0
+    for like in likes:
+        if like.review_id.author == request.user:
+            like_counts += 1
+    
+    context = {
+        'user':user,
+        'reviews':reviews,
+        'review_counts':review_counts,
+        'like_counts':like_counts,
+    }
+    return render(request, 'member/mypage.html', context)
+
+
+# 프로필(유저) 정보 수정
+def modify(request):
+    user = User.objects.filter(username=request.user)[0]
+    print(request.user)
+    if request.method == 'POST':
+        modify_form = ModifyForm(request.POST, request.FILES, instance=request.user)
+        
+        if modify_form.is_valid():
+            modify_form.save()
+            return redirect('member:mypage')
+    else:
+        modify_form= ModifyForm()
+
+    context = {
+        'modify_form': modify_form,
+        'user':user,
+    }
+    return render(request, 'member/modify.html', context)

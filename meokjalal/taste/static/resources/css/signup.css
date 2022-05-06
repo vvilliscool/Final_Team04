@@ -12,7 +12,7 @@
 }
 #middle_content_signup{
     /* background-color: aqua; */
-    position: relative; top:10%; 
+    position: relative; top:6%; 
     margin: 0 auto;
     width: 80%; height: 80%;
 }
@@ -34,7 +34,7 @@ input{
 /* 회원가입 버튼 */
 button{
     background-color: crimson;
-    position: absolute; top:330px;
+    position: absolute; top:390px;
     width:300px; height:40px;
     border: none; border-radius: 5px;
     color:white;
@@ -44,7 +44,7 @@ button{
 #btn_login{
     border: 1px solid crimson; border-radius: 5px;
     position: absolute;  
-    top:380px;
+    top:440px;
     font-family: SCD5;
     text-decoration: none;
     color:black;

@@ -1,6 +1,8 @@
+from tokenize import blank_re
 from django.contrib.auth import get_user_model
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
+from django.db import models
 
 User = get_user_model()
 
@@ -138,10 +140,9 @@ class SignupForm(UserCreationForm):
             'password2',
             # 'img_profile',
             'nickname',
-            
+            'gender',
             'email',
             'birth_date',
-            'gender',
         )
         widgets = {
             'username': forms.TextInput(
@@ -177,4 +178,43 @@ class SignupForm(UserCreationForm):
             'nickname':'별명',
             'gender':'성별',
             'email':'이메일',
+        }
+
+
+class ModifyForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields=[
+            'img_profile',
+            'nickname',
+            'email',
+            'introduce',
+        ]
+        widgets = {
+            'img_profile': forms.FileInput(
+                attrs={
+                    'class': 'form-control',
+                }
+            ),
+            'email': forms.EmailInput(
+                attrs={
+                    'class': 'form-control',
+                }
+            ),
+            'nickname': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                }
+            ),
+            'introduce': forms.Textarea(
+                attrs={
+                    'class': 'form-control',
+                }
+            )
+        }
+        labels={
+            'img_profile':'프로필 사진',
+            'nickname':'별명',
+            'email':'이메일',
+            'introduce':'자기소개',
         }

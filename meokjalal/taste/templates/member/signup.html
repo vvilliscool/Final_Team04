@@ -10,7 +10,7 @@
     <div id='middle_content'>
         <div id="middle_content_signup">
             <div id="signup_form">{% include 'include/form.html' with form=signup_form submit_title='회원가입' %}</div>
-            <!-- <a id='btn_login' href="{% url 'member:login' %}"><p id='login_text'>돌아가기</p></a> -->
+            <a id='btn_login' href="{% url 'member:login' %}"><p id='login_text'>돌아가기</p></a>
         </div>
     </div>
 </div>
@@ -30,7 +30,7 @@
         $('div:nth-child(7) > label').text('생일:');
         $('div:nth-child(7) > input').css({'width':'90%'});
         $("form > button").css({"width":'100%','height':'40px'});
-        $("form > button").css({"display":'none'});
+        // $("form > button").css({"display":'none'});
     });
 
     if ($("input:radio:nth-child(1)").is(":checked")){

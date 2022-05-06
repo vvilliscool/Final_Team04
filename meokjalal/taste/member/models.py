@@ -22,6 +22,7 @@ class User(AbstractUser):
     nickname = models.CharField(max_length=15, unique=True)
     birth_date = models.DateField(null=True, blank=True)
     like_reviews = models.ManyToManyField('review.Review', blank=True, related_name='like_users', through="Like")
+    introduce = models.TextField(max_length=100,null=True, blank=True)
 
     objects = UserManager()
     

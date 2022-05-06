@@ -1,0 +1,23 @@
+.btn-container > form > button{
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    background-image: url('../images/review_heart.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+}
+/* .btn-container > form > button:active{
+    background-image: url('../images/user.png');
+} */
+.btn-container > a{
+    display: none;
+}
+
+.review_div{
+    width: 90%;
+    /* background-color: red; */
+    left:5%; position:relative; 
+    margin-top:10px;
+    /* top:10px; */
+}

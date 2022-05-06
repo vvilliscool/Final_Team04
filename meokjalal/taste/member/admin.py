@@ -13,11 +13,11 @@ User = get_user_model()
 
 class UserAdmin(BaseUserAdmin):
     fieldsets = BaseUserAdmin.fieldsets + (
-        ('추가 정보', {'fields': ('img_profile', 'gender','nickname','birth_date')}),
+        ('추가 정보', {'fields': ('img_profile', 'gender','nickname','birth_date','introduce')}),
     )
     add_fieldsets = BaseUserAdmin.add_fieldsets + (
         ('추가 정보', {
-            'fields': ('img_profile', 'gender','nickname','birth_date'),
+            'fields': ('img_profile', 'gender','nickname','birth_date','introduce'),
         }),
     )
     add_form = SignupForm
