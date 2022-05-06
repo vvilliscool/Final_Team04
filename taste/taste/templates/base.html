@@ -22,7 +22,7 @@
             <a href="{% url 'store:taste_map' %}"><div id='menu_text_03' class="menu_text">맛지도</div></a> 
             <!-- 마이페이지 이미지 -->
             {% if user.is_authenticated %}
-            <a href="{% url 'mypage' %}"><div id='menu_text_04' class="menu_text"></div></a>
+            <a href="{% url 'member:mypage' %}"><div id='menu_text_04' class="menu_text"></div></a>
             {% else %}
             <a href="{% url 'member:login' %}"><div id='menu_text_04' class="menu_text"></div></a>
             {% endif %}
