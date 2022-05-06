@@ -100,13 +100,15 @@ def signup(request):
 
 def ranking(request):
     users = User.objects.all()
-    reviews = Review.objects.all().order_by('-pk')
+    reviews = Review.objects.all()
     comments = Comment.objects.all()
     
     # 리뷰 작성 수를 기준으로 내림차순으로 정렬(작성자, 작성 리뷰 수)
     review_counts = Review.objects.values('author').order_by('author').annotate(count=Count('author'))
     print(review_counts)
     # 좋아요 수 조인 도전
+    
+
 
 
     # 랭커 관련 정보 가져오기
@@ -128,7 +130,8 @@ def ranking(request):
     rank_user_ids.sort()
     # 랭커의 이름, 좋아요 수, user_id를 zip화 시킨다.
     rank_list = zip(rank_names, rank_like_nums, rank_user_ids)
-   
+    
+
     context = {
         'users': users,
         'reviews': reviews,
@@ -147,8 +150,7 @@ def mypage(request):
     # 현재 접속한 유저 정보(인덱싱으로 쿼리셋 풀어서 객체 하나만 보내기)
     user = User.objects.filter(username=request.user)[0]
     # 현재 접속한 유저가 작성한 리뷰들
-    reviews = Review.objects.filter(author=request.user).order_by('-pk')
-
+    reviews = Review.objects.filter(author=request.user)
     # 현재 접속한 유저가 작성한 리뷰 수
     review_counts = len(reviews)
     

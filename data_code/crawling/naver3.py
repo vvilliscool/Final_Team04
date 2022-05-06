@@ -85,9 +85,16 @@ def s_info_incheon():
 
     return id,s_name,s_add_arr,s_add_gu,s_add_ro,s_add_ro
 def driver_get():
+    # 옵션 생성
+    options = webdriver.ChromeOptions()
+
+    # 창 숨기는 옵션 추가
+    # options.add_argument("headless")
+    options.add_argument('disable-gpu')
     service_key = webdriver.chrome.service.Service('../drivers/chromedriver')
     url = f'https://map.naver.com/v5/search/서울/place'
     driver = webdriver.Chrome(service=service_key)
+    # driver = webdriver.Chrome(service=service_key, options=options)
     driver.implicitly_wait(2)
     driver.get(url)  # url 가져오기
     time.sleep(7)
@@ -278,7 +285,7 @@ def s_info_get(naver_dict):
         pass
     return naver_dict
 
-def crwaling(driver,name):
+def crawling(naver_list,driver,name):
     naver_dict = dict()
     menu_idx, review_idx, diff_cnt = 0, 0, 0
     
@@ -371,30 +378,17 @@ def crwaling(driver,name):
     naver_list.append(naver_dict)
     toJson(naver_list,name)
 
+# for rep_cnt in range(3700):
 driver = driver_get()
+naver_list = []
 
-# crwaling_cnt = 0
-for sl in seoul[5371:]:
+
+crawling_num = 55001 # 여기만 숫자 바꿔가면서 하면 됨
+for sl in seoul[crawling_num:crawling_num+1] :
     id, s_name, s_add_arr, s_add_gu, s_add_dong, s_add_ro = s_info_seoul_gyeonggi(sl)
-    crwaling(driver,'seoul')
-    # crwaling_cnt += 1
-    # if crwaling_cnt % 100 == 0 : driver.refresh()
+    crawling(naver_list,driver,f'{crawling_num+100-1}')
+driver.close()
 
-
-
-# for ic in incheon[676:]:
-#     id,s_name,s_add_arr,s_add_gu,s_add_dong,s_add_ro = s_info_incheon()
-#     crwaling(driver,'incheon')
-#     crwaling_cnt += 1
-#     if crwaling_cnt % 100 == 0 : driver.refresh()
-
-
-
-# for gg in gyeonggi:
-#     id,s_name, s_add_arr, s_add_gu, s_add_dong, s_add_ro = s_info_seoul_gyeonggi(gg)
-    # crwaling(driver,'gyeonggi')
-#     crwaling_cnt += 1
-#     if crwaling_cnt % 100 == 0 : driver.refresh()
 
 
 
