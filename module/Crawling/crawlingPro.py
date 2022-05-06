@@ -131,11 +131,11 @@ def change():
         StructField("id", IntegerType()),
         StructField("s_name", StringType()),
         StructField("s_tel", StringType()),
-        StructField("s_photo", StringType()),
+        StructField("s_photo", MapType(StringType(), ArrayType(StringType()))),
         StructField("s_hour", StringType()),
         StructField("s_etc", StringType()),
-        StructField("s_menu", StringType()),
-        StructField("s_price", StringType())
+        StructField("s_menu", MapType(StringType(), ArrayType(StringType()))),
+        StructField("s_price", MapType(StringType(), ArrayType(StringType())))
     ]
     devSchema = StructType(devColumns)
 
@@ -151,11 +151,11 @@ def dropNa():
         StructField("id", IntegerType()),
         StructField("s_name", StringType()),
         StructField("s_tel", StringType()),
-        StructField("s_photo", StringType()),
+        StructField("s_photo", MapType(StringType(), StringType())),
         StructField("s_hour", StringType()),
         StructField("s_etc", StringType()),
-        StructField("s_menu", StringType()),
-        StructField("s_price", StringType())
+        StructField("s_menu", MapType(StringType(), StringType())),
+        StructField("s_price", MapType(StringType(), StringType()))
     ]
     devSchema = StructType(devColumns)
 
@@ -175,7 +175,7 @@ def dropNa():
     df.write.jdbc(url, dbtable, "overwrite", properties={"driver": driver, "user": user, "password": password})
 
 if __name__ == '__main__':
-    spark = SparkSession.builder.master('local[1]').appName('strProcess').getOrCreate()
+    spark = SparkSession.builder.master('yarn').appName('strProcess').getOrCreate()
     # site_list = ['naver', 'mango', 'dining']
     # for site in site_list:
     #     change(site)
