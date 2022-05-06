@@ -23,7 +23,7 @@ def change():
 
     print(result[0])
     # csv_text = pd.read_csv('./data/id/mix_id.csv')
-    load_loca = "/id_pr/mix_id_all/"
+    load_loca = "/mix_id_all.csv"
 
     devColumns = [
         StructField("total_id", IntegerType()),
@@ -32,7 +32,7 @@ def change():
     ]
     devSchema = StructType(devColumns)
 
-    csv_text = spark.read.schema(devSchema).option("header", "true").csv(load_loca + "part-00000*").toPandas()
+    csv_text = spark.read.schema(devSchema).option("header", "true").csv(load_loca).toPandas()
 
     site_name = ['dining', 'mango', 'naver']
     for file_name in site_name:
@@ -168,7 +168,7 @@ def dropNa():
 
     user = "root"
     password = "1234"
-    url = "jdbc:mysql://localhost:3306/test"
+    url = "jdbc:mysql://localhost:3306/meok4"
     driver = "com.mysql.cj.jdbc.Driver"
     dbtable = 'rest_detail'
 
@@ -181,5 +181,5 @@ if __name__ == '__main__':
     #     change(site)
     #     dropNa(site)
     # replaceGap()
-    # change()
+    change()
     dropNa()

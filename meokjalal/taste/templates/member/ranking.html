@@ -1,23 +1,25 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% load mathfilters %}
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'resources/css/ranking.css' %}">
 <div id="body_middle">
 
     <!-- <h1>먹보 랭킹🏆</h1> -->
+
     {% for name, num, id in rank_list %}
         <div class="rank_box" id="rank-{{ forloop.counter }}">
             <div class="rank_box_profile">
-                <div class="info_ranking">{{ forloop.counter }}위</div>
                 <div class="profile_img_box">
                     {% for obj in rank_objs %}
                     {% if obj.id == id %}
-                        <img class="profile_img" {% if obj.img_profile != '' %}src="/media/{{ obj.img_profile }}" {% else %} src="{% static 'resources/images/user.png' %}" {% endif %} alt="">
+                        <img class="profile_img" {% if obj.img_profile != '' %}src="/media/{{ obj.img_profile }}" {% else %} src="{% static 'resources/images/user.png' %}" {% endif %} alt="" style="width:100px;height:100px;">
                     {% endif %}
                     {% endfor %}
                 </div>
                 <div class="profile_info">
+                    <div class="info_ranking">{{ forloop.counter }}위</div>
                     
                     {% for obj in rank_objs %}
                     {% if obj.id == id %}
@@ -33,7 +35,7 @@
                     <div class="info_grade">먹소년</div>
                     {% elif num >= 10 %}
                     <div class="info_grade">먹린이</div>
-                    {% elif num >= 1 %}
+                    {% elif num >= 0 %}
                     <div class="info_grade">먹알못</div>
                     {% endif %}
 
@@ -48,7 +50,6 @@
 
 
             <div class="rank_box_reviews">
-
                     {% for review in reviews %}
                     {% if review.author|stringformat:"s" == name %}
                     <div class="rank_box_r">
@@ -65,7 +66,6 @@
                     </div>
                     {% endif %}
                     {% endfor %}
-
             </div>
         </div>
     {% endfor %}
