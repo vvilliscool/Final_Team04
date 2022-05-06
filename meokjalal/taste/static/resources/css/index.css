@@ -201,7 +201,27 @@ html,body{overflow-x:hidden; }
 }
 
 
+/* 수정사항 3가지로 가는 페이지 */
+.agg_user_func{
+    position:absolute; top:130px;
+}
+
 /* 사용자정보(프로필) 수정 페이지 */
 .modify{
+    position:absolute; top:130px;
+}
+
+/* 비밀번호 변경 페이지 */
+.change_password{
+    position:absolute; top:130px;
+}
+
+/* 계정 삭제 묻는 페이지 */
+.user_delete{
+    position:absolute; top:130px;
+}
+
+/* 리뷰 삭제 묻는 페이지 */
+.review_delete{
     position:absolute; top:130px;
 }
