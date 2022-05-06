@@ -2,7 +2,6 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from utils.decorators import login_required
-
 from member.models import Like
 from .models import Review, Comment
 from .forms import CommentForm, ReviewForm
