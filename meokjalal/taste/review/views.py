@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from utils.decorators import login_required
+from django.views.decorators.http import require_POST
+
 from member.models import Like
 from .models import Review, Comment
 from .forms import CommentForm, ReviewForm
@@ -125,3 +127,35 @@ def review_like_toggle(request, review_pk):
     if next_path:
         return redirect(next_path)
     return redirect('review:review_detail', review_pk=review_pk)
+
+
+
+# 리뷰 편집
+@login_required
+def review_edit(request, review_pk):
+    review = get_object_or_404(Review, pk=review_pk)
+    if review.author == request.user:
+        if request.method == 'POST':
+            review_form =  ReviewForm(request.POST, request.FILES, instance=review)
+            if review_form.is_valid():
+                review_form.save()
+                return redirect('review:review_list')
+        else:
+            review_form = ReviewForm()
+        
+    context = {
+        'review_form': review_form,
+    }
+    return render(request, 'review/review_edit.html', context)    
+
+
+# 리뷰 삭제
+@login_required
+# @require_POST
+def review_delete(request, review_pk):
+    review = get_object_or_404(Review, pk=review_pk)
+    print(request.user)
+    print(review.author)
+    if review.author == request.user:
+        review.delete()
+    return redirect('review:review_list')
