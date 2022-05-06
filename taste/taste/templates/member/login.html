@@ -1,9 +1,0 @@
-{% extends 'base.html' %}
-
-{% block content %}
-<div class="login">
-    <h1>로그인</h1>
-        {% include 'include/form.html' with form=login_form submit_title='로그인' %}
-    <a href="{% url 'member:signup' %}">회원가입</a>
-</div>
-{% endblock %}

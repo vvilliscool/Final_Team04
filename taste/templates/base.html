@@ -1,0 +1,53 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge; chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'resources/css/index.css' %}">
+    <title>먹잘알😋</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <!-- <h1>4조 화이팅!</h1> -->
+    <div id="body_top">
+        <div id="body_top_logo">
+            <div id="logo_image"></div>
+            <span id="logo_text">먹잘알</span>
+        </div>
+        <div id="body_top_menu">
+            <a href="{% url 'review:review_list' %}"><div id='menu_text_01' class="menu_text">홈</div></a>
+            <a href="{% url 'member:ranking' %}"><div id='menu_text_02' class="menu_text">랭킹</div></a> 
+            <a href="{% url 'store:taste_map' %}"><div id='menu_text_03' class="menu_text">맛지도</div></a> 
+            <!-- 마이페이지 이미지 -->
+            {% if user.is_authenticated %}
+            <a href="{% url 'mypage' %}"><div id='menu_text_04' class="menu_text"></div></a>
+            {% else %}
+            <a href="{% url 'member:login' %}"><div id='menu_text_04' class="menu_text"></div></a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+    <form action="" method="post">
+    <a class="re-cre-btn" href="{% url 'review:review_create' %}" ><img src="{% static 'resources/images/plus.png' %}" alt="" style="width:40px; height:40px;"></a>
+    </form>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert-message alert
+                {% if message.tags == 'info' %} 
+                    alert-info
+                {% elif message.tags == 'success' %}
+                    alert-success
+                {% elif message.tags == 'warning' %}
+                    alert-warning
+                {% elif message.tags == 'error' %}
+                    alert-danger
+                {% endif %}
+                ">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
