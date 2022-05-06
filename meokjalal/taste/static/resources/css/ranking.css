@@ -1,2 +1,57 @@
 #menu_text_01{color:black;}
 #menu_text_02{color:crimson; left:35%;}
+
+.rank_box{
+    width: 90%; margin: 20 auto;
+    border: 1px solid black;
+    padding: 10px;
+}
+/* 1. 순위 */
+.info_ranking{
+    font-size: 20px;
+    font-family: SCD6;
+    position: relative; left:10px;
+}
+
+/* 2. 이미지 */
+.profile_img_box{
+    width: 95px;
+    /* background-color: red; */
+    display: inline-block;
+}
+.profile_img{
+    width:90px; height: 90px;
+    border: 1px solid black;
+    border-radius: 60px;
+}
+/* 3. 닉네임 */
+.info_user{
+    width: 150px;
+    /* background-color: red; */
+    font-family: SCD6;
+    font-size: 20px;
+    position: relative; left:100px; top:-80px;
+}
+/* 4. 등급 */
+.info_grade{
+    /* background-color: red; */
+    width: 100px;
+    position: relative; left:100px; top:-77px;
+    color:crimson;
+}
+/* 5. 리뷰 갯수 */
+.info_wreview{
+    /* background-color: red; */
+    width: 80px;
+    position: relative; left:100px; top:-70px;
+}
+/* 6. 좋아요 갯수 */
+.info_likes{
+    /* background-color: red; */
+    width: 100px;
+    position: relative; left:180px; top:-89px;
+}
+
+.rank_box_reviews{
+    background-color: red;
+}
