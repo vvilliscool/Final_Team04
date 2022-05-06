@@ -181,5 +181,5 @@ if __name__ == '__main__':
     #     change(site)
     #     dropNa(site)
     # replaceGap()
-    # change()
+    change()
     dropNa()
