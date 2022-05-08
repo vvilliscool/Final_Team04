@@ -10,7 +10,7 @@ from .forms import CommentForm, ReviewForm
 
 
 def review_list(request):
-    reviews = Review.objects.all()
+    reviews = Review.objects.all().order_by('-pk')
     comment_form = CommentForm()
     comments = Comment.objects.all()
     context = {

@@ -5,9 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge; chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'resources/css/index.css' %}">
-    <title>먹잘알😋</title>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <title>먹잘알😋</title>
+
 </head>
 <body>
     <!-- <h1>4조 화이팅!</h1> -->
@@ -22,7 +24,9 @@
             <a href="{% url 'store:taste_map' %}"><div id='menu_text_03' class="menu_text">맛지도</div></a> 
             <!-- 마이페이지 이미지 -->
             {% if user.is_authenticated %}
+
             <a href="{% url 'member:mypage' %}"><div id='menu_text_04' class="menu_text"></div></a>
+
             {% else %}
             <a href="{% url 'member:login' %}"><div id='menu_text_04' class="menu_text"></div></a>
             {% endif %}
