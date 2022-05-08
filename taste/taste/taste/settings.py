@@ -95,7 +95,8 @@ DATABASES = {
         'NAME': 'meok4',
         'USER': 'meok4',
         'PASSWORD': '1234',
-        'HOST': '211.172.73.14', # 동준 IP입니다. 상시 가동입니다. '211.172.73.14
+        # 'HOST': 'localhost', 
+        'HOST': '211.172.73.14',
         'PORT': '3306',
     }
 }

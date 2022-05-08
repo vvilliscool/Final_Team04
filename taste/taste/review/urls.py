@@ -11,7 +11,8 @@ urlpatterns = [
     path('create/', views.review_create, name='review_create'),
     re_path(r'^(?P<review_pk>\d+)/$', views.review_detail, name='review_detail'),
     re_path(r'^(?P<review_pk>\d+)/like-toggle/$', views.review_like_toggle, name='review_like_toggle'),
-
+    re_path(r'^(?P<review_pk>\d+)/delete/$', views.review_delete, name='review_delete'),
+    re_path(r'^(?P<review_pk>\d+)/edit/$', views.review_edit, name='review_edit'),
     # comment
     re_path(r'^(?P<review_pk>\d+)/comment/create/$', views.comment_create, name='comment_create'),
 ]

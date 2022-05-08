@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="user_delete">
+    <h1>계정 삭제</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p>정말로 탈퇴하시겠습니까?</p>
+        <input type="submit" value="탈퇴"/>
+    </form>
+    <button><a href="{% url 'member:mypage' %}">아니오</a></button>
+</div>
+{% endblock %}
