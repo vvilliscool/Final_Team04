@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="agg_user_func">
+    <a href="{% url 'member:modify' %}">프로필 수정</a>
+    <a href="{% url 'member:change_password' %}">비밀번호 변경</a>
+    <a href="{% url 'member:user_delete' %}">계정 삭제</a>
+</div>
+{% endblock %}

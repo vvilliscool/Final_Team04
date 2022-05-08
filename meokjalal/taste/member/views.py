@@ -1,9 +1,10 @@
-from re import U
 from django.shortcuts import render, redirect
-from django.contrib.auth import login as django_login, logout as django_logout, authenticate
+from django.contrib.auth import login as django_login, logout as django_logout, authenticate, update_session_auth_hash
 from django.db.models import Count
-
+from utils.decorators import login_required
+from django.contrib import messages
 from .forms import LoginForm, SignupForm, ModifyForm
+from django.contrib.auth.forms import PasswordChangeForm
 from .models import User, Like
 from review.models import Review, Comment
 from collections import Counter
@@ -107,6 +108,8 @@ def ranking(request):
     review_counts = Review.objects.values('author').order_by('author').annotate(count=Count('author'))
     print(review_counts)
     # 좋아요 수 조인 도전
+    
+
 
 
     # 랭커 관련 정보 가져오기
@@ -128,7 +131,8 @@ def ranking(request):
     rank_user_ids.sort()
     # 랭커의 이름, 좋아요 수, user_id를 zip화 시킨다.
     rank_list = zip(rank_names, rank_like_nums, rank_user_ids)
-   
+    
+
     context = {
         'users': users,
         'reviews': reviews,
@@ -148,7 +152,6 @@ def mypage(request):
     user = User.objects.filter(username=request.user)[0]
     # 현재 접속한 유저가 작성한 리뷰들
     reviews = Review.objects.filter(author=request.user).order_by('-pk')
-
     # 현재 접속한 유저가 작성한 리뷰 수
     review_counts = len(reviews)
     
@@ -167,8 +170,13 @@ def mypage(request):
     }
     return render(request, 'member/mypage.html', context)
 
+# 수정사항 집합 페이지(프로필 수정, 비밀번호변경, 계정삭제)
+@login_required
+def agg_user_func(request):
+    return render(request, 'member/agg_user_func.html')
 
 # 프로필(유저) 정보 수정
+@login_required
 def modify(request):
     user = User.objects.filter(username=request.user)[0]
     print(request.user)
@@ -186,3 +194,36 @@ def modify(request):
         'user':user,
     }
     return render(request, 'member/modify.html', context)
+
+@login_required
+# 회원 비밀번호 변경
+def change_password(request):
+    if request.method == 'POST':
+        cp_form = PasswordChangeForm(request.user, request.POST)
+        if cp_form.is_valid():
+            user = cp_form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, '비밀번호가 변경되었습니다!')
+            return redirect('member:mypage')
+        else:
+            messages.error(request, '해당 오류를 수정해 주세요.')
+    else:
+        cp_form = PasswordChangeForm(request.user)
+
+    context = {
+        'cp_form':cp_form,
+    }
+    return render(request, 'member/change_password.html', context)
+
+# 회원 삭제
+@login_required
+def user_delete(request):
+    # ver1. 확인 페이지를 사용할 것이라면?
+    if request.method == 'POST':
+        request.user.delete()
+        return redirect('review:review_list')
+    return render(request, 'member/user_delete.html')
+
+    # ver2. js(confirm?)을 사용할 것이라면?
+    # reqeust.user.delete()
+    # return redirect('review:review_list')
