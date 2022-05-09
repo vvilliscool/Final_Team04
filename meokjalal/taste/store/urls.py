@@ -7,4 +7,5 @@ app_name = 'store'
 
 urlpatterns = [
     path('map/', views.taste_map, name='taste_map'),
+    path('theme/', views.theme, name='theme'),
 ]

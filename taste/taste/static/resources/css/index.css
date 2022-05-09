@@ -53,15 +53,16 @@ html,body{overflow-x:hidden; }
 }
 .menu_text{
     /* background-color: aqua; */
-    position: absolute; top:90px; left:15%;
+    position: absolute; top:90px; left:10%;
     font-family: SCD6;
     font-size: 17px;
 }
-#menu_text_01{color:crimson;}
-#menu_text_02{left:35%;}
-#menu_text_03{left:55%;}
-#menu_text_04{
-    left:77%;
+#menu_text_01{color:crimson;} 
+#menu_text_02{left:25%;}
+#menu_text_03{left:43%;}
+#menu_text_04{left:60%;}
+#menu_text_05{
+    left:80%;
     width:20%; height: 40px; top:80px;
     background-image: url('../images/user.png');
     background-repeat: no-repeat;
@@ -153,8 +154,27 @@ html,body{overflow-x:hidden; }
     margin-top:130px;
 }
 
-
 /* 랭크 페이지 */
 .meok-rank{
     position:absolute; top:130px;
+}
+
+/* 리뷰리스트 검색창 */
+.search {
+    position: relative;
+    width: 99%;
+}
+.ela_search_input {
+    width: 100%;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+}
+.ela_search_go {
+    position : absolute;
+    width: 17px;
+    top: 10px;
+    right: 2%;
+    margin: 0;
 }
