@@ -99,6 +99,14 @@ DATABASES = {
         'HOST': '211.172.73.14',
         'PORT': '3306',
     }
+    # 'default': {
+    # 'ENGINE': 'django.db.backends.mysql',
+    # 'NAME': 'PTJ03',
+    # 'USER': 'test04',
+    # 'PASSWORD': '1234',
+    # 'HOST': 'localhost',
+    # 'PORT': '3306' 
+    # }
 }
 
 

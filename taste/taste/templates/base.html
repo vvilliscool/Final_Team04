@@ -36,7 +36,7 @@
     {% block content %}
     {% endblock %}
     <form action="" method="post">
-    <a class="re-cre-btn" href="{% url 'review:review_create' %}" ><img src="{% static 'resources/images/plus.png' %}" alt="" style="width:40px; height:40px;"></a>
+    <a class="re_cre_btn" id="review_btn" href="{% url 'review:review_create' %}" ><img src="{% static 'resources/images/plus.png' %}" alt="" style="width:40px; height:40px;"></a>
     </form>
     {% if messages %}
         {% for message in messages %}

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'resources/css/mypage.css' %}">
 {% block content %}
 <div id="body_middle">
     <div class="my-profile">
@@ -21,7 +22,7 @@
             <div class="my_grade">먹알못</div>
             {% endif %}
 
-            <div class="modify-myinfo">
+            <div class="modify_myinfo">
                 <a href="{% url 'member:agg_user_func' %}">수정</a>
             </div>
 
@@ -30,13 +31,13 @@
 
         </div>
     </div>
-    <div class="my-introduce">
+    <div class="my_introduce">
         {% if user.introduce != None %}
             {{ user.introduce }}
         {% endif %}
     </div>
     
-    <div class="my-reviews">
+    <div class="my_reviews">
         {% for review in reviews %}
         <div class="my_review" id="my_review_{{forloop.counter}}">
             <a href="{% url 'review:review_detail' review_pk=review.pk %}">
