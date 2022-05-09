@@ -1,5 +1,34 @@
 #menu_text_01{color:black;}
 
 .my_profile{
-    
+    /* background-color: red; */
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 30px;
+    width: 90%; height: 150px; left:5%;
+    margin: 10 auto;
 }
+.my_img_box{
+    position: absolute;
+    background-color: green;
+    width: 35%; height: 70%;
+}
+.my_img{
+    position: relative;
+    border: 1px solid black;
+    border-radius: 50px;
+    width: 100px; height: 100px;
+    left: 10%;
+}
+.my_info{
+    position: absolute;
+    top:20px; left:40%;
+    /* background-color: red; */
+}
+.my_reviews{
+    display: none;
+}
+
+/* .my_info{
+    display: none;
+} */

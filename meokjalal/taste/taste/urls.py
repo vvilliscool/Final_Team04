@@ -19,13 +19,13 @@ from django.conf.urls.static import static
 from django.conf import settings
 from . import views
 from review import views as rviews
+from store import views as sviews
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # 루트를 리뷰리스트로
-    path('', rviews.review_list, name='index'),
-    # path('', views.index, name='index'),
+
+    path('', sviews.theme, name='index'),
     
     path('ranking/', views.ranking, name='ranking'),
     path('map/', views.map, name='map'),

@@ -1,8 +1,7 @@
 #menu_text_01{color:black;}
-#menu_text_02{color:crimson; left:35%;}
+#menu_text_03{color:crimson;}
 
 .rank_box{
-
     width: 90%; 
     margin: 20 auto;
     /* margin-left: 5%; */
@@ -107,3 +106,4 @@
 }
 .rating_text{
     position: relative; top:11px;
+}

@@ -5,7 +5,7 @@
 <div id="body_middle">
     <div class="my_profile">
         <div class="my_img_box">
-            <img class="my_img" {% if user.img_profile != '' %} src="/media/{{ user.img_profile }}" {% else %} src="{% static 'resources/images/user.png' %}" {% endif %} alt="" style="width:100px;height:100px;">
+            <img class="my_img" {% if user.img_profile != '' %} src="/media/{{ user.img_profile }}" {% else %} src="{% static 'resources/images/user.png' %}" {% endif %} alt="">
         </div>
         <div class="my_info">
             <div class="my_nickname">{{ user.nickname }}</div>
