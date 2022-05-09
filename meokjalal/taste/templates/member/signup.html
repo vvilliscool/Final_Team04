@@ -33,14 +33,41 @@
         // $("form > button").css({"display":'none'});
     });
 
-    // $(function(){ 
-    //     $("li > label > input").click(function(){ 
-    //         var chk = $(this).is(":checked");//.attr('checked'); 
-    //         console.log(chk)
-    //         if(chk) $("this").prop('checked', true); 
-    //         else $(".select_subject input").prop('checked', false); 
-    //     }); 
-    // }); 
+    $(function(){ 
+        $("li").click(function(){ 
+            // var chk = $(this).is(":checked");//.attr('checked'); 
+            var label = $(this).children('label')
+            var gender = label.children('input')
+            if($(this).prev()){ 
+                var other_li = $(this).prev()
+                var other_label = other_li.children('label')
+                other_li.css({'background-color':'white'}); 
+                other_label.css({'color':'black'});
+                other_label.children('input').attr({'checked':false});
+            }
+            if($(this).next()){ 
+                var other_li = $(this).next()
+                var other_label = other_li.children('label')
+                other_li.css({'background-color':'white'}); 
+                other_label.css({'color':'black'});
+                other_label.children('input').attr({'checked':false});
+            }
+
+            gender.attr({'checked':true});
+            // gender.css('box-shadow','0 1px 2px crimson');
+            // var ul = $(this).parent()
+            // console.log(label);
+            // console.log(chk,gender);
+            // label.css({'background-color':'white'});
+            // gender.css('display','inline');
+            $(this).css({'background-color':'crimson'});
+            label.css({'color':'white'});
+            // if(chk) $(this).prop('checked', false); 
+            // else $(this).prop('checked', true);
+            // console.log('chk2 : ',$(this).is(":checked"))
+            // else $(".select_subject input").prop('checked', false); 
+        }); 
+    }); 
     
 </script>
 
