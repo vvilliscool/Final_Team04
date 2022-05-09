@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
+{% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'resources/css/mypage.css' %}">
-{% block content %}
 <div id="body_middle">
-    <div class="my-profile">
+    <div class="my_profile">
         <div class="my_img_box">
             <img class="my_img" {% if user.img_profile != '' %} src="/media/{{ user.img_profile }}" {% else %} src="{% static 'resources/images/user.png' %}" {% endif %} alt="" style="width:100px;height:100px;">
         </div>

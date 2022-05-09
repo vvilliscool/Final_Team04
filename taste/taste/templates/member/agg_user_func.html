@@ -1,13 +1,7 @@
 {% extends 'base.html' %}
+{% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'resources/css/mypage_aggUserFunc.css' %}">
-<style>
-    .agg_user_func{
-        position: absolute;
-        top:500px;
-    }
-</style>
-{% block content %}
 <div class="agg_user_func">
     <a href="{% url 'member:modify' %}">프로필 수정</a>
     <a href="{% url 'member:change_password' %}">비밀번호 변경</a>
