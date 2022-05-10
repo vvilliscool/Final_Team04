@@ -2,10 +2,18 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'resources/css/mypage_aggUserFunc.css' %}">
-<div class="agg_user_func">
-    <a href="{% url 'member:modify' %}">프로필 수정</a>
-    <a href="{% url 'member:change_password' %}">비밀번호 변경</a>
-    <a href="{% url 'member:user_delete' %}">계정 삭제</a>
+<div id="body_middle">
+    <p id="mypage_text">마이페이지 설정</p>
+    <div id="user_modify">
+        <div class="modify_btn"><a href="{% url 'member:change_password' %}"><p class="modify_text">비밀번호 변경</p></a></div>
+        <div class="modify_btn"><a id="logout_btn" href="{% url 'member:logout' %}"><p class="modify_text">로그아웃</p></a></div>
+        <div class="modify_btn"><a href="{% url 'member:user_delete' %}"><p class="modify_text">계정 삭제</p></a></div>
+    </div>
 </div>
+<script>
+    $(document).ready(function(){
+        
+    });
+</script>
 
 {% endblock %}

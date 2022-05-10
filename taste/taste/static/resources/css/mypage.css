@@ -1,17 +1,23 @@
 #menu_text_01{color:black;}
-
+#body_middle {height: 300px;}
+a{
+    text-decoration: none;
+    color:black;
+    font-family: SCD6;
+    font-size: 12px;
+}
 .my_profile{
     /* background-color: red; */
     position: absolute;
-    border: 2px solid black;
-    border-radius: 30px;
-    width: 90%; height: 150px; left:5%;
-    margin: 10 auto;
+    /* border-radius: 30px; */
+    width: 90%; height: 190px; left:5%;
+    margin: 0 auto;
 }
+/* ---- 1. 이미지 ----  */
 .my_img_box{
     position: absolute;
-    background-color: green;
-    width: 35%; height: 70%;
+    /* background-color: green; */
+    width: 35%; height: 70%; top:10px;
 }
 .my_img{
     position: relative;
@@ -20,15 +26,102 @@
     width: 100px; height: 100px;
     left: 10%;
 }
+/* ---- 2. 이름/등급/자기소개 ----  */
 .my_info{
     position: absolute;
-    top:20px; left:40%;
+    top:20px; left:40%; width: 55%;
     /* background-color: red; */
 }
-.my_reviews{
-    display: none;
+/* 이름 */
+.my_nickname{
+    font-family: SCD5;
+    font-size: 20px;
+    position: relative; top:5px;
+}
+/* 등급 */
+.my_grade{
+    color:crimson;
+    position: relative; top:5px;
+}
+/* 자기소개 */
+.my_introduce{
+    /* background-color: red; */
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 5px;
+    padding-bottom: 0px;
+    font-size: 13px; font-family: SCD5;
+    height: 33px; width:100%;
+    position: relative; top:9px; left:-2px;
+    color:rgb(102, 102, 102);
 }
 
-/* .my_info{
-    display: none;
-} */
+
+/* ---- 3. 리뷰/좋아요 ---- */
+#review_likes_div{
+    width: 100%;
+    height: 70px;
+    position: absolute; 
+    top:120px;
+    border-top: 1.5px solid grey ;
+    border-bottom: 1.5px solid grey;
+}
+.modify_myinfo{
+    position: absolute; 
+    width: 48%; height: 60px; top:5px;
+    text-align: center;
+}
+#modify_div_1{
+    border-right: 1.5px solid grey;
+}
+#modify_div_2{
+    position: absolute; left:50%;
+}
+
+/* 리뷰/좋아요 div태그 */
+#my_wreview,#my_likes{ position: relative; top:11px; }
+/* 리뷰/좋아요 p태그 */
+.my_cnt{ color:crimson; }
+
+/* 마이페이지수정 버튼 */
+#modify_btn{
+    width: 25px; height: 25px;
+    /* background-color: red; */
+    position: absolute; left:90%; top:25px;
+}
+/* 수정이미지 */
+#modify_img,#modify_img_2{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* 수정텍스트 */
+#modify_text{
+    position: relative;
+    left:10px;
+}
+
+/* 프로필수정 버튼 */
+#modify_btn_2{
+    width: 25px; height: 25px;
+    position: absolute; left:80%; top:25px;
+}
+
+
+
+
+
+/* ---- 리뷰 ---- */
+.my_reviews{
+    position: absolute;
+    top:210px; width: 90%; left:5%;
+}
+.rank_review_image{
+    width: 47%;
+    margin-bottom: 10px;
+    margin-right: 3%;
+    float:left;
+}
+
+

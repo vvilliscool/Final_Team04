@@ -219,11 +219,11 @@ def change_password(request):
 @login_required
 def user_delete(request):
     # ver1. 확인 페이지를 사용할 것이라면?
-    if request.method == 'POST':
-        request.user.delete()
-        return redirect('review:review_list')
-    return render(request, 'member/user_delete.html')
+    # if request.method == 'POST':
+    #     request.user.delete()
+    #     return redirect('review:review_list')
+    # return render(request, 'member/user_delete.html')
 
     # ver2. js(confirm?)을 사용할 것이라면?
-    # reqeust.user.delete()
-    # return redirect('review:review_list')
+    reqeust.user.delete()
+    return redirect('review:review_list')
