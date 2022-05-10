@@ -30,6 +30,7 @@ def saveCrawlSave():
     df.createOrReplaceTempView('df')
 
     df2 = spark.sql("select csv.s_id as id, df.s_name, df.s_tel, df.s_photo, df.s_hour, df.s_etc, df.s_menu, df.s_price from df left outer join csv on df.id = csv.total_id").dropna(subset='s_name')
+    df2 = df2.dropna(subset='id').orderBy(["id"])
 
     save_local  = f'/crawling/id_mix/total'
     df2.coalesce(1).write.format("json").mode("overwrite").json(save_local)
@@ -44,4 +45,5 @@ def saveCrawlSave():
     df2.write.jdbc(url, dbtable, "overwrite", properties={"driver": driver, "user": user, "password": password})
 
 if __name__ == '__main__':
+    spark = SparkSession.builder.master('yarn').appName('strProcess').getOrCreate()
     saveCrawlSave()
