@@ -28,7 +28,7 @@ def change():
     devColumns = [
         StructField("total_id", IntegerType()),
         StructField("s_id", IntegerType()),
-        StructField("s_tel", StringType()),
+        StructField("s_name", StringType()),
     ]
     devSchema = StructType(devColumns)
 
@@ -165,14 +165,6 @@ def dropNa():
     save_local  = f'/crawling/drop/total'
     df.coalesce(1).write.format("json").mode("overwrite").json(save_local)
     print('save total')
-
-    user = "root"
-    password = "1234"
-    url = "jdbc:mysql://localhost:3306/meok4"
-    driver = "com.mysql.cj.jdbc.Driver"
-    dbtable = 'rest_detail'
-
-    df.write.jdbc(url, dbtable, "overwrite", properties={"driver": driver, "user": user, "password": password})
 
 if __name__ == '__main__':
     spark = SparkSession.builder.master('yarn').appName('strProcess').getOrCreate()
