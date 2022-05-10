@@ -23,6 +23,21 @@ def makeMongoSet():
     df = spark.read.schema(devSchema).option("header", "true").csv(load_loca + "/part-00000*")
     df.createOrReplaceTempView('df')
 
+    devColumns = [
+        StructField("id", IntegerType()),
+        StructField("s_name", StringType()),
+        StructField("s_tel", StringType()),
+        StructField("s_photo", StringType()),
+        StructField("s_hour", StringType()),
+        StructField("s_etc", StringType()),
+        StructField("s_menu", StringType()),
+        StructField("s_price", StringType()),
+    ]
+    devSchema = StructType(devColumns)
+    load_loca = "/crawling/id_mix/total"
+    df2 = spark.read.json(load_loca+"/part-0000*", encoding='utf8')
+    df2.createOrReplaceTempView('df2')
+
     sql = f'select id, s_name, s_add, s_road, lat, lot from df where lat is not NULL or lat != ""'
     df2 = spark.sql(sql)
 

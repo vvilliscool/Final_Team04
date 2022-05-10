@@ -4,8 +4,8 @@ import pandas as pd
 from pyspark.sql import SparkSession
 from pyspark.sql.types import *
 
-# location = './data/'
-location = '/home/ubuntu/git/Final_Team04/data/crawling/'
+# location = '/home/ubuntu/git/Final_Team04/data/crawling/'
+location = '/home/big/test_code/crawling/'
 
 # json_file
 def replaceGap(json_file):
@@ -23,7 +23,7 @@ def change():
 
     print(result[0])
     # csv_text = pd.read_csv('./data/id/mix_id.csv')
-    load_loca = "/mix_id_all.csv"
+    load_loca = "/mix_id.csv"
 
     devColumns = [
         StructField("total_id", IntegerType()),
@@ -33,6 +33,7 @@ def change():
     devSchema = StructType(devColumns)
 
     csv_text = spark.read.schema(devSchema).option("header", "true").csv(load_loca).toPandas()
+    csv_text = csv_text.drop_duplicates(['s_id'], keep='first')
 
     site_name = ['dining', 'mango', 'naver']
     for file_name in site_name:
@@ -68,13 +69,13 @@ def change():
                 id_int = int(id['id'])
 
                 try:
-                    if file_name == 'mango':
+                    if file_name == 'dining' or file_name == 'naver':
                         cnt += 1
                         if cnt % 1000 == 0:
                             print(cnt)
-                        str_expr = f's_id == {id_int}'
+                        str_expr = f'total_id == {id_int}'
                         df_q = csv_text.query(str_expr)
-                        id_int = int(df_q.iloc[0]['total_id'])
+                        id_int = int(df_q.iloc[0]['s_id'])
                 except IndexError:
                     continue
 
@@ -167,7 +168,7 @@ def dropNa():
     print('save total')
 
 if __name__ == '__main__':
-    spark = SparkSession.builder.master('yarn').appName('strProcess').getOrCreate()
+    spark = SparkSession.builder.master('local[1]').appName('strProcess').getOrCreate()
     # site_list = ['naver', 'mango', 'dining']
     # for site in site_list:
     #     change(site)
