@@ -133,11 +133,6 @@ html,body{overflow-x:hidden; }
     position:absolute; width:100%; top:130px;
 }
 
-/* 리뷰 등록 페이지 */
-.review-create{
-    position:absolute; width:100%; top:130px;
-}
-
 /* 리뷰 작성 버튼 */
 .re_cre_btn{
     position:fixed; top:90%; right:5%;
@@ -150,7 +145,7 @@ html,body{overflow-x:hidden; }
     top:130px;
 }
 
-#my-location{
+#my_location{
     margin-top:130px;
 }
 

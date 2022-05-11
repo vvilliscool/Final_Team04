@@ -52,7 +52,7 @@ def login(request):
             # Django의 auth앱에서 제공하는 login함수를 실행해 앞으로의 요청/응답에 세션을 유지한다
             django_login(request, user)
             # next가 존재하면 해당 위치로, 없으면 Post목록 화면으로 이동
-            return redirect(next if next else 'review:review_list')
+            return redirect(next if next else 'store:theme')
 
 
             # 인증에 실패하면 login_form에 non_field_error를 추가한다
@@ -67,7 +67,7 @@ def login(request):
 
 def logout(request):
     django_logout(request)
-    return redirect('review:review_list')
+    return redirect('store:theme')
 
 
 def signup(request):
@@ -225,5 +225,5 @@ def user_delete(request):
     # return render(request, 'member/user_delete.html')
 
     # ver2. js(confirm?)을 사용할 것이라면?
-    reqeust.user.delete()
+    request.user.delete()
     return redirect('review:review_list')

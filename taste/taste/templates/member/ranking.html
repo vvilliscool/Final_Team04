@@ -45,10 +45,8 @@
                     <div class="info_likes">좋아요 {{num}}개</div>
                 </div>
             </div>
-
-
+            
             <div class="rank_box_reviews">
-
                     {% for review in reviews %}
                     {% if review.author|stringformat:"s" == name %}
                     <div class="rank_box_r">

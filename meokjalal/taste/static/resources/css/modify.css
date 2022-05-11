@@ -31,6 +31,7 @@ a{text-decoration: none;}
     width: 100px; height: 100px;
     border: 1px solid black;
     border-radius: 50%;
+    object-fit: cover;
 }
 /* 아이디/생년월일/성별 */
 .user_info{
@@ -38,6 +39,7 @@ a{text-decoration: none;}
     width: 60%;
     position: relative;
     top:-80px; left:110px;
+    margin-bottom: 10px;
 }
 /* 아이디 */
 #info_username{
@@ -46,6 +48,7 @@ a{text-decoration: none;}
 }
 /* 생년월일 */
 #info_birth{
+    font-size:14px;
     font-family: SCD5;
 }
 
@@ -71,8 +74,8 @@ form:nth-child(2){
     display: inline-block;
     width: 40px; height: 30px;
     background-repeat: no-repeat;
-    background-size:30px 20px;
-    background-position: 5px;
+    background-size:30px 23px;
+    background-position: 5px 2px;
     background-color: white;
     z-index: 100;
     position: relative;
