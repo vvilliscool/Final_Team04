@@ -38,10 +38,9 @@ def makeMongoSet():
     df2 = spark.read.json(load_loca+"/part-0000*", encoding='utf8')
     df2.createOrReplaceTempView('df2')
 
-    sql = f'select id, s_name, s_add, s_road, lat, lot from df where lat is not NULL or lat != ""'
-    df2 = spark.sql(sql)
-
-    df3 = df2.collect()
+    sql = 'select df.id, df.s_name, df.s_road, df.s_add, df.s_kind, df.lat, df.lot from df join df2 on df.id=df2.id'
+    df_sql = spark.sql(sql)
+    df3 = df_sql.collect()
 
     df_list = list()
     for row in df3:
@@ -54,9 +53,9 @@ def makeMongoSet():
         if row['id'] % 100 == 0:
             print(row['id'])
 
-    rest_mongo = db['rest']
+    rest_mongo = db['detail']
     rest_mongo.drop()
-    rest_mongo = db['rest']
+    rest_mongo = db['detail']
     rest_mongo.create_index([("location", GEOSPHERE)])
 
     rest_mongo.insert_many(df_list)
