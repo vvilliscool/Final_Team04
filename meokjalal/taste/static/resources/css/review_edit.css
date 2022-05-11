@@ -1,0 +1,12 @@
+#menu_text_01{color:black;}
+#menu_text_02{color:crimson;}
+#body_middle{
+    
+    background-color: red;
+    width: 100%; height: 500px;
+}
+.review-create{
+    background-color: skyblue;
+    position: absolute; left:5%; top:30px;
+    width: 90%;
+}

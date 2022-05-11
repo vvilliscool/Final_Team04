@@ -25,6 +25,7 @@ a{
     border-radius: 50px;
     width: 100px; height: 100px;
     left: 10%;
+    object-fit: cover;
 }
 /* ---- 2. 이름/등급/자기소개 ----  */
 .my_info{
@@ -107,9 +108,6 @@ a{
     width: 25px; height: 25px;
     position: absolute; left:80%; top:25px;
 }
-
-
-
 
 
 /* ---- 리뷰 ---- */

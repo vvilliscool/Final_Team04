@@ -2,9 +2,11 @@
 #menu_text_03{color:crimson;}
 
 .rank_box{
-    width: 90%; 
-    margin: 20 auto;
-    /* margin-left: 5%; */
+    width: 85%; 
+    margin: 10 auto;
+    /* position: relative;
+    margin-left: 5%;
+    margin-top: 20px; */
     border: 1px solid black;
     padding: 10px;
 }
@@ -28,6 +30,7 @@
     width:90px; height: 90px;
     border: 1px solid black;
     border-radius: 60px;
+    object-fit: cover;
 }
 /* 3. 닉네임 */
 .info_user{

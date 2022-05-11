@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<div id="body_middle">
+    <div class="store_photos">
+        {% if detail.0.photo1 != None %}
+        <img src="{{ detail.0.photo1 }}" class="store_detail_img" style="width:200px;height:200px;">
+        <img src="{{ detail.0.photo2 }}" class="store_detail_img" style="width:200px;height:200px;">
+        <img src="{{ detail.0.photo3 }}" class="store_detail_img" style="width:200px;height:200px;">
+        {% else %}
+        사진이 없습니다.
+        {% endif %}
+    </div>
+    <div class="store_info">
+        <div class="store_info_name">{{ store.s_name }}</div>
+        <div class="store_info_road">{{ store.s_road }}</div>
+        <div class="store_info_add">{{ store.s_add }}</div>
+    </div>
+    <div class="store_detail">
+        {% if detail|length == 0%}
+        상세 정보가 없습니다.
+        {% else %}
+            <div class="store_tel">
+                {% if detail.0.s_tel != None %}
+                <p><b>전화번호</b> {{ detail.0.s_tel }}</p>
+                {% else %}
+                <p><b>전화번호</b> 정보 없음</p>
+                {% endif %}
+            </div>
+            <div class="store_hour">
+                {% if detail.0.s_hour != None %}
+                <p><b>영업시간</b> {{ detail.0.s_hour }}</p>
+                {% else %}
+                <p><b>영업시간</b> 정보 없음</p>
+                {% endif %}
+            </div>
+            <div class="store_etc">
+                {% if detail.0.s_etc != None %}
+                <p><b>기타 정보</b> {{ detail.0.s_etc }}</p>
+                {% else %}
+                <p><b>기타 정보</b> 정보 없음</p>
+                {% endif %}
+            </div>
+            <div class="store_menu">
+                
+                {% if detail.0.s_menu != None %}
+                <p><b>메뉴</b>
+                    {% for menu, price in detail.0.s_menu %}
+                    {{ menu }} : {{ price }}
+                    {% endfor %}
+                </p>
+                {% else %}
+                <p><b>메뉴</b> 정보 없음</p>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

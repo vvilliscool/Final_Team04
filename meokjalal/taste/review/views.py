@@ -4,7 +4,7 @@ from django.contrib import messages
 from utils.decorators import login_required
 from django.views.decorators.http import require_POST
 
-from member.models import Like
+from member.models import Like,User
 from .models import Review, Comment
 from .forms import CommentForm, ReviewForm
 # Create your views here.
@@ -12,6 +12,7 @@ from .forms import CommentForm, ReviewForm
 
 
 def review_list(request):
+    users = User.objects.all()
     reviews = Review.objects.all().order_by('-pk')
     comment_form = CommentForm()
     comments = Comment.objects.all()
@@ -19,6 +20,7 @@ def review_list(request):
         'reviews': reviews,
         'comment_form': comment_form,
         'comments': comments,
+        'users':users,
     }
     return render(request, 'review/review_list.html', context)
 
@@ -144,6 +146,7 @@ def review_edit(request, review_pk):
         
     context = {
         'review_form': review_form,
+        'review':review
     }
     return render(request, 'review/review_edit.html', context)    
 
@@ -153,17 +156,17 @@ def review_edit(request, review_pk):
 # @require_POST
 def review_delete(request, review_pk):
     # Ver1. 확인 페이지를 거친다면?
-    if request.method == 'POST':
-        review = get_object_or_404(Review, pk=review_pk)
-        print(request.user)
-        print(review.author)
-        if review.author == request.user:
-            review.delete()
-            return redirect('review:review_list')
-    return render(request, 'review/review_delete.html')
+    # if request.method == 'POST':
+    #     review = get_object_or_404(Review, pk=review_pk)
+    #     print(request.user)
+    #     print(review.author)
+    #     if review.author == request.user:
+    #         review.delete()
+    #         return redirect('review:review_list')
+    # return render(request, 'review/review_delete.html')
 
     # Ver2. js (confirm?)으로 확인할거라면?
-    # review = get_object_or_404(Review, pk=review_pk)
-    # if review.author == request.user:
-    #     review.delete()
-    #     return redirect('review:review_list')
+    review = get_object_or_404(Review, pk=review_pk)
+    if review.author == request.user:
+        review.delete()
+        return redirect('review:review_list')
