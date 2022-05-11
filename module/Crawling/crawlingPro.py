@@ -4,8 +4,8 @@ import pandas as pd
 from pyspark.sql import SparkSession
 from pyspark.sql.types import *
 
-# location = '/home/ubuntu/git/Final_Team04/data/crawling/'
-location = '/home/big/test_code/crawling/'
+location = '/home/ubuntu/git/Final_Team04/data/crawling/'
+# location = '/home/big/test_code/crawling/'
 
 # json_file
 def replaceGap(json_file):
