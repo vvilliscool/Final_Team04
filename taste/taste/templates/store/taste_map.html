@@ -24,8 +24,7 @@
                 data:{"lot": lot, "lat": lat },
                 success: function(msg){
                     var mongo = msg['key'];
-                    console.log(mongo[0].keys())
-
+                    
                     for(var i=0; i<mongo.length; i++){
                         // console.log(mongo[i])
                         var monPos = new kakao.maps.LatLng(mongo[i]['location'][1], mongo[i]['location'][0])
