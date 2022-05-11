@@ -31,3 +31,13 @@ class Detail(models.Model):
 
     def __str__(self):
         return f'Detail (PK: {self.pk})'
+
+
+# 날씨 데이터 테이블
+class Weather(models.Model):
+    id = models.IntegerField(primary_key=True)
+    fcstDate = models.TextField(blank=True, null=True)
+    fcstTime = models.TextField(blank=True, null=True)
+    temp = models.TextField(blank=True, null=True)
+    cloud = models.TextField(blank=True, null=True)
+    rain = models.TextField(blank=True, null=True)

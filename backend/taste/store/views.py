@@ -15,7 +15,7 @@ import requests
 import json
 
 from review.models import Review
-from .models import Store, Detail
+from .models import Store, Detail, Weather
 from pymongo import MongoClient, GEOSPHERE
 from bson import SON
 
@@ -26,7 +26,11 @@ def taste_map(request):
 
 # 홈(Home) 페이지
 def theme(request):
-        return render(request, 'store/theme.html')
+    weather = Weather.objects.filter(id=1)[0]
+    context = {
+        'weather':weather,
+    }
+    return render(request, 'store/theme.html', context)
 
 
 # 검색창(엘라스틱 서치)을 통한 음식점 검색
