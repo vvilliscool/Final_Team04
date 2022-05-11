@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.contrib import messages
 from utils.decorators import login_required
 from django.views.decorators.http import require_POST
+from elasticsearch import Elasticsearch
+from django.http import JsonResponse
 
 from member.models import Like,User
 from .models import Review, Comment
@@ -170,3 +172,35 @@ def review_delete(request, review_pk):
     if review.author == request.user:
         review.delete()
         return redirect('review:review_list')
+
+
+# 검색창 자동완성 기능
+def autocom(request):
+    es = Elasticsearch("http://localhost:9200")
+    index = 'store_store'
+
+    q = request.GET.get("key")
+    if q == None:
+        result = {"key": None}
+        return result
+
+    body = {
+        "query" : {
+            "multi_match" : {
+                "fields" : ["s_name",'s_road'],
+                "query" : q,
+                "type" : "phrase_prefix"
+            }
+        }
+    }
+    res = es.search(index=index, body=body)
+    hits_datas = res['hits']['hits']
+
+    s_name = list()
+    for data in hits_datas:
+        hits_data = {'s_name': data['_source']['s_name'], 'id':data['_id'], 's_road':data['_source']['s_road']}
+        s_name.append(hits_data)
+    print(s_name)
+    result = {"key": s_name}
+
+    return JsonResponse(result)
