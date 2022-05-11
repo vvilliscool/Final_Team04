@@ -34,7 +34,7 @@ def makeMongoSet():
         StructField("s_price", StringType()),
     ]
     devSchema = StructType(devColumns)
-    load_loca = "/crawling/id_mix/total"
+    load_loca = "/crawling/drop/total"
     df2 = spark.read.json(load_loca+"/part-0000*", encoding='utf8')
     df2.createOrReplaceTempView('df2')
 
