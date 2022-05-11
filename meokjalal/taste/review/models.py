@@ -2,7 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django import forms
-
+from store.models import Store
 
 # Create your models here.
 
@@ -15,7 +15,7 @@ class Review(models.Model):
     taste = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(5)])
     cleaned = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(5)])
     price = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(5)])
-    store = models.ForeignKey('store.Store', on_delete=models.CASCADE)
+    store = models.ForeignKey(Store, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'Review (PK: {self.pk}, Author: {self.author.username})'

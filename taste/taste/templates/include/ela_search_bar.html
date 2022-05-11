@@ -41,12 +41,12 @@
                     auto = msg['key'];
                     if(auto.length === 0) {      // 입력창이 비었다면 추천 검색어 리스트 숨김
                         $("#rel_search").hide();
-                        // console.log('없던게');
+                        console.log('없던게');
                     }
-                    var auto_key = Object.keys(auto[0])[0];
+                    // console.log(auto);
                     for(var i=0; auto.length; i++){
                         // console.log(auto[i]['s_name']);
-                        $('.pop_rel_keywords').append('<li>'+auto[i].s_name+'</li>');
+                        $('.pop_rel_keywords').append('<li>'+auto[i]['s_name']+'</li>');
                     }
                 }
             })
