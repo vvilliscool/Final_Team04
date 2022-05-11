@@ -1,4 +1,4 @@
-from msilib.schema import RadioButton
+
 from django import forms
 
 from .models import Comment, Review
@@ -47,12 +47,14 @@ class ReviewForm(forms.ModelForm):
             'taste',
             'cleaned',
             'price',
+            'store',
         )
         widgets = {
             'service':Stars,
             'taste':Stars,
             'cleaned':Stars,
             'price':Stars,
+            'store':forms.TextInput
         }
         labels={
             'service':'서비스',

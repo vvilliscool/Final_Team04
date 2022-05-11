@@ -1,11 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div id="body_middle">
-        {% for review in reviews %}
-            <div id="review-{{ review.pk }}">
-                {% include 'include/review.html' with review_type='list' %}
-            </div>
-        {% endfor%}
-    </div>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'resources/css/review_list.css' %}">
+<div id="body_middle">
+    {% for review in reviews %}
+        <div class='review_div' id="review_{{ review.pk }}">
+            {% include 'include/review.html' with review_type='list' %}
+        </div>
+    {% endfor%}
+</div>
+<script>
+    $(document).ready(function(){
+        $('.panel-img').height($('.panel-img').width());
+        $('.review_author_img').css({'width':'50px','height':'50px'});
+        $('.review_div').height($('.review_div').width()+260);
+    });
+
+    $(function(){ 
+        $("#user_delete").click(function(){ 
+            confirm('피드를 정말 삭제하시겠습니까?');
+        });
+    });
+</script>
 {% endblock %}

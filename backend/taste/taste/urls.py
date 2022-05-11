@@ -21,10 +21,11 @@ from . import views
 from review import views as rviews
 from store import views as sviews
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('', sviews.theme, name='index'),
-    # path('', views.index, name='index'),
     
     path('ranking/', views.ranking, name='ranking'),
     path('map/', views.map, name='map'),

@@ -1,0 +1,174 @@
+#menu_text_01{color:black;}
+#menu_text_02{color:crimson;}
+li{ list-style:none; }
+a{text-decoration: none;}
+#body_middle{
+    height: 700px;
+}
+#panel_div{
+    position:absolute;
+    width: 100%; height: 100%;
+    /* background-color: red; */
+}
+
+/* 모든 리뷰 div에 대하여 */
+.review_div{
+    /* display: block; */
+    position: relative;
+    /* background-color: red; */
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 90%; 
+    margin: 10 auto;
+    margin-bottom: 20px;
+}
+/* -------- 1. head -------- */
+.panel-head{
+    /* background-color: aqua; */
+    position: relative;
+    width: 90%; height: 60px;
+    margin-left: 5%;
+    margin-top: 10px;
+}
+/* 이미지 */
+.review_author_img{
+    border: 1px solid black;
+    border-radius: 50%;
+    object-fit: cover;
+    position:relative;
+    left:-5px;
+}
+
+/* 닉네임 */
+.review_author_nickname{
+    font-family: SCD5;
+    font-size: 18px;
+    position:relative; 
+    left:60px; top:-40px;
+    width: 60%;
+}
+/* 수정/삭제 버튼 */
+#user_btn_div{
+    /* background-color: skyblue; */
+    width: 90px; height: 40px;
+    position: relative; top:-65px; left:75%;
+    
+}
+.user_btns > div{
+    /* background-color: red; */
+    color: black;
+    position: relative;
+    width: 25px; height: 25px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+/* 수정 */
+#user_update > div{
+    background-image: url('../images/pen.png');
+    
+}
+/* 삭제 */
+#user_delete > div{
+    background-image: url('../images/trash.png');
+    left:15px;
+}
+/* -------- 2. img -------- */
+.panel-img{
+    position: relative;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.review-image{
+    object-fit: cover;
+    width: 100%; height: 100%;
+}
+
+/* -------- 3. 내용/좋아요/댓글 -------- */
+.panel_body{
+    /* background-color: skyblue; */
+    height: 100px;
+}
+
+/* a. 좋아요 */
+.btn-container{
+    position: relative;
+    /* background-color: red; */
+    height: 30px;
+}
+button{
+    width: 30px; height: 30px;
+    border: none;
+    background-color: white;
+    background-image: url('../images/heart.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative; left: 10px; top:5px;
+}
+/* 좋아요 텍스트 */
+.like_text{
+    /* background-color: red; */
+    position: relative;
+    font-size: 14px;
+    top:-17px; left: 50px; width: 260px; height: 17px;
+    overflow-y: hidden;
+    margin: 0; padding: 0;
+}
+/* 좋아요 텍스트 - 닉네임 */
+.like_text > b{ font-family: SCD5; }
+
+/* b. 내용 */
+.review_content{
+    /* background-color: red; */
+    position: relative;
+    top:5px; 
+    left:2%;
+    width: 93%; 
+    /* height: 80px; */
+    /* max-height: 32px; */
+    /* overflow-y:scroll; */
+    height: auto;
+    font-family: SCD4;
+    font-size: 15px;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    padding-top: 5px; padding-left:10px; padding-bottom: 5px ;
+}
+
+/* c. 댓글 */
+.review_comment{
+    /* background-color: red; */
+    width:93%; 
+    height: auto;
+    margin: 10 auto;
+}
+.comment_list{
+    /* max-height: 55px; */
+    /* overflow-y:scroll; */
+}
+/* 댓글 달기...*/
+.comment-form{
+    /* margin: 10 auto; */
+    border: 1px solid grey;
+    padding-left: 5px;
+    /* padding: 5 0 5 5; */
+    position: relative; 
+    margin-bottom: 5px;
+    /* bottom:5px; */
+}
+ul{ margin-bottom: 10px;}
+/* 댓글 닉네임 */
+.comment_author{ font-family: SCD6; }
+#id_content{
+    /* background-color: red;    */
+    padding: 0;
+    width: 80%; height: 25px; 
+    position: relative; top:-4px;
+}
+#comment_btn{
+    background-image: url('../images/submit.png');
+    position: relative;
+    width: 25px; height: 25px; top:4px;
+    left:5%;
+}

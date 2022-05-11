@@ -1,9 +1,76 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="login">
-    <h1>로그인</h1>
-        {% include 'include/form.html' with form=login_form submit_title='로그인' %}
-    <a href="{% url 'member:signup' %}">회원가입</a>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'resources/css/login.css' %}">
+<script src='https://developers.kakao.com/sdk/js/kakao.js'></script>
+<!-- kakao login js -->
+<script>
+    window.Kakao.init('e460cef7889f76b617bb02affe774de9')
+
+
+    function kakao_login(){
+        console.log('hi')
+        
+        window.Kakao.Auth.login({
+            
+            scope : 'profile_nickname,account_email,gender',
+            success : function(authObj){
+                console.log(authObj)
+                /*
+                window.Kakao.API.request({
+                    url : 'v2/user/me',
+                    success : res => {
+                        const kakao_account = res.kakao_acount;
+                        console.log(kakao_account)
+                    }
+                }); 
+                */
+            }
+        });
+        
+    }
+</script>
+
+<div id="body_middle">
+    <div id="middle_content">
+        <div id="middle_content_login">
+            <!-- <a id="btn_find" href="{% url 'member:signup' %}"><p id="find_text">아이디/비밀번호 찾기</p></a> -->
+            <div id="login_form">{% include 'include/form.html' with form=login_form submit_title='로그인' %}</div>
+            <a id='btn_signup' href="{% url 'member:signup' %}"><p id='signup_text'>회원가입</p></a>
+            <a href="javascript:kakao_login();"><img id='kakao_login_img' src="{% static 'resources/images/certi_kakao_login.png' %}" width='300px'></a>
+        </div>
+
+        
+        
+        
+    </div>
 </div>
+
+{% comment %} 
+<div id='body_foot'>
+</div> 
+{% endcomment %}
+
+<script>
+
+    $(document).ready(function(){
+        $("div:nth-child(2) > label").text(' ');
+        $("div:nth-child(2) > input").prop({'placeholder':'아이디를 입력해주세요.'});
+        $("div:nth-child(2) > input").css({"width":'100%','height':'60px'});
+        $("div:nth-child(3) > label").text(' ');
+        $("div:nth-child(3) > input").prop({'placeholder':'비밀번호를 입력해주세요.'});
+        $("div:nth-child(3) > input").css({"width":'100%','height':'60px'});
+        $("div:nth-child(3) > input").css({"border-top":'none'});
+        $("form > button").css({"width":'100%','height':'40px'});
+
+        $('p:nth-child(5)').text('아이디 또는 비밀번호가 올바르지 않습니다.');
+        
+    });
+
+    document.cookie = "safeCookie1=foo; SameSite=Lax";
+    document.cookie = "safeCookie2=foo";
+    document.cookie = "crossCookie=bar; SameSite=None; Secure"
+    
+</script>
 {% endblock %}

@@ -4,3 +4,4 @@ from .models import Store, Detail
 admin.site.register(Store)
 admin.site.register(Detail)
 
+# Register your models here.

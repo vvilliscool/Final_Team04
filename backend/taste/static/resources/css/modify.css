@@ -1,0 +1,123 @@
+#menu_text_01{color:black;}
+#body_middle {height: 500px;}
+a{text-decoration: none;}
+
+.modify_info{
+    /* background-color: red; */
+    border: 1.5px solid grey;
+    border-radius: 10px;
+    padding-top: 20px;
+    width: 90%; height: 370px;
+    position: absolute;
+    left:5%; top:15%;
+}
+#middle_text{
+    position: absolute; top:25px; 
+    width: 100%;
+    text-align: center;
+    font-family: SCD6;
+    font-size: 25px;
+}
+
+/* ---------- 1. 유저 정보 div (변경 x) ---------- */
+#user_info_div{
+    width: 90%; height: 120px;
+    border-bottom: 1.5px solid grey;
+    /* background-color: aqua; */
+    margin: 0 auto;
+}
+/* 이미지 */
+.user_img{
+    width: 100px; height: 100px;
+    border: 1px solid black;
+    border-radius: 50%;
+    object-fit: cover;
+}
+/* 아이디/생년월일/성별 */
+.user_info{
+    /* background-color:tomato; */
+    width: 60%;
+    position: relative;
+    top:-80px; left:110px;
+    margin-bottom: 10px;
+}
+/* 아이디 */
+#info_username{
+    font-size: 20px;
+    font-family: SCD6;
+}
+/* 생년월일 */
+#info_birth{
+    font-size:14px;
+    font-family: SCD5;
+}
+
+
+/* ---------- 2. form ---------- */
+form:nth-child(2){
+    /* background-color: aqua; */
+    width: 100%; height: 250px;
+}
+
+ /* 이미지 파일 선택 창 없애기 */
+ .form-group:nth-child(2) > input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+ }
+ 
+ /* 이미지 파일 선택 창 커스텀 */
+ .form-group:nth-child(2) > label {
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 50%;
+    display: inline-block;
+    width: 40px; height: 30px;
+    background-repeat: no-repeat;
+    background-size:30px 23px;
+    background-position: 5px 2px;
+    background-color: white;
+    z-index: 100;
+    position: relative;
+    top:-40px; left:80px;
+ }
+
+ /* 닉네임/이메일/자기소개 input */
+ .form-group > input{
+     position: relative;
+     left:7%;
+     margin-bottom: 20px;
+     padding-left: 10px;
+     border: 1px solid black;
+     border-radius: 5px;
+ }
+
+ .form-group > label{
+     /* background-color: red; */
+     position: relative;
+     left:5%;
+     font-family: SCD5;
+ }
+
+ button{
+     background-color: crimson;
+     width: 40%; height: 50px;
+     border: 1.5px solid grey;
+     border-radius: 5px;
+     font-family: SCD5; font-size: 15px;
+     color:white;
+     position: relative;
+     left:5%; top:30px;
+ }
+ #btn_text{
+     background-color: white;
+     width: 40%; height: 31px;
+     position: relative;
+     left:50%; top:22px;
+     border: 1.5px solid crimson;
+     border-radius: 5px;
+     font-family: SCD5; font-size: 15px;
+     color:black;
+     text-align: center;
+     padding-top: 17px;
+ }

@@ -92,13 +92,22 @@ WSGI_APPLICATION = 'taste.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-    #     # 'NAME': str(os.path.join(BASE_DIR, "db.sqlite3"))
+        # 'NAME': str(os.path.join(BASE_DIR, "db.sqlite3"))
         'NAME': 'meok4',
         'USER': 'meok4',
         'PASSWORD': '1234',
-        'HOST': 'localhost', # 동준 IP입니다. 상시 가동입니다. '211.172.73.14
+        'HOST': 'localhost', 
+        # 'HOST': '211.172.73.14',
         'PORT': '3306',
     }
+    # 'default': {
+    # 'ENGINE': 'django.db.backends.mysql',
+    # 'NAME': 'PTJ03',
+    # 'USER': 'test04',
+    # 'PASSWORD': '1234',
+    # 'HOST': 'localhost',
+    # 'PORT': '3306' 
+    # }
 }
 
 
