@@ -13,7 +13,6 @@ class Store(models.Model):
     lot = models.FloatField()
     s_status = models.TextField()
     modification_time = models.DateTimeField()
-    detail = models.ForeignKey('store.Detail', on_delete=models.CASCADE)
 
     class Meta:
         managed = False
