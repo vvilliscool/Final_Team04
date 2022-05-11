@@ -24,7 +24,7 @@
                 data:{"lot": lot, "lat": lat },
                 success: function(msg){
                     var mongo = msg['key'];
-                    console.log(mongo)
+                    console.log(mongo[0].keys())
 
                     for(var i=0; i<mongo.length; i++){
                         // console.log(mongo[i])
