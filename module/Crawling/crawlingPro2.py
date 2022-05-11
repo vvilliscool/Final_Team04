@@ -23,7 +23,7 @@ def saveCrawlSave():
     password = "1234"
     url = "jdbc:mysql://localhost:3306/meok4"
     driver = "com.mysql.cj.jdbc.Driver"
-    dbtable = 'rest_detail'
+    dbtable = 'store_detail'
 
     df2.write.jdbc(url, dbtable, "overwrite", properties={"driver": driver, "user": user, "password": password})
 
