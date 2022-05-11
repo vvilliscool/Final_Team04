@@ -41,9 +41,9 @@
                     auto = msg['key'];
                     if(auto.length === 0) {      // 입력창이 비었다면 추천 검색어 리스트 숨김
                         $("#rel_search").hide();
-                        console.log('없던게');
+                        // console.log('없던게');
                     }
-                    // console.log(auto);
+                    console.log(auto[0].keys());
                     for(var i=0; auto.length; i++){
                         // console.log(auto[i]['s_name']);
                         $('.pop_rel_keywords').append('<li>'+auto[i]['s_name']+'</li>');
