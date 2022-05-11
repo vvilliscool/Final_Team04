@@ -43,7 +43,7 @@
                         $("#rel_search").hide();
                         // console.log('없던게');
                     }
-                    console.log(auto[0].keys());
+                    console.log(Object.keys(auto[0]));
                     for(var i=0; auto.length; i++){
                         // console.log(auto[i]['s_name']);
                         $('.pop_rel_keywords').append('<li>'+auto[i]['s_name']+'</li>');
