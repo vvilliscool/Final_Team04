@@ -140,7 +140,6 @@ class SignupForm(UserCreationForm):
             'password2',
             # 'img_profile',
             'nickname',
-            
             'email',
             'birth_date',
             'gender',
@@ -207,7 +206,7 @@ class ModifyForm(forms.ModelForm):
                     'class': 'form-control',
                 }
             ),
-            'introduce': forms.Textarea(
+            'introduce': forms.TextInput(
                 attrs={
                     'class': 'form-control',
                 }

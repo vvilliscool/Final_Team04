@@ -6,6 +6,7 @@
     <div class="my_profile">
         <div class="my_img_box">
             <img class="my_img" {% if user.img_profile != '' %} src="/media/{{ user.img_profile }}" {% else %} src="{% static 'resources/images/user.png' %}" {% endif %} alt="">
+            
         </div>
         <div class="my_info">
             <div class="my_nickname">{{ user.nickname }}</div>
@@ -15,41 +16,52 @@
             {% elif like_counts >= 50 %}
             <div class="my_grade">먹청년</div>
             {% elif like_counts >= 20 %}
-            <div class="my_grade">먹소년</div>
+            <div class="my_grade">먹소년</div>  
             {% elif like_counts >= 10 %}
             <div class="my_grade">먹린이</div>
             {% elif like_counts >= 0 %}
             <div class="my_grade">먹알못</div>
             {% endif %}
-
-            <div class="modify_myinfo">
-                <a href="{% url 'member:agg_user_func' %}">수정</a>
+            <div class="my_introduce">
+                {% if user.introduce != None %}
+                    {{ user.introduce }}
+                {% endif %}
             </div>
-
-            <div class="my_wreview">리뷰 {{ review_counts }}개</div>
-            <div class="my_likes">좋아요 {{ like_counts }}개</div>
-
         </div>
+        <a id='modify_btn' href="{% url 'member:agg_user_func' %}">
+            <img id="modify_img" src="{% static 'resources/images/settings.png' %}">
+        </a>
+        <a id='modify_btn_2' href="{% url 'member:modify' %}">
+            <img id="modify_img_2" src="{% static 'resources/images/pen.png' %}">
+        </a>
+
+        <div id="review_likes_div">
+            <div class="modify_myinfo" id="modify_div_1">
+                <div id="my_wreview">리뷰 <p class="my_cnt">{{ review_counts }}개</p></div>
+            </div>
+            <div class="modify_myinfo" id="modify_div_2">
+                <div id="my_likes">좋아요 <p class="my_cnt">{{ like_counts }}개</p></div>
+            </div>
+        </div>
+
     </div>
-    <div class="my_introduce">
-        {% if user.introduce != None %}
-            {{ user.introduce }}
-        {% endif %}
-    </div>
+    
     
     <div class="my_reviews">
         {% for review in reviews %}
         <div class="my_review" id="my_review_{{forloop.counter}}">
             <a href="{% url 'review:review_detail' review_pk=review.pk %}">
-                <img src="{{ review.photo.url }}" alt="" class="rank-review-image" style="width: 100%;">
+                <img src="{{ review.photo.url }}" alt="" class="rank_review_image">
             </a>
         </div>
         {% endfor %}
     </div>
 
-
-    <a href="{% url 'member:logout' %}">로그아웃</a>
+    
 </div>
+<script>
+    $('.rank_review_image').height($('.rank_review_image').width())
+</script>
 {% endblock %}
 
 
