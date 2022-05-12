@@ -9,6 +9,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     var markers = [];
+    var infoWindows = [];
     var selectedMarker = null;
     $(function(){
         var container = document.getElementById('kakao_map'); //지도를 담을 영역의 DOM 레퍼런스
@@ -49,6 +50,8 @@
                             content : iwContent,
                             removable : true
                         });
+                        infoWindows.push(infowindow)
+
                         kakao.maps.event.addListener(marker, 'click', makeClickListener(map, marker, infowindow));
                     }
                     console.log(markers)
@@ -91,6 +94,12 @@
                 closeInfoWindow();
                 infowindow.open(map, marker);
             };
+        }
+
+        function closeInfoWindow() {
+            for(var idx=0; idx<array.length; idx++){
+                InfoWindows[idx].close();
+            }
         }
 
         function locationLoadError(pos){
