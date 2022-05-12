@@ -28,7 +28,7 @@
                 // data:{"lot": 126.967775, "lat":  37.551604},     //test용
                 data:{"lot": lot, "lat": lat },
                 success: function(msg){
-                    console.log(markers);
+                    console.log(infoWindows);
                     var mongo = msg['key'];
                     // console.log(mongo)
 
@@ -45,13 +45,14 @@
                         // marker.setMap(map);
                         markers.push(marker);
 
-                        var iwContent = '<div style="padding:5px;">Hello World!</div>'
+                        var iwContent = `<div style="padding:5px;">${mongo[i].s_name}</br>${mongo[i].s_add}</br>
+                            <a href="https://52.194.148.243/store/${mongo[i].id}">이동</a></div>`
                         var infowindow = new kakao.maps.InfoWindow({
                             content : iwContent,
                             removable : true
                         });
                         infoWindows.push(infowindow)
-
+                        
                         kakao.maps.event.addListener(marker, 'click', makeClickListener(map, marker, infowindow));
                     }
                     console.log(markers)
@@ -91,7 +92,6 @@
 
         function makeClickListener(map, marker, infowindow) {
             return function() {
-                closeInfoWindow();
                 infowindow.open(map, marker);
             };
         }
