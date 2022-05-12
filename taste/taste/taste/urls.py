@@ -25,7 +25,7 @@ from store import views as sviews
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('', views.index, name='index'),
+    path('', sviews.theme, name='index'),
     
     path('ranking/', views.ranking, name='ranking'),
     path('map/', views.map, name='map'),
