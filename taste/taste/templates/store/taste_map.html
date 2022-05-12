@@ -47,10 +47,7 @@
                             content : iwContent,
                             removable : true
                         });
-                        kakao.maps.event.addListener(marker, 'click', function() {
-                            // 마커 위에 인포윈도우를 표시합니다
-                            infowindow.open(map, marker);  
-                        });
+                        kakao.maps.event.addListener(marker, 'click', makeOverListener(map, marker, infowindow));
                     }
                     console.log(markers)
                 }
@@ -85,6 +82,12 @@
             for (var i = 0; i < markers.length; i++) {
                 markers[i].setMap(map);
             }            
+        }
+
+        function makeClickListener(map, marker, infowindow) {
+            return function() {
+                infowindow.open(map, marker);
+            };
         }
 
         function locationLoadError(pos){
