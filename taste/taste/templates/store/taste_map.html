@@ -27,8 +27,6 @@
                 data:{"lot": lot, "lat": lat },
                 success: function(msg){
                     console.log(markers);
-                    setMarkers(null);
-                    var markers = [];
                     var mongo = msg['key'];
                     // console.log(mongo)
 
@@ -78,6 +76,9 @@
         kakao.maps.event.addListener(map, 'dragend', function() { 
             var latlng = map.getCenter();
             mongoAjax(latlng.getLng(), latlng.getLat())
+
+            setMarkers(null);
+            markers = [];
         })
         
         function setMarkers(map) {
