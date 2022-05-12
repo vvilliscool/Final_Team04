@@ -8,11 +8,10 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b77a2ab9b91385b038558204f7854460"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    var markers = [];
     $(function(){
         var container = document.getElementById('kakao_map'); //지도를 담을 영역의 DOM 레퍼런스
         var options = { //지도를 생성할 때 필요한 기본 옵션
-            center: new kakao.maps.LatLng(37.550663, 126.988161), //지도의 중심좌표.
+            center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
             level: 4 //지도의 레벨(확대, 축소 정도)
         };
 
@@ -26,9 +25,8 @@
                 // data:{"lot": 126.967775, "lat":  37.551604},     //test용
                 data:{"lot": lot, "lat": lat },
                 success: function(msg){
-                    console.log(markers);
                     var mongo = msg['key'];
-                    // console.log(mongo)
+                    console.log(mongo)
 
                     for(var i=0; i<mongo.length; i++){
                         // console.log(mongo[i])
@@ -38,28 +36,12 @@
                             map: map,
                             title: mongo[i]['s_name'],
                             position: monPos,
-                            clickable: true
                         })
-                        markers.push(marker);
-
-                        var iwContent = '<div style="padding:5px;">Hello World!</div>'
-                        var infowindow = new kakao.maps.InfoWindow({
-                            content : iwContent,
-                            removable : true
-                        });
-                        kakao.maps.event.addListener(marker, 'click', makeOverListener(map, marker, infowindow));
                     }
-                    console.log(markers)
                 }
             })
         }
 
-        // 버튼 클릭했을 때
-        $("#my_location").on('click', function(){
-            navigator.geolocation.getCurrentPosition(locationLoadSuccess, locationLoadSuccess);
-        })
-
-        // 버튼 클릭해서 위치가지고 오는것 성공 햇을 때
         function locationLoadSuccess(pos){
             // 현재 위치 받아오기
             var currentPos = new kakao.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
@@ -69,26 +51,14 @@
             mongoAjax(pos.coords.longitude, pos.coords.latitude)
         };
 
-        // 지도를 드래그 했을 때 지도의 가운데 좌표값 기중으로 주위 검색
         kakao.maps.event.addListener(map, 'dragend', function() { 
             var latlng = map.getCenter();
             mongoAjax(latlng.getLng(), latlng.getLat())
-
-            setMarkers(null);
-            markers = [];
         })
-        
-        function setMarkers(map) {
-            for (var i = 0; i < markers.length; i++) {
-                markers[i].setMap(map);
-            }            
-        }
 
-        function makeClickListener(map, marker, infowindow) {
-            return function() {
-                infowindow.open(map, marker);
-            };
-        }
+        $("#my_location").on('click', function(){
+            navigator.geolocation.getCurrentPosition(locationLoadSuccess, locationLoadSuccess);
+        })
 
         function locationLoadError(pos){
             alert('위치 정보 가져오기 실패!!! 잠시뒤에 눌러주세요')

@@ -1,20 +1,27 @@
 #body_middle{
     width: 100%; height: 800px;
-    background-color: blue;
+    /* background-color: blue; */
 }
-
+a{text-decoration: none;color: black;}
+.search{
+    background-color: white;
+    width: 90%; height: 39px; left:5%; top:5px;
+    /* z-index: 100; */
+    /* padding-top: 18px; */
+}
 /* 음식점 검색 결과 ul */
 .pop_rel_keywords{
     background-color: white;
     border: 1px solid grey;
     border-radius: 2px;
-    width: 96%; max-height: 130px;
+    width: 88%; max-height: 130px;
     margin-left: 1%;
     overflow-y: scroll; overflow-x: scroll;
     /* padding-left: 3%; */
     list-style-type: none;
-    z-index: 100;
-    position: fixed; top:170px;
+    z-index: 1;
+    position: relative;
+    /* position: fixed; top:170px; */
 
 }
 /* 음식점 검색 결과 li */
@@ -34,6 +41,49 @@
 
 .store_panel{
     width: 90%;
-    background-color: red;
+    /* background-color:lightpink; */
     position: relative; left:5%; top:10px;
+    padding: 10 0 0 0;
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
+.store_img{
+    position: relative; left: 3%;
+    width: 30%; height: 100px;
+    object-fit: cover;
+    margin: 5 0 5 0;
+}
+/* 상점 정보 - 이름/음식종류/주소 */
+.store_info{
+    /* background-color: lightcoral; */
+    width: 90%; left:4%; position: relative;
+    padding: 0 0 0 5;
+}
+/* 1. 상점 이름 */
+.s_name > a > span{ font-family: SCD7; font-size: 18px; position: relative; left:3%;}
+
+/* 2. 음식 종류 */
+.s_kind{
+    position: relative;font-size: 14px;
+}
+
+/* 3. 도로명주소,지번주소 text */
+.s_add{
+    position: relative;
+}
+#s_road_addr,#s_add_addr{
+    font-family: SCD6;
+    width: 80px;
+}
+/* 주소 text */
+#s_road_text,#s_add_text{
+    font-family: SCD3; font-size: 13px;
+    position: relative;
+}
+#s_add_text{
+    margin-bottom: 5px;
+}
+/* #s_road_text,#s_add_text{
+
+} */

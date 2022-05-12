@@ -49,7 +49,7 @@
     </div>
 
     <div class="theme_box">
-        <h2>테마별 추천</h2>
+        <p id='theme_text'>테마별 추천</p>
         <div class="themes">
             {% for t in topic %}
             <a href="{% url 'store:theme_stores' topic_pk=t.id%}">

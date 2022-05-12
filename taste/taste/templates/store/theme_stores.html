@@ -62,45 +62,49 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'resources/css/store_list.css' %}">
 <div id="body_middle">
     <!-- 검색창 -->
     {% include 'include/ela_search_bar.html' %}
     <!-- 엘라스틱 서치를 이용했을 때 나오는 음식점들 -->
     {% if result|length != 0 %}
     {% for i in result %}
-    <div class="store_panel" style="border: solid 1px blue;">
+    <div class="store_panel">
         <div class='store_div' id="store_{{ i.id }}">
             <div class="store_img_box">
+                <!-- 상점명 -->
+                <div class="s_name">
+                    <a href="{% url 'store:store_detail' store_pk=i.id %}">
+                        <span>{{ i.source.s_name }}</span>
+                    </a>
+                </div>
                 {% for d in detail %}
                     {% if i.id|stringformat:"s" == d.id|stringformat:"s" %}
                         <a href="{% url 'store:store_detail' store_pk=i.id %}">
-                            <img src="{{ d.photo1 }}" class="store_img" style="width:200px;height:200px;">
+                            <img src="{{ d.photo1 }}" class="store_img" >
                         </a>
                         <a href="{% url 'store:store_detail' store_pk=i.id %}"></a>
-                            <img src="{{ d.photo2 }}" class="store_img" style="width:200px;height:200px;">
+                            <img src="{{ d.photo2 }}" class="store_img">
                         </a>
                         <a href="{% url 'store:store_detail' store_pk=i.id %}">
-                            <img src="{{ d.photo3 }}" class="store_img" style="width:200px;height:200px;">
-                        </a>
+                            <img src="{{ d.photo3 }}" class="store_img">
                     {% endif %}
                 {% endfor %}
             </div>
             <div class="store_info">
-                <!-- 상점명 -->
-                <div class="s_name">
-                    <a href="{% url 'store:store_detail' store_pk=i.id %}">
-                        <p><b>{{ i.source.s_name }}</b></p>
-                    </a>
-                </div>
+                
                 <!-- 순서대로 도로명, 지번 주소 -->
                 <div class="s_add">
-                    <p><b>도로명주소</b> {{ i.source.s_road }}</p>
-                    <p><b>지번 주소</b> {{ i.source.s_add }}</p>
+                    <p id="s_road_addr">도로명주소</p>
+                    <p id="s_road_text">{{ i.source.s_road }}</p>
+                    <p id="s_add_addr">지번 주소</p>
+                    <p id="s_add_text">{{ i.source.s_add }}</p>
                 </div>
                 <!-- 음식 종류(한식, 중식, 기타...) -->
-                <div class="s_kind">
+                <!-- <div class="s_kind">
                     <p>{{ i.source.s_kind }}</p>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
