@@ -14,8 +14,6 @@
         };
         
         var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-        
-        var monPos = new kakao.maps.LatLng(mongo[i]['location'][1], mongo[i]['location'][0])
 
         function mongoAjax(lot, lat){
             $.ajax({
