@@ -25,6 +25,7 @@
                 // data:{"lot": 126.967775, "lat":  37.551604},     //test용
                 data:{"lot": lot, "lat": lat },
                 success: function(msg){
+                    setMarkers(null); 
                     var mongo = msg['key'];
                     console.log(mongo)
 
