@@ -4,15 +4,38 @@
 <link rel="stylesheet" type="text/css" href="{% static 'resources/css/review_edit.css' %}">
 <div id="body_middle">
 	<!-- photo content service taste cleaned price -->
-
-	<div id="user_info_div">
-		{% if user.photo != ''%}
-			<img class='user_img' src="../../media/review/Yuuun18.jpeg}}">
-		{% else%}
-			<img class='user_img' src="../../static/resources/images/user.png">
-		{% endif %}
-	</div>
-	{% include 'include/form.html' with form=review_form submit_title='수정' enctype='file' %}
+	<!-- <div> 리뷰 수정 </div> -->
+	<div class="review-create">
+		<div id="user_info_div">
+			{% if review.photo != ''%}
+				<img class='user_img' src="/media/{{review.photo}}">
+			{% else%}
+				<img class='user_img' src="../../static/resources/images/user.png">
+			{% endif %}
+		</div>
+		{% include 'include/form.html' with form=review_form submit_title='수정' enctype='file' %}
 	</div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $('.form-group:nth-child(2) > input').text('');
+        $('.form-group:nth-child(2) > input').css('display','none');
+        $('.form-group:nth-child(2) > label').text('');
+        $('.form-group:nth-child(2) > label').attr('class','input-file-button');
+        $('.form-group:nth-child(2)').height($('.form-group:nth-child(2)').width()-85)
+		$('.user_img').height($('.user_img').width()-100)
+        $('.input-file-button').height($('.input-file-button').width()-100)
+        $('#body_middle').height($('#body_middle').width()+300);
+
+        $('.form-group:nth-child(3) > label').text('');
+		// $('.form-group:nth-child(3) > textarea').css('background-color','red')
+		if ('{{ review.content }}' == 'None'){ $('.form-group:nth-child(3) > textarea').attr({'placeholder':'내용을 입력하세요.'}) }
+		else{ $('.form-group:nth-child(3) > textarea').text('{{ review.content }}') }
+
+        // $('.input-file-button').text('사진을 선택해주세요.');
+
+    });
+</script>
+
 {% endblock %}

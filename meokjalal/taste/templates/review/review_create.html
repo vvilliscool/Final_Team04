@@ -21,7 +21,7 @@
                     // console.log(auto);
                     for(var i=0; auto.length; i++){
                         // console.log(auto[i]['s_name']);
-                        $('.pop_rel_keywords').append('<div><p>'+auto[i]['s_name']+'</p>'+'<li>'+'('+auto[i]['s_road']+')'+'</li></div>');
+                        $('.pop_rel_keywords').append('<div class="store_div"><p>'+auto[i]['s_name']+'</p>'+'<li>'+'('+auto[i]['s_road']+')'+'</li></div>');
                         // $('.pop_rel_keywords').append('<p>'+auto[i]['s_name']+'</p>');
                         // $('.pop_rel_keywords').append('<li>'+'('+auto[i]['s_road']+')'+'</li>');
                     }
@@ -43,12 +43,11 @@
                     auto = msg['key'];
                     if(auto.length === 0) {      // 입력창이 비었다면 추천 검색어 리스트 숨김
                         $("#rel_search").hide();
-                        console.log('없던게');
                     }
                     // console.log(auto);
                     for(var i=0; auto.length; i++){
                         // console.log(auto[i]['s_name']);
-                        $('.pop_rel_keywords').append('<div><p>'+auto[i]['s_name']+'</p>'+'<li>'+'('+auto[i]['s_road']+')'+'</li></div>');
+                        $('.pop_rel_keywords').append('<div class="li_div"><p>'+auto[i]['s_name']+'</p>'+'<li>'+'('+auto[i]['s_road']+')'+'</li></div>');
                         // $('.pop_rel_keywords').append('<p>'+auto[i]['s_name']+'</p>');
                         // $('.pop_rel_keywords').append('<li>'+'('+auto[i]['s_road']+')'+'</li>');
                     }
@@ -59,6 +58,7 @@
         // 이거 누르면 Store_ID가 반영된다.
         $('#go').click(function(){
 			var value = $('.ela_search_input').val();
+            $('#rel_search').text('');
 			$.ajax({
                 type:"GET",
                 url:"autocom/",
@@ -84,21 +84,40 @@
 
 
 {% extends 'base.html' %}
-
 {% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'resources/css/review_create.css' %}">
 <div id="body_middle">
 	<div class="review-create">
-		<h1>리뷰 등록</h1>
+		<!-- <h1>리뷰 등록</h1> -->
 		<div class="search">
 			<input type="text" class='ela_search_input' name="q" placeholder="음식점 검색 후 주소를 선택해주세요." value="">
-			<button type="button" id="go">등록</button>
-            <button id="sweep">지우기</button>
+			<button type="button" class="search_btn" id="go">등록</button>
+            <!-- <button class="search_btn" id="sweep">지우기</button> -->
 			<container id = "rel_search">
 				<ul class="pop_rel_keywords">
 				</ul>
 			</container>
 			</div>
 			{% include 'include/form.html' with form=review_form submit_title='등록' enctype='file' %}
+        <div id="img_btn"></div>  
 	</div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $('.form-group:nth-child(2) > input').text('');
+        $('.form-group:nth-child(2) > input').css('display','none');
+        $('.form-group:nth-child(2) > label').text('');
+        $('.form-group:nth-child(2) > label').attr('class','input-file-button');
+        $('.form-group:nth-child(2)').height($('.form-group:nth-child(2)').width()-85)
+        $('.input-file-button').height($('.input-file-button').width()-100)
+        $('#body_middle').height($('#body_middle').width()+300);
+
+        $('.form-group:nth-child(3) > label').text('');
+        $('.form-group:nth-child(3) > textarea').attr('placeholder','내용을 입력해주세요.');
+        // $('.input-file-button').text('사진을 선택해주세요.');
+
+    });
+</script>
 {% endblock %}

@@ -1,12 +1,96 @@
 #menu_text_01{color:black;}
 #menu_text_02{color:crimson;}
+
 #body_middle{
-    
-    background-color: red;
-    width: 100%; height: 500px;
+    width:100%; 
+    margin: 20 auto;
+    /* background-color: skyblue; */
 }
+#review_btn{display: none;}
+body {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+/* 리뷰 등록 전체 div (body_middle 하위) */
 .review-create{
-    background-color: skyblue;
-    position: absolute; left:5%; top:30px;
-    width: 90%;
+    /* background-color: skyblue; */
+    width: 90%; height: 480px;
+    margin: 0 auto;
+}
+
+form:nth-child(2){
+    /* background-color: skyblue; */
+    position: relative;
+    top:10px;
+    width: 100%; height: 450px;
+}
+
+/* 음식점 id 생략 */
+.form-group:nth-child(8){ display: none; }
+
+/* 1. 리뷰 사진 */
+.user_img{
+    position: absolute;
+    width: 88%; top:10px;
+    object-fit: cover;
+}
+.form-group:nth-child(2){
+    width: 97%; height: 200px;
+    position: relative;
+    /* background-color: red; */
+}
+
+.input-file-button{
+    /* padding: 6px 25px; */
+    /* background-color:skyblue; */
+    border-radius: 4px;
+    /* color: black; */
+    border: 1px solid grey;
+    cursor: pointer;
+    width: 100%;
+    position: absolute; 
+    text-align: center;
+    /* padding-top: 30%; */
+    /* margin: 0 auto; */
+}
+/* 2. 리뷰 내용 */
+.form-group:nth-child(3) > textarea{
+    /* background-color: red; */
+    width: 97%; height: 100px;
+    padding: 10 0 0 10;
+    margin-bottom: 15px;
+    /* margin-top: 5px; */
+}
+/* 3. 별점 */
+.form-group:nth-child(n+4):nth-child(-n+7){
+    /* background-color: red; */
+    width: 96%; height: 30px;
+    border-top: 1px solid grey;
+    padding-top: 10px;
+    margin: 0 auto;
+}
+
+.form-group:nth-child(n+4):nth-child(-n+7) > label{
+    font-family: SCD6;
+    position: absolute; left:5%;
+    width: 30%;
+    text-align: right;
+}
+
+.form-group:nth-child(n+4):nth-child(-n+7) > div{ position: relative; left:38%;}
+
+/* 수정 버튼 */
+form > button{
+    background-color: crimson;
+    /* position: absolute; top:370px; */
+    width:100%;
+    height:40px;
+    border: none; border-radius: 5px;
+    color:white;
+    font-size: 15px;
+    margin-top: 20px;
 }
