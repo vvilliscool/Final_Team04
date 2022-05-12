@@ -69,9 +69,8 @@
     {% if result|length != 0 %}
     {% for i in result %}
     <div class="store_panel" style="border: solid 1px blue;">
-        <div id="store_{{ i.id }}">
+        <div class='store_div' id="store_{{ i.id }}">
             <div class="store_img_box">
-                
                 {% for d in detail %}
                     {% if i.id|stringformat:"s" == d.id|stringformat:"s" %}
                         <a href="{% url 'store:store_detail' store_pk=i.id %}">

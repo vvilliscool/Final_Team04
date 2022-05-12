@@ -1,0 +1,39 @@
+#body_middle{
+    width: 100%; height: 800px;
+    background-color: blue;
+}
+
+/* 음식점 검색 결과 ul */
+.pop_rel_keywords{
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 2px;
+    width: 96%; max-height: 130px;
+    margin-left: 1%;
+    overflow-y: scroll; overflow-x: scroll;
+    /* padding-left: 3%; */
+    list-style-type: none;
+    z-index: 100;
+    position: fixed; top:170px;
+
+}
+/* 음식점 검색 결과 li */
+.pop_rel_keywords > li{
+    width: 95%; height: 20px;
+    padding-top: 10px;
+    margin-left: 3px;
+    padding: 10 0 8 5;
+    font-size: 13px;
+    border-bottom: 1px solid grey;
+    overflow: none;
+    font-family: SCD6; font-size: 14px;
+}
+.pop_rel_keywords > li:hover{
+    color: crimson;
+}
+
+.store_panel{
+    width: 90%;
+    background-color: red;
+    position: relative; left:5%; top:10px;
+}

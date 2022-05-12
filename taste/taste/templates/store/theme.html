@@ -2,12 +2,6 @@
 
 {% block content %}
 {% load static %}
-<script>
-    // function li_click(num){
-    //     console.log(num);
-    //     $('li:nth-child('+num+')').css('color','yellow');
-    // }
-</script>
 <link rel="stylesheet" type="text/css" href="{% static 'resources/css/theme.css' %}">
 <div id="body_middle">
     {% include 'include/ela_search_bar.html' %}
@@ -59,8 +53,12 @@
         <div class="themes">
             {% for t in topic %}
             <a href="{% url 'store:theme_stores' topic_pk=t.id%}">
-                <div>{{ t.theme }}</div>
+                <div class="theme_div">
+                    <div class="theme_topic" id="topic_{{t.id}}"></div>
+                </div>
+                <p class="theme_txt">{{t.theme}}</p>
             </a>
+            
             {% endfor %}
         </div>
     </div>

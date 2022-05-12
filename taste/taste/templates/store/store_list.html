@@ -51,25 +51,23 @@
                 }
             })
         })
-
-        
-
     })
     
 </script>
 
 <!-- HTML -->
 {% extends 'base.html' %}
-
 {% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'resources/css/store_list.css' %}">
 <div id="body_middle">
     <!-- 검색창 -->
     {% include 'include/ela_search_bar.html' %}
     <!-- 엘라스틱 서치를 이용했을 때 나오는 음식점들 -->
     {% if result|length != 0 %}
     {% for i in result %}
-    <div class="store_panel" style="border: solid 1px blue;">
-        <div id="store_{{ i.id }}">
+    <div class="store_panel">
+        <div class='store_div' id="store_{{ i.id }}">
             <div class="store_img_box">
                 
                 {% for d in detail %}

@@ -3,6 +3,7 @@
     width: 90%;
     position: absolute; left:5%; top:132px;
 }
+a{text-decoration: none;}
 /* #body_middle > div:nth-child(1){display: none;} */
 
 /* 1. 음식점 검색 - fix */
@@ -49,7 +50,7 @@
 /* 2. 날씨 box */
 .weather_box{
     /* background-color:lightcoral; */
-    width: 100%; height: 270px;
+    width: 100%; height: 300px;
     position: relative; top:70px;
     
 }
@@ -163,8 +164,56 @@
 
 /* 3. 테마 */
 .theme_box{
-    background-color:lightseagreen;
-    width: 100%; height: 700px;
-    position: absolute; top:400px;
+    /* background-color:lightseagreen; */
+    width: 100%; height: 1200px;
+    position: absolute; top:380px;
 }
+.themes{
+    /* background-color: lightcoral; */
+    width: 90%; height: 550px;
+    position: relative; left:5%;
+}
+.theme_div{
+    width: 100%; 
+    /* border: 1px solid grey; */
+    background-color: black;
+    /* opacity: 1; */
+}
+
+.theme_topic{
+    /* background-color: indianred; */
+    width: 100%; height: 60px;
+    padding-top:40px;
+    margin-top: 10px;
+    border: 1px solid grey;
+    /* border-radius: 5px; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.3;
+}
+.theme_txt{
+    color: white;
+    position: relative;
+    top:-60px; 
+    text-align: center;
+    opacity: 1;
+    font-family: SCD5;
+    font-size: 17px;
+    /* z-index: 100; */
+}
+#topic_0{ background-image: url('../images/topic/t1.jpeg'); }
+#topic_1{ background-image: url('../images/topic/t2.jpeg'); }
+#topic_2{ background-image: url('../images/topic/t3.jpeg'); }
+#topic_3{ background-image: url('../images/topic/t4.jpeg'); }
+#topic_4{ background-image: url('../images/topic/t5.jpeg'); }
+#topic_5{ background-image: url('../images/topic/t6.jpeg'); }
+#topic_6{ background-image: url('../images/topic/t7.jpeg'); }
+#topic_7{ background-image: url('../images/topic/t8.jpeg'); }
+#topic_8{ background-image: url('../images/topic/t9.jpeg'); }
+#topic_9{ background-image: url('../images/topic/t10.jpeg'); }
+
+
+
+
+
 
