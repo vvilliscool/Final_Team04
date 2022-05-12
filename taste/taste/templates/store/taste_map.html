@@ -88,6 +88,7 @@
 
         function makeClickListener(map, marker, infowindow) {
             return function() {
+                closeInfoWindow();
                 infowindow.open(map, marker);
             };
         }
