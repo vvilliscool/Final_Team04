@@ -45,7 +45,7 @@
                         // marker.setMap(map);
                         markers.push(marker);
 
-                        var iwContent = `<div style="padding:5px;">${mongo[i].s_name}</br>${mongo[i].s_add}</br>
+                        var iwContent = `<div style="padding:5px;">${mongo[i].s_name}</br>
                             <a href="https://52.194.148.243/store/${mongo[i].id}">이동</a></div>`
                         var infowindow = new kakao.maps.InfoWindow({
                             content : iwContent,
