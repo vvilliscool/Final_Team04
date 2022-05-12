@@ -36,12 +36,19 @@
                             map: map,
                             title: mongo[i]['s_name'],
                             position: monPos,
+                            clickable: true
                         })
                     }
                 }
             })
         }
 
+        // 버튼 클릭했을 때
+        $("#my_location").on('click', function(){
+            navigator.geolocation.getCurrentPosition(locationLoadSuccess, locationLoadSuccess);
+        })
+
+        // 버튼 클릭해서 위치가지고 오는것 성공 햇을 때
         function locationLoadSuccess(pos){
             // 현재 위치 받아오기
             var currentPos = new kakao.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
@@ -51,14 +58,13 @@
             mongoAjax(pos.coords.longitude, pos.coords.latitude)
         };
 
+        // 지도를 드래그 했을 때 지도의 가운데 좌표값 기중으로 주위 검색
         kakao.maps.event.addListener(map, 'dragend', function() { 
             var latlng = map.getCenter();
             mongoAjax(latlng.getLng(), latlng.getLat())
         })
 
-        $("#my_location").on('click', function(){
-            navigator.geolocation.getCurrentPosition(locationLoadSuccess, locationLoadSuccess);
-        })
+        
 
         function locationLoadError(pos){
             alert('위치 정보 가져오기 실패!!! 잠시뒤에 눌러주세요')
