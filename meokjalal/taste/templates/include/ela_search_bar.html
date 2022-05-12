@@ -21,7 +21,7 @@
                     // console.log(auto);
                     for(var i=0; auto.length; i++){
                         // console.log(auto[i]['s_name']);
-                        $('.pop_rel_keywords').append('<li>'+auto[i]['s_name']+'</li>');
+                        $('.pop_rel_keywords').append('<li onclick="li_click()">'+auto[i]['s_name']+'</li>');
                     }
                 }
             })
@@ -46,7 +46,7 @@
                     // console.log(auto);
                     for(var i=0; auto.length; i++){
                         // console.log(auto[i]['s_name']);
-                        $('.pop_rel_keywords').append('<li>'+auto[i]['s_name']+'</li>');
+                        $('.pop_rel_keywords').append('<li onclick="li_click('+i+')">'+auto[i]['s_name']+'</li>');
                     }
                 }
             })
