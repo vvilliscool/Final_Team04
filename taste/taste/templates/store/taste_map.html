@@ -8,6 +8,7 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b77a2ab9b91385b038558204f7854460"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    var markers = [];
     $(function(){
         var container = document.getElementById('kakao_map'); //지도를 담을 영역의 DOM 레퍼런스
         var options = { //지도를 생성할 때 필요한 기본 옵션
@@ -78,7 +79,7 @@
             var latlng = map.getCenter();
             mongoAjax(latlng.getLng(), latlng.getLat())
         })
-        var markers = [];
+        
         function setMarkers(map) {
             for (var i = 0; i < markers.length; i++) {
                 markers[i].setMap(map);
