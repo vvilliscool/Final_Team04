@@ -28,7 +28,7 @@
                 // data:{"lot": 126.967775, "lat":  37.551604},     //test용
                 data:{"lot": lot, "lat": lat },
                 success: function(msg){
-                    console.log(infoWindows);
+                    // console.log(infoWindows);
                     var mongo = msg['key'];
                     // console.log(mongo)
 
@@ -55,7 +55,7 @@
                         
                         kakao.maps.event.addListener(marker, 'click', makeClickListener(map, marker, infowindow));
                     }
-                    console.log(markers)
+                    // console.log(markers)
                 }
             })
         }
