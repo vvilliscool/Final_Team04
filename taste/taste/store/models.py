@@ -14,8 +14,8 @@ class Store(models.Model):
     s_status = models.TextField(null=True)
     modification_time = models.DateTimeField(null=True)
 
-    class Meta:
-        db_table = 'store_store'
+    # class Meta:
+    #     db_table = 'store_store'
 
     def __str__(self):
         return f'Store (PK: {self.pk})'       
@@ -31,8 +31,8 @@ class Detail(models.Model):
     s_menu = models.TextField(blank=True, null=True)
     s_price = models.TextField(blank=True, null=True)
 
-    class Meta:
-        db_table = 'store_detail'
+    # class Meta:
+    #     db_table = 'store_detail'
 
     def __str__(self):
         return f'Detail (PK: {self.pk})'
