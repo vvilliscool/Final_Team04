@@ -17,6 +17,9 @@ class Review(models.Model):
     price = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(5)])
     store = models.ForeignKey(Store, on_delete=models.CASCADE)
 
+    class Meta:
+        db_table = 'review_review'
+
     def __str__(self):
         return f'Review (PK: {self.pk}, Author: {self.author.username})'
 
