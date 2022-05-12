@@ -38,6 +38,15 @@
                             position: monPos,
                             clickable: true
                         })
+                        var iwContent = '<div style="padding:5px;">Hello World!</div>'
+                        var infowindow = new kakao.maps.InfoWindow({
+                            content : iwContent,
+                            removable : true
+                        });
+                        kakao.maps.event.addListener(marker, 'click', function() {
+                            // 마커 위에 인포윈도우를 표시합니다
+                            infowindow.open(map, marker);  
+                        });
                     }
                 }
             })
