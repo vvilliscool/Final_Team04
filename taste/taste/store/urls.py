@@ -17,4 +17,7 @@ urlpatterns = [
     path('theme/autocom/', views.autocom, name='autocom'),
     path('elaSearch/autocom/', views.autocom2, name='autocom2'),
     re_path(r'^(?P<store_pk>\d+)/$', views.store_detail, name='store_detail'),
+    re_path(r'^theme/(?P<topic_pk>\d+)/$', views.theme_stores, name='theme_stores'),
+    re_path(r'^theme/(?P<topic_pk>\d+)/autocom/$', views.autocom3, name='autocom3'),
+
 ]

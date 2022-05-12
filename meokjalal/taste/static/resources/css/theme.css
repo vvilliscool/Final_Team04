@@ -1,0 +1,170 @@
+#body_middle{
+    background-color: white;
+    width: 90%;
+    position: absolute; left:5%; top:132px;
+}
+/* #body_middle > div:nth-child(1){display: none;} */
+
+/* 1. 음식점 검색 - fix */
+.search{
+    background-color: white;
+    position: fixed;
+    width: 90%; height: 39px;
+    overflow-y: hidden;
+    z-index: 100;
+    padding-top: 18px;
+}
+.ela_search_go{
+    padding-top: 18px;
+}
+/* 음식점 검색 결과 ul */
+.pop_rel_keywords{
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 2px;
+    width: 88%; max-height: 130px;
+    margin-left: 1%;
+    overflow-y: scroll; overflow-x: scroll;
+    /* padding-left: 3%; */
+    list-style-type: none;
+    z-index: 100;
+    position: fixed; top:186px;
+
+}
+/* 음식점 검색 결과 li */
+.pop_rel_keywords > li{
+    width: 95%; height: 20px;
+    padding-top: 10px;
+    margin-left: 3px;
+    padding: 10 0 8 5;
+    font-size: 13px;
+    border-bottom: 1px solid grey;
+    overflow: none;
+    font-family: SCD6; font-size: 14px;
+}
+.pop_rel_keywords > li:hover{
+    color: crimson;
+}
+
+/* 2. 날씨 box */
+.weather_box{
+    /* background-color:lightcoral; */
+    width: 100%; height: 270px;
+    position: relative; top:70px;
+    
+}
+/* 날씨 텍스트 - 오늘의 날씨 */
+#weather_text{ 
+    font-family: SCD6; font-size: 17px;
+    /* background-color: slateblue; */
+    margin-left: 5%;
+ 
+}
+/* 날씨-구름,비/눈,온도 */
+.weather_div{
+    /* background-color: lightgreen; */
+    width: 90%; height: 130px;
+    position: relative;
+    left:5%; top:10px;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+/* 날씨:구름,비/눈 */
+#weather_cloud{
+    background-color: rgb(42, 95, 159);
+    width: 50%; height: 100%;
+    position: absolute;
+    border-right: 1px solid grey;
+
+}
+/* 날씨:기온 */
+#weather_temp{
+    width: 50%; height: 100%;
+    position: absolute; left:50%;
+    color: rgb(54,95,155);;
+}
+
+/* 날씨 이미지 */
+.wt_img{
+    /* background-color: hotpink; */
+    width: 120px; height: 90px;
+    margin: 10 auto;
+    background-repeat: no-repeat;
+    background-size: contain;
+    /* background-image: url('../images/rain.jpg'); */
+}
+/* 날씨 텍스트 */
+.wt_text{
+    /* background-color: grey; */
+    width: 120px; height: 20px;
+    margin: -7 auto;
+    text-align: center;
+    color: white;
+}
+#wt_temp{ 
+    height: 70px;
+    font-family: SCD2;
+    font-size: 35px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* 날씨 - 메뉴 */
+.weather_menu{
+    /* background-color: grey; */
+    width: 90%; height: 110px;
+    max-width: 90%;
+    max-height: 110px;
+    overflow-x: scroll;
+    position: relative; left:5%; top:15px;
+    border: 1px solid grey;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+/* 스크롤바 숨기기 */
+.weather_menu {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.weather_menu::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+/* 각 음식 div */
+.menu_div{
+    /* background-color: goldenrod; */
+    position: relative;
+    width: 110px; height: 110px;
+    margin: 0px;
+    display: inline-block;
+    border-right: 1px solid grey;
+}
+/* 음식의 이미지 */
+.menu_img{
+    /* 110/110 */
+    background-color: red;
+    width: 80px; height: 80px;
+    position: absolute;left:15px; top:5px;
+    border: 1px solid grey;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}  
+/* 음식의 텍스트 */
+.menu_txt{
+    /* background-color: skyblue; */
+    width: 80px; height: 20px;
+    position: absolute; left:15px; top:92px;
+    text-align: center;
+    font-size: 13px;
+    font-family: SCD5;
+}
+
+/* 3. 테마 */
+.theme_box{
+    background-color:lightseagreen;
+    width: 100%; height: 700px;
+    position: absolute; top:400px;
+}
+

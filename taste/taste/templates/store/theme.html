@@ -1,18 +1,136 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load static %}
+<script>
+    // function li_click(num){
+    //     console.log(num);
+    //     $('li:nth-child('+num+')').css('color','yellow');
+    // }
+</script>
+<link rel="stylesheet" type="text/css" href="{% static 'resources/css/theme.css' %}">
 <div id="body_middle">
     {% include 'include/ela_search_bar.html' %}
     <div class="weather_box">
         <div class="weather_info">
-            <h2>오늘의 날씨</h2>
-            <div class="weather_img">
-                이미지는 채원님이 건드리신다.
-            </div>
-            <div class="weather_condition">{{ weather.cloud }}  {{ weather.rain }}  {{ weather.temp }}도</div>    
+            <p id="weather_text">오늘의 날씨</p>
+            <div class="weather_div">
+
+                <div id="weather_cloud">
+                    <!-- cloud : 맑음, 구름많음, 흐림 -->
+                    <!-- rain : 비/눈 없음, 비, 눈 -->
+                    <div class="wt_img" id="wt_cloud"></div>
+                    <div class="wt_text" id="wt_cloud_txt"></div>
+                </div>
+
+                <div id="weather_temp">
+                    <div class="wt_img" id="wt_temp">{{ weather.temp }}°C</div>
+                </div>
+
+            </div>  
         </div>
+
         <div class="weather_menu">
+            <div class="menu_div" id="div_1">
+                <div class="menu_img" id="img_1"></div>
+                <div class="menu_txt" id="txt_1"></div>
+            </div>
+            <div class="menu_div" id="div_2">
+                <div class="menu_img" id="img_2"></div>
+                <div class="menu_txt" id="txt_2"></div>
+            </div>
+            <div class="menu_div" id="div_3">
+                <div class="menu_img" id="img_3"></div>
+                <div class="menu_txt" id="txt_3"></div>
+            </div>
+            <div class="menu_div" id="div_4">
+                <div class="menu_img" id="img_4"></div>
+                <div class="menu_txt" id="txt_4"></div>
+            </div>
+            <div class="menu_div" id="div_5">
+                <div class="menu_img" id="img_5"></div>
+                <div class="menu_txt" id="txt_5"></div>
+            </div>
         </div>    
     </div>
+
+    <div class="theme_box">
+        <h2>테마별 추천</h2>
+        <div class="themes">
+            {% for t in topic %}
+            <a href="{% url 'store:theme_stores' topic_pk=t.id%}">
+                <div>{{ t.theme }}</div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
 </div>
+<script>
+    $(document).ready(function(){
+        var cloud = '{{weather.cloud}}'.trim()
+        var rain = '{{weather.rain}}'.trim()
+        // var rain = '비'
+        // var cloud = '흐림'
+        var temp = '{{weather.temp}}'.trim()
+
+        if (rain != 'None'){
+            // 1. 비 오는 날 : 파전, 모듬전, 빈대떡, 삼계탕, 백숙, 찜닭, 철판구이, 볶음밥, 중국음식
+            if(rain == '비'){
+                $('#wt_cloud').css({'background-image':'url("../../static/resources/images/w_rain.jpg")'});
+                $('#wt_cloud_txt').text('비');
+                var url = '../../static/resources/images/rain/'
+                var f1 = '파전'; var f2 = '빈대떡'; var f3 = '삼계탕'; var f4 = '볶음밥'; var f5= '중식';
+
+            // 2. 눈 오는 날 : 삼겹살, 목살, 이태리 레스토랑, 설렁탕, 곰탕, 도가니탕, 바/와인
+            }else if(rain == '눈'){
+                $('#wt_cloud').css({'background-image':'url("../../static/resources/images/w_snow.jpg")'});
+                $('#wt_cloud_txt').text('눈');
+                var url = '../../static/resources/images/snow/'
+                var f1 = '설렁탕'; var f2 = '도가니탕'; var f3 = '삼겹살'; var f4 = '레스토랑'; var f5= '호박죽';
+
+            }else{
+                // 3. 맑은 날
+                // a. 양식/레스토랑 : 1  // b. 한식 : 2 비빔밥(3)  // c. 고기 : 3(4) 치킨(5)
+                if(cloud == '맑음'){
+                    $('#wt_cloud').css({'background-image':'url("../../static/resources/images/w_sun.jpg")'});
+                    $('#wt_cloud_txt').text('맑음');
+                    var url = '../../static/resources/images/sun/'
+                    var f1 = '레스토랑'; var f2 = '설렁탕'; var f3 = '비빔밥'; var f4 = '삼겹살'; var f5= '치킨';
+
+                // 4. 구름 많은 날
+                // a. 나이트라이프 : 막걸리, 맥주,
+                // b. 카페/디저트 : 베이커리, 아이스크림, 도넛
+                }else if(cloud == '구름많음'){
+                    $('#wt_cloud').css({'background-image':'url("../../static/resources/images/w_cloud2.jpg")'});
+                    $('#wt_cloud_txt').text('구름많음');
+                    var url = '../../static/resources/images/cloud/'
+                    var f1 = '막걸리'; var f2 = '맥주'; var f3 = '베이커리'; var f4 = '아이스크림'; var f5= '도넛';
+
+                // 5. 흐린 날
+                // a. 일식/중식/세계음식 : 초밥, 딤섬, 쌀국수
+                // b. 고기/구이류 : 삼겹살, 곱창
+                }else if(cloud == '흐림'){
+                    $('#wt_cloud').css({'background-image':'url("../../static/resources/images/w_cloud.jpg")'});
+                    $('#wt_cloud_txt').text('흐림');
+                    var url = '../../static/resources/images/cloud2/'
+                    var f1 = '초밥'; var f2 = '딤섬'; var f3 = '쌀국수'; var f4 = '삼겹살'; var f5= '곱창';
+                }
+            }
+            // url("../../static/resources/images/w_snow.jpg")
+            $('#img_1').css('background-image','url('+url+'1.jpeg)');
+            $('#img_2').css('background-image','url('+url+'2.jpeg)');
+            $('#img_3').css('background-image','url('+url+'3.jpeg)');
+            $('#img_4').css('background-image','url('+url+'4.jpeg)');
+            $('#img_5').css('background-image','url('+url+'5.jpeg)');
+
+            $('#txt_1').text(f1);
+            $('#txt_2').text(f2);
+            $('#txt_3').text(f3);
+            $('#txt_4').text(f4);
+            $('#txt_5').text(f5);
+        }
+    });
+
+    
+</script>
 {% endblock %}
