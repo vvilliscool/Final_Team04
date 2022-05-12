@@ -3,5 +3,24 @@
 {% block content %}
 <div id="body_middle">
     {% include 'include/ela_search_bar.html' %}
+    <div class="weather_box">
+        <div class="weather_info">
+            <h2>오늘의 날씨</h2>
+            <div class="weather_img">
+                이미지는 채원님이 건드리신다.
+            </div>
+            <div class="weather_condition">{{ weather.cloud }}  {{ weather.rain }}  {{ weather.temp }}도</div>    
+        </div>
+        <div class="weather_menu">
+            
+        </div>    
+    </div>
+    <div class="theme_box">
+        <h2>테마별 추천</h2>
+        <div class="themes">
+            
+        </div>
+    </div>
+
 </div>
 {% endblock %}

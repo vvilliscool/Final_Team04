@@ -13,7 +13,9 @@ from elasticsearch import Elasticsearch
 from django.http import JsonResponse
 import requests
 import json
-from .models import Store, Detail
+
+from review.models import Review
+from .models import Store, Detail, Weather
 from pymongo import MongoClient, GEOSPHERE
 from bson import SON
 
@@ -24,7 +26,11 @@ def taste_map(request):
 
 # 홈(Home) 페이지
 def theme(request):
-        return render(request, 'store/theme.html')
+    weather = Weather.objects.filter(id=1)[0]
+    context = {
+        'weather':weather,
+    }
+    return render(request, 'store/theme.html', context)
 
 
 # 검색창(엘라스틱 서치)을 통한 음식점 검색
@@ -207,9 +213,14 @@ def store_detail(request, store_pk):
             prices = json.loads(obj.s_price)
             data['s_menu'] = zip(menus['content'], prices['content'])
 
+
+    # 리뷰 부분
+    reviews = Review.objects.filter(store_id=store_pk).order_by('-pk')
+
     context = {
         'store': store,
         'detail': detail,
+        'reviews':reviews,
     }
     return render(request, 'store/store_detail.html', context)
     

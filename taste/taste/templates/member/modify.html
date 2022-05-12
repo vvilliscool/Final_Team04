@@ -15,6 +15,7 @@
             
             <div class="user_info" id="info_username"> {{ user.username }} </div>
             <div class="user_info" id="info_birth"> {{ user.birth_date }} </div>
+            <!-- <div class="user_info" id="info_gender"> {{ user.gender }} </div> -->
         </div>    
     {% include 'include/form.html' with form=modify_form submit_title='변경' enctype='file' %}
     <a id='btn_mypage' href="{% url 'member:mypage' %}"><p id='btn_text'>취소</p></a>
@@ -38,10 +39,8 @@
         $('.form-group:nth-child(4) > input').attr({'value':'{{ user.email }}'})
 
         // 4. 자기소개
-        $('.form-group:nth-child(5) > input').text('{{ user.introduce }}')
-        
-        if ('{{user.introduce}}' == 'None'){ $('.form-group:nth-child(5) > input').attr({'placeholder':'자기소개를 입력하세요.'}) }
-        else{ $('.form-group:nth-child(5) > input').attr({'value':'{{ user.introduce }}'}) }
+        $('.form-group:nth-child(5) > input').text('{{ user.content }}')
+        $('.form-group:nth-child(5) > input').attr({'placeholder':'자기소개를 입력하세요.'})
     });
     
 </script>
