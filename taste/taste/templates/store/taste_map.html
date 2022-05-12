@@ -25,28 +25,28 @@
                 success: function(msg){
                     var mongo = msg['key'];
 
-                    // for(var i=0; i<mongo.length; i++){
-                    //     // console.log(mongo[i])
-                    //     var monPos = new kakao.maps.LatLng(mongo[i]['location'][1], mongo[i]['location'][0])
-                    //     // 마커 생성
-                    //     var marker = new kakao.maps.Marker({
-                    //         map: map,
-                    //         title: mongo[i]['s_name'],
-                    //         position: monPos,
-                    //         clickable: true
-                    //     })
-                    //     var content = '<div style="padding:5px;">'+mongo[i]['s_name']+'</br><a herf="https://52.194.148.243/store/'+mango[i]['id']+'/">이동</a></div>';
-                    //     var infowindow = new kakao.maps.InfoWindow({
-                    //         content : content,
-                    //         // removable : true
-                    //     });
-                    //     // kakao.maps.event.addListener(marker, 'click', function() {
-                    //     //     // 마커 위에 인포윈도우를 표시합니다
-                    //     //     infowindow.open(map, marker);  
-                    //     // });
-                    //     kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-                    //     kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-                    // }
+                    for(var i=0; i<mongo.length; i++){
+                        // console.log(mongo[i])
+                        var monPos = new kakao.maps.LatLng(mongo[i]['location'][1], mongo[i]['location'][0])
+                        // 마커 생성
+                        var marker = new kakao.maps.Marker({
+                            map: map,
+                            title: mongo[i]['s_name'],
+                            position: monPos,
+                            clickable: true
+                        })
+                        var content = '<div style="padding:5px;">'+mongo[i]['s_name']+'</br><a herf="https://52.194.148.243/store/'+mango[i]['id']+'/">이동</a></div>';
+                        var infowindow = new kakao.maps.InfoWindow({
+                            content : content,
+                            // removable : true
+                        });
+                        kakao.maps.event.addListener(marker, 'click', function() {
+                            // 마커 위에 인포윈도우를 표시합니다
+                            infowindow.open(map, marker);  
+                        });
+                        kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+                        kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+                    }
                 }
             })
         }
