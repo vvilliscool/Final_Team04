@@ -41,7 +41,7 @@
                             position: monPos,
                             clickable: true
                         })
-                        marker.setMap(map);
+                        // marker.setMap(map);
                         markers.push(marker);
 
                         var iwContent = '<div style="padding:5px;">Hello World!</div>'
@@ -49,7 +49,7 @@
                             content : iwContent,
                             removable : true
                         });
-                        kakao.maps.event.addListener(marker, 'click', makeOverListener(map, marker, infowindow));
+                        kakao.maps.event.addListener(marker, 'click', makeClickListener(map, marker, infowindow));
                     }
                     console.log(markers)
                 }
