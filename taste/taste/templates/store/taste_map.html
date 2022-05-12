@@ -25,7 +25,8 @@
                 // data:{"lot": 126.967775, "lat":  37.551604},     //test용
                 data:{"lot": lot, "lat": lat },
                 success: function(msg){
-                    setMarkers(null); 
+                    setMarkers(null);
+                    var markers = []
                     var mongo = msg['key'];
                     console.log(mongo)
 
@@ -73,8 +74,12 @@
             var latlng = map.getCenter();
             mongoAjax(latlng.getLng(), latlng.getLat())
         })
-
-        
+        var markers = [];
+        function setMarkers(map) {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+            }            
+        }
 
         function locationLoadError(pos){
             alert('위치 정보 가져오기 실패!!! 잠시뒤에 눌러주세요')
