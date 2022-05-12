@@ -25,10 +25,11 @@
                 // data:{"lot": 126.967775, "lat":  37.551604},     //test용
                 data:{"lot": lot, "lat": lat },
                 success: function(msg){
+                    console.log(markers)
                     setMarkers(null);
                     var markers = []
                     var mongo = msg['key'];
-                    console.log(mongo)
+                    // console.log(mongo)
 
                     for(var i=0; i<mongo.length; i++){
                         // console.log(mongo[i])
