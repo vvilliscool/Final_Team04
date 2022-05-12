@@ -1,0 +1,113 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(function(){
+        var $ul = $(".pop_rel_keywords");
+        $("#rel_search").hide();
+        
+
+        $('.pop_rel_keywords').on('click', 'li', function(event){
+            var $click = $(event.target);
+            // console.log($click.text())
+            $('.ela_search_input').val($click.text());
+            $.ajax({
+                type:'GET',
+                url:"autocom/",
+                dataType:"json",
+                data:{"key": $click.text()},
+                success: function(msg){
+                    $('.pop_rel_keywords').text("")
+                    $("#rel_search").show();
+                    auto = msg['key'];
+                    // console.log(auto);
+                    for(var i=0; auto.length; i++){
+                        // console.log(auto[i]['s_name']);
+                        $('.pop_rel_keywords').append('<li>'+auto[i]['s_name']+'</li>');
+                    }
+                }
+            })
+        })
+
+        $(".ela_search_input").on("propertychange change keyup paste cut copy input", function(){
+            var s_input = $(".ela_search_input").val()
+            // console.log(s_input);
+            $.ajax({
+                type:'GET',
+                url:"autocom/",
+                dataType:"json",
+                data:{"key": s_input},
+                success: function(msg){
+                    $('.pop_rel_keywords').text("")
+                    $("#rel_search").show();
+                    auto = msg['key'];
+                    if(auto.length === 0) {      // 입력창이 비었다면 추천 검색어 리스트 숨김
+                        $("#rel_search").hide();
+                        console.log('없던게');
+                    }
+                    // console.log(auto);
+                    for(var i=0; auto.length; i++){
+                        // console.log(auto[i]['s_name']);
+                        $('.pop_rel_keywords').append('<li>'+auto[i]['s_name']+'</li>');
+                    }
+                }
+            })
+        })
+
+        
+
+    })
+    
+</script>
+
+<!-- HTML -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="body_middle">
+    <!-- 검색창 -->
+    {% include 'include/ela_search_bar.html' %}
+    <!-- 엘라스틱 서치를 이용했을 때 나오는 음식점들 -->
+    {% if result|length != 0 %}
+    {% for i in result %}
+    <div class="store_panel" style="border: solid 1px blue;">
+        <div id="store_{{ i.id }}">
+            <div class="store_img_box">
+                
+                {% for d in detail %}
+                    {% if i.id|stringformat:"s" == d.id|stringformat:"s" %}
+                        <a href="{% url 'store:store_detail' store_pk=i.id %}">
+                            <img src="{{ d.photo1 }}" class="store_img" style="width:200px;height:200px;">
+                        </a>
+                        <a href="{% url 'store:store_detail' store_pk=i.id %}"></a>
+                            <img src="{{ d.photo2 }}" class="store_img" style="width:200px;height:200px;">
+                        </a>
+                        <a href="{% url 'store:store_detail' store_pk=i.id %}">
+                            <img src="{{ d.photo3 }}" class="store_img" style="width:200px;height:200px;">
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="store_info">
+                <!-- 상점명 -->
+                <div class="s_name">
+                    <a href="{% url 'store:store_detail' store_pk=i.id %}">
+                        <p><b>{{ i.source.s_name }}</b></p>
+                    </a>
+                </div>
+                <!-- 순서대로 도로명, 지번 주소 -->
+                <div class="s_add">
+                    <p><b>도로명주소</b> {{ i.source.s_road }}</p>
+                    <p><b>지번 주소</b> {{ i.source.s_add }}</p>
+                </div>
+                <!-- 음식 종류(한식, 중식, 기타...) -->
+                <div class="s_kind">
+                    <p>{{ i.source.s_kind }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+
+</div>
+{% endblock %}
