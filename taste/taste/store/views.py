@@ -136,8 +136,6 @@ def ela_store(request):
         result = getRoundRest(lat, lot, 'rest')
         print(result)
         
-        
-        
         # Mongo 안쓸 때
         # 음식점 정보들을 처리하기 쉽게 변경해서 template으로 보냄
         # result = list()
@@ -145,13 +143,7 @@ def ela_store(request):
         #     hits_data = {'id': data['_id'], 'source': data['_source']}
         #     result.append(hits_data)
 
-
-
-
         store = Store.objects.all()
-        
-
-
 
         # 상세정보에서 음식점 사진 있는거 3개로 나눠서 보내버리기!
         details = Detail.objects.values('id', 's_photo')
