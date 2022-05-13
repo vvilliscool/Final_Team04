@@ -325,14 +325,15 @@ def getRoundRest(lat, lot, db_name):
     row_list = list()
     cnt = 0
     for row in rest_loca:
-        row_dict = dict()
         if db_name == 'detail':
             row_dict = {'id': row['id'], 's_name': row['s_name'], 's_add': row['s_add'], 's_road': row['s_road'],
                     'location': row['location']['coordinates'] }
+            row_list.append(row_dict)
         else:
             row_dict = {'id': row['id'], 's_name': row['s_name'], 's_add': row['s_add'], 's_road': row['s_road'], 's_kind': row['s_kind'],
                         'location': row['location']['coordinates'] }
-        row_list.append(row_dict)
+            row_list.append(row_dict)
+            
         if db_name == 'detail' and cnt == stop:
             break
         cnt += 1
