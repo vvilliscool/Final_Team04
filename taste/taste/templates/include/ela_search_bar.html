@@ -1,4 +1,19 @@
+<form id="ela_form" action="/store/elaSearch/">
+    <div class="search">
+        <input type="text" class='ela_search_input' name="q" placeholder="맛집을 검색해보세요." value="">
+        <input type="text" class="getlat" name="lat" value="" style="display:none">
+        <input type="text" class="getlot" name="lot" value="" style="display:none">
+        <button type="submit"><img class='ela_search_go' src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></button>
+        <container id = "rel_search">
+            <ul class="pop_rel_keywords">
+            </ul>
+        </container>
+    </div>
+    <div id="kakao_map" style="display:none;"></div>
+</form>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b77a2ab9b91385b038558204f7854460"></script>
 <script>
     $(function(){
         var $ul = $(".pop_rel_keywords");
@@ -21,7 +36,7 @@
                     // console.log(auto);
                     for(var i=0; auto.length; i++){
                         // console.log(auto[i]['s_name']);
-                        $('.pop_rel_keywords').append('<li onclick="li_click()">'+auto[i]['s_name']+'</li>');
+                        $('.pop_rel_keywords').append('<li>'+auto[i]['s_name']+'</li>');
                     }
                 }
             })
@@ -46,24 +61,45 @@
                     // console.log(auto);
                     for(var i=0; auto.length; i++){
                         // console.log(auto[i]['s_name']);
-                        $('.pop_rel_keywords').append('<li onclick="li_click('+i+')">'+auto[i]['s_name']+'</li>');
+                        $('.pop_rel_keywords').append('<li>'+auto[i]['s_name']+'</li>');
                     }
                 }
             })
         })
+        
+        
+        var container = document.getElementById('kakao_map'); //지도를 담을 영역의 DOM 레퍼런스
+        var options = { //지도를 생성할 때 필요한 기본 옵션
+            // 멀티캠퍼스 선릉점
+            center: new kakao.maps.LatLng(37.503376, 127.049776), //지도의 중심좌표.
+            level: 4 //지도의 레벨(확대, 축소 정도)
+        };
 
+        var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+
+        function locationLoadSuccess(pos){
+            // 현재 위치 받아오기
+            var currentPos = new kakao.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+            // var currentPos = new kakao.maps.LatLng(37.551604, 126.967775);       //test용
+            // 지도 이동(기존 위치와 가깝다면 부드럽게 이동)
+            map.panTo( currentPos );
+            var latlng = map.getCenter();
+            $('.getlot').attr('value',latlng.getLng());
+            $('.getlat').attr('value',latlng.getLat());
+            // alert($('.getlat').val())
+            // alert($('.getlot').val())
+            var lat = $('.getlat').val()
+            var lot = $('.getlot').val()
+        };
+        
         
 
+        function locationLoadError(pos){
+            alert('위치 정보 가져오기 실패!!! 잠시뒤에 눌러주세요')
+        };
+
+        $(document).ready(function(){
+            navigator.geolocation.getCurrentPosition(locationLoadSuccess, locationLoadError);
+        })
     })
-    
 </script>
-<form action="/store/elaSearch/">
-    <div class="search">
-        <input type="text" class='ela_search_input' name="q" placeholder="맛집을 검색해보세요." value="">
-        <button type="submit"><img class='ela_search_go' src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></button>
-        <container id = "rel_search">
-            <ul class="pop_rel_keywords">
-            </ul>
-        </container>
-    </div>
-</form>

@@ -93,6 +93,8 @@ def theme_stores(request, topic_pk):
 # 검색창(엘라스틱 서치)을 통한 음식점 검색
 def ela_store(request):
     if request.method == 'GET':
+        lat = request.GET['lat']
+        lot = request.GET['lot']
         q = request.GET['q']
         # query = f'http://localhost:9200/test/_search?q={q}&size=30'
         # ela_data = requests.get(query)
@@ -111,35 +113,37 @@ def ela_store(request):
         res = es.search(index=index, body=body)
         hits_datas = res['hits']['hits']
 
+        # Mongo 쓸 때
         # 몽고로 보내고 저장한 후 다시 결과로 뽑아내는..
         # BBQ라고 검색한다면, BBQ와 관련된 모두 가져와서 형태로 가공 후 몽고DB에 올리고
         # 사용자 기반 lat, lot 으로 위치검색 후 가까운 위치 순서대로 return 후
         # HTML에 반영시켜 줌
-        # mongo_list = list()
-        # for data in hits_datas:
-        #     local = list()
-        #     local.append(data['_source']['lot'])
-        #     local.append(data['_source']['lat'])
-        #     hits_data = {'id': data['_id'], 's_name': data['_source']['s_name'], 's_add': data['_source']['s_add'], 's_road': data['_source']['s_road'],
-        #            's_kind': data['_source']['s_kind'], 'location': {'type': 'Point', 'coordinates': local}}
-        #     mongo_list.append(hits_data)
-
-        # client = MongoClient('localhost', 27017)
-        # db = client['test']
-        # rest_mongo = db['rest']
-        # rest_mongo.drop()
-        # rest_mongo = db['rest']
-        # rest_mongo.create_index([("location", GEOSPHERE)])
-        # rest_mongo.insert_many(mongo_list)
-
-        # # 검색버튼을 눌렀을때 사용자의 lat과 lot 데이터
-        # result = getRoundRest(lat, lot, 'rest')
-
-        # 음식점 정보들을 처리하기 쉽게 변경해서 template으로 보냄
-        result = list()
+        mongo_list = list()
         for data in hits_datas:
-            hits_data = {'id': data['_id'], 'source': data['_source']}
-            result.append(hits_data)
+            local = list()
+            local.append(data['_source']['lot'])
+            local.append(data['_source']['lat'])
+            hits_data = {'id': data['_id'], 's_name': data['_source']['s_name'], 's_add': data['_source']['s_add'], 's_road': data['_source']['s_road'], 's_kind': data['_source']['s_kind'], 'location': {'type': 'Point', 'coordinates': local}}
+            mongo_list.append(hits_data)
+
+        client = MongoClient('localhost', 27017)
+        db = client['test']
+        rest_mongo = db['rest']
+        rest_mongo.drop()
+        rest_mongo = db['rest']
+        rest_mongo.create_index([("location", GEOSPHERE)])
+        rest_mongo.insert_many(mongo_list)
+        result = getRoundRest(lat, lot, 'rest')
+        print(result)
+        
+        
+        
+        # Mongo 안쓸 때
+        # 음식점 정보들을 처리하기 쉽게 변경해서 template으로 보냄
+        # result = list()
+        # for data in hits_datas:
+        #     hits_data = {'id': data['_id'], 'source': data['_source']}
+        #     result.append(hits_data)
 
 
 
@@ -197,7 +201,6 @@ def autocom(request):
     for data in hits_datas:
         hits_data = {'s_name': data['_source']['s_name']}
         s_name.append(hits_data)
-    print(s_name)
     result = {"key": s_name}
 
     return JsonResponse(result)
@@ -228,7 +231,6 @@ def autocom2(request):
     for data in hits_datas:
         hits_data = {'s_name': data['_source']['s_name']}
         s_name.append(hits_data)
-    print(s_name)
     result = {"key": s_name}
 
     return JsonResponse(result)
@@ -258,7 +260,6 @@ def autocom3(request, topic_pk):
     for data in hits_datas:
         hits_data = {'s_name': data['_source']['s_name']}
         s_name.append(hits_data)
-    print(s_name)
     result = {"key": s_name}
 
     return JsonResponse(result)
@@ -308,9 +309,6 @@ def store_detail(request, store_pk):
     
 
 
-
-
-
 def getRoundRest(lat, lot, db_name):
     client = MongoClient('localhost', 27017)
     db = client['test']
@@ -335,7 +333,7 @@ def getRoundRest(lat, lot, db_name):
     row_list = list()
     cnt = 0
     for row in rest_loca:
-        row_dict = {'id': row['id'], 's_name': row['s_name'], 's_add': row['s_add'],
+        row_dict = {'id': row['id'], 's_name': row['s_name'], 's_add': row['s_add'], 's_road': row['s_road'], 's_kind': row['s_kind'],
                     'location': row['location']['coordinates'] }
         row_list.append(row_dict)
         if db_name == 'detail' and cnt == stop:
@@ -355,6 +353,5 @@ def geo_add(request):
     
     result = {"key": loca_list}
     return JsonResponse(result)
-
 
 
