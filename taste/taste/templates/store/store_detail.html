@@ -1,24 +1,34 @@
 {% extends 'base.html' %}
 
-
-
 {% block content %}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'resources/css/store_detail.css' %}">
 <div id="body_middle">
     <!-- 상세정보 부분  -->
     <div class="detail_box">
         <div class="store_photos">
             {% if detail.0.photo1 != None %}
-            <img src="{{ detail.0.photo1 }}" class="store_detail_img" style="width:200px;height:200px;">
-            <img src="{{ detail.0.photo2 }}" class="store_detail_img" style="width:200px;height:200px;">
-            <img src="{{ detail.0.photo3 }}" class="store_detail_img" style="width:200px;height:200px;">
+            <div class='store_detail_img' id="detail_img_1"></div>
+            <div class='store_detail_img' id="detail_img_2"></div>
+            <div class='store_detail_img' id="detail_img_3"></div>
             {% else %}
-            사진이 없습니다.
+            <div class="store_detail_img_none" id="detail_img_none"></div>
             {% endif %}
         </div>
         <div class="store_info">
+            <!-- 상점명 -->
             <div class="store_info_name">{{ store.s_name }}</div>
-            <div class="store_info_road">{{ store.s_road }}</div>
-            <div class="store_info_add">{{ store.s_add }}</div>
+            <!-- 도로명 주소 -->
+            <div class="store_info_road">
+                <span id="road_text">도로명</span>
+                <span id="road_text_addr">{{ store.s_road }}</span>
+            </div>
+            <!-- 지번 주소 -->
+            <div class="store_info_add">
+                <span id="add_text">지번</span>
+                <span id="add_text_addr">{{ store.s_add }}</span>
+            </div>
         </div>
         <div class="store_detail">
             {% if detail|length == 0%}
@@ -26,35 +36,42 @@
             {% else %}
                 <div class="store_tel">
                     {% if detail.0.s_tel != None %}
-                    <p><b>전화번호</b> {{ detail.0.s_tel }}</p>
+                        <span id="detail_tel">전화번호</span>
+                        <p id="tel_text">{{ detail.0.s_tel }}</p>
                     {% else %}
-                    <p><b>전화번호</b> 정보 없음</p>
+                        <span id="detail_tel">전화번호</span>
+                        <p id="tel_text">정보 없음</p>
                     {% endif %}
                 </div>
                 <div class="store_hour">
                     {% if detail.0.s_hour != None %}
-                    <p><b>영업시간</b> {{ detail.0.s_hour }}</p>
+                    <p id="detail_hour">영업시간</p> 
+                    <p id="hour_text">{{ detail.0.s_hour }}</p>
                     {% else %}
-                    <p><b>영업시간</b> 정보 없음</p>
+                    <p id="detail_hour">영업시간</p> 
+                    <p id="hour_text">정보 없음</p>
                     {% endif %}
                 </div>
                 <div class="store_etc">
                     {% if detail.0.s_etc != None %}
-                    <p><b>기타 정보</b> {{ detail.0.s_etc }}</p>
+                    <p id="detail_etc">기타 정보</p> 
+                    <p id="etc_text">{{ detail.0.s_etc }}</p>
                     {% else %}
-                    <p><b>기타 정보</b> 정보 없음</p>
+                    <p id="detail_etc">기타 정보</p> 
+                    <p id="etc_text">정보 없음</p>
                     {% endif %}
                 </div>
                 <div class="store_menu">
                     
                     {% if detail.0.s_menu != None %}
-                    <p><b>메뉴</b>
-                        {% for menu, price in detail.0.s_menu %}
-                        {{ menu }} : {{ price }}
-                        {% endfor %}
+                    <p id="detail_menu">메뉴</p>
+                    {% for menu, price in detail.0.s_menu %}
+                        <div id="menu_text">{{ menu }} : {{ price }}</div>
+                    {% endfor %}
                     </p>
                     {% else %}
-                    <p><b>메뉴</b> 정보 없음</p>
+                    <p id="detail_menu">메뉴</p> 
+                    <p id="menu_text">정보 없음</p>
                     {% endif %}
                 </div>
             {% endif %}
@@ -70,4 +87,42 @@
         {% endfor%}
     </div>
 </div>
+<script>
+    
+    $(document).ready(function(){
+        $('#detail_img_1').height($('#detail_img_1').width())
+        $('#detail_img_1').css({'background-image':'url("{{ detail.0.photo1 }}")'});
+        $('#detail_img_2').css({'top':-$('#detail_img_1').width()})
+        $('#detail_img_2').css({'height':$('#detail_img_1').width()/2})
+        $('#detail_img_2').css({'background-image':'url("{{ detail.0.photo2 }}")'});
+        $('#detail_img_3').css({'top':-$('#detail_img_1').width()})
+        $('#detail_img_3').css({'height':$('#detail_img_1').width()/2})
+        $('#detail_img_3').css({'background-image':'url("{{ detail.0.photo3 }}")'});
+
+        
+        // $('.store_info').css('top',$('.store_photos').height()+10)
+
+        if('{{detail.0.photo1}}' == 'None' ){
+            console.log('hi');
+            $('.store_detail').css('top','20');
+            
+        }else if ('{{detail.0.photo1}}' == '') {
+            // console.log('hi!!!!!');
+            $('.store_detail').css('top','10');
+            $('.review_box').css('top',$('.store_detail').height()+20);
+        }
+        else{
+            // console.log('{{detail.0.photo1}}');
+            // console.log('{{detail.0.photo1}}' == 'None');
+            // console.log($('.store_info').top())
+            $('.store_photos').height($('#detail_img_1').width())
+            // $('.store_detail').css('top',$('.store_photos').height()+20);
+            $('.detail_box').css('height',$('.store_photos').height()+$('.store_info').height()+$('.store_detail').height()+30);
+            $('#body_middle').css('height',$('.detail_box').height())
+        }
+        $('.like_text').css('display','none')
+        $('.review-image').css('height',$('.panel-img').width());
+    
+    });
+</script>
 {% endblock %}

@@ -43,6 +43,20 @@
         if ('{{user.introduce}}' == 'None'){ $('.form-group:nth-child(5) > input').attr({'placeholder':'자기소개를 입력하세요.'}) }
         else{ $('.form-group:nth-child(5) > input').attr({'value':'{{ user.introduce }}'}) }
     });
+    $(function() {
+            $("#id_img_profile").on('change', function(){
+                readURL(this);
+            });
+        });
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+               var reader = new FileReader();
+               reader.onload = function (e) {
+                  $('.user_img').attr('src', e.target.result);
+               }
+               reader.readAsDataURL(input.files[0]);
+            }
+        }
     
 </script>
 {% endblock %}

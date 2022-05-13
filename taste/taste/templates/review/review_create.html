@@ -100,8 +100,11 @@
 			</container>
 			</div>
 			{% include 'include/form.html' with form=review_form submit_title='등록' enctype='file' %}
+            
         <div id="img_btn"></div>  
+        <img id="img_img"></div>
 	</div>
+    
 </div>
 
 <script>
@@ -112,6 +115,7 @@
         $('.form-group:nth-child(2) > label').attr('class','input-file-button');
         $('.form-group:nth-child(2)').height($('.form-group:nth-child(2)').width()-85)
         $('.input-file-button').height($('.input-file-button').width()-100)
+        $('#img_img').height($('#img_img').width()-100)
         $('#body_middle').height($('#body_middle').width()+300);
 
         $('.form-group:nth-child(3) > label').text('');
@@ -119,5 +123,19 @@
         // $('.input-file-button').text('사진을 선택해주세요.');
 
     });
+    $(function() {
+            $("#id_photo").on('change', function(){
+                readURL(this);
+            });
+        });
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+               var reader = new FileReader();
+               reader.onload = function (e) {
+                  $('#img_img').attr('src', e.target.result);
+               }
+               reader.readAsDataURL(input.files[0]);
+            }
+        }
 </script>
 {% endblock %}

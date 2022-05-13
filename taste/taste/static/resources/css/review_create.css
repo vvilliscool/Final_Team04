@@ -150,3 +150,12 @@ form > button{
     background-size: contain;
     z-index: -1;
 }
+
+#img_img{
+    position: absolute;
+    width: 88%; height: 20px;
+    top:47px;
+    z-index: -2;
+    object-fit:cover;
+    /* background-color: red; */
+}

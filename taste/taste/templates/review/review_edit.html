@@ -4,7 +4,6 @@
 <link rel="stylesheet" type="text/css" href="{% static 'resources/css/review_edit.css' %}">
 <div id="body_middle">
 	<!-- photo content service taste cleaned price -->
-	<!-- <div> 리뷰 수정 </div> -->
 	<div class="review-create">
 		<div id="user_info_div">
 			{% if review.photo != ''%}
@@ -23,6 +22,7 @@
         $('.form-group:nth-child(2) > input').css('display','none');
         $('.form-group:nth-child(2) > label').text('');
         $('.form-group:nth-child(2) > label').attr('class','input-file-button');
+		$('.form-group:nth-child(2) > input').attr('class','input_file_button');
         $('.form-group:nth-child(2)').height($('.form-group:nth-child(2)').width()-85)
 		$('.user_img').height($('.user_img').width()-100)
         $('.input-file-button').height($('.input-file-button').width()-100)
@@ -36,6 +36,21 @@
         // $('.input-file-button').text('사진을 선택해주세요.');
 
     });
+
+	$(function() {
+            $(".input_file_button").on('change', function(){
+                readURL(this);
+            });
+        });
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+               var reader = new FileReader();
+               reader.onload = function (e) {
+                  $('.user_img').attr('src', e.target.result);
+               }
+               reader.readAsDataURL(input.files[0]);
+            }
+        }
 </script>
 
 {% endblock %}

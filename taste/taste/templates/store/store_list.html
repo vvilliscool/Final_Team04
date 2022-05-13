@@ -72,7 +72,7 @@
                 <!-- 상점명 -->
                 <div class="s_name">
                     <a href="{% url 'store:store_detail' store_pk=i.id %}">
-                        <span>{{ i.source.s_name }}</span>
+                        <span>{{ i.s_name }}</span>
                     </a>
                 </div>
                 {% for d in detail %}
@@ -99,9 +99,9 @@
                 <!-- 순서대로 도로명, 지번 주소 -->
                 <div class="s_add">
                     <p id="s_road_addr">도로명주소</p>
-                    <p id="s_road_text">{{ i.source.s_road }}</p>
+                    <p id="s_road_text">{{ i.s_road }}</p>
                     <p id="s_add_addr">지번 주소</p>
-                    <p id="s_add_text">{{ i.source.s_add }}</p>
+                    <p id="s_add_text">{{ i.s_add }}</p>
                 </div>
                 
             </div>

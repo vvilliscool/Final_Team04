@@ -4,7 +4,7 @@
 <div class="panel panel-default review-item" id="panel_div">
     <!--작성자 닉네임과 사진이 들어가야할듯-->
     <div class="panel-head">
-        <img class="review_author_img" {% if review.author.img_profile != '' %}src="/media/{{ review.author.img_profile }}" {% else %} src="{% static 'resources/images/user.png' %}" {% endif %} alt="" style="width:30px;height:30px;">
+        <img class="review_author_img" {% if review.author.img_profile != '' %}src="/media/{{ review.author.img_profile }}" {% else %} src="{% static 'resources/images/user.png' %}" {% endif %} alt="" style="width:50px;height:50px;">
         <p class="review_author_nickname">{{ review.author.nickname }}</p>
         <div id="user_btn_div">
         {% if user.is_authenticated %}
