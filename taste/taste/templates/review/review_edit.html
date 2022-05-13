@@ -1,18 +1,113 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(function(){
+        var $ul = $(".pop_rel_keywords");
+        $("#rel_search").hide();
+        
+
+        $('.pop_rel_keywords').on('click', 'li', function(event){
+            var $click = $(event.target);
+            // console.log($click.text())
+            $('.ela_search_input').val($click.text());
+            $.ajax({
+                type:'GET',
+                url:"autocom/",
+                dataType:"json",
+                data:{"key": $click.text()},
+                success: function(msg){
+                    $('.pop_rel_keywords').text("")
+                    $("#rel_search").show();
+                    auto = msg['key'];
+                    // console.log(auto);
+                    for(var i=0; auto.length; i++){
+                        // console.log(auto[i]['s_name']);
+                        $('.pop_rel_keywords').append('<div class="store_div"><p>'+auto[i]['s_name']+'</p>'+'<li>'+'('+auto[i]['s_road']+')'+'</li></div>');
+                    }
+                }
+            })
+        })
+
+        $(".ela_search_input").on("propertychange change keyup paste cut copy input", function(){
+            var s_input = $(".ela_search_input").val()
+            // console.log(s_input);
+            $.ajax({
+                type:'GET',
+                url:"autocom/",
+                dataType:"json",
+                data:{"key": s_input},
+                success: function(msg){
+                    $('.pop_rel_keywords').text("")
+                    $("#rel_search").show();
+                    auto = msg['key'];
+                    if(auto.length === 0) {      // 입력창이 비었다면 추천 검색어 리스트 숨김
+                        $("#rel_search").hide();
+                    }
+                    // console.log(auto);
+                    for(var i=0; auto.length; i++){
+                        // console.log(auto[i]['s_name']);
+                        $('.pop_rel_keywords').append('<div class="li_div"><p>'+auto[i]['s_name']+'</p>'+'<li>'+'('+auto[i]['s_road']+')'+'</li></div>');
+                        // $('.pop_rel_keywords').append('<p>'+auto[i]['s_name']+'</p>');
+                        // $('.pop_rel_keywords').append('<li>'+'('+auto[i]['s_road']+')'+'</li>');
+                    }
+                }
+            })
+        })
+        
+        // 이거 누르면 Store_ID가 반영된다.
+        $('#go').click(function(){
+			var value = $('.ela_search_input').val();
+            $('#rel_search').text('');
+			$.ajax({
+                type:"GET",
+                url:"autocom/",
+                dataType:"json",
+                data:{"key":value},
+                success: function(msg){
+                    auto = msg['key'];
+                    $('input[name=store]').val(auto[0]['id']);
+                    alert('음식점 [' + auto[0]['s_name']+']을 선택했습니다.')
+                }
+            })
+			
+		})
+
+        // 검색창 비우기
+        $('#sweep').click(function(){
+            $('.ela_search_input').val('');
+        })
+
+    })
+    
+</script>
+
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'resources/css/review_edit.css' %}">
 <div id="body_middle">
 	<!-- photo content service taste cleaned price -->
-	<div class="review-create">
-		<div id="user_info_div">
-			{% if review.photo != ''%}
-				<img class='user_img' src="/media/{{review.photo}}">
-			{% else%}
-				<img class='user_img' src="../../static/resources/images/user.png">
-			{% endif %}
+    <div class="review-create">
+		<!-- <h1>리뷰 등록</h1> -->
+		<div class="search">
+			<input type="text" class='ela_search_input' name="q" placeholder="음식점 검색 후 주소를 선택해주세요." value="">
+			<button type="button" class="search_btn" id="go">등록</button>
+            <!-- <button class="search_btn" id="sweep">지우기</button> -->
+			<container id = "rel_search">
+				<ul class="pop_rel_keywords">
+				</ul>
+			</container>
 		</div>
-		{% include 'include/form.html' with form=review_form submit_title='수정' enctype='file' %}
+            <div id="user_info_div">
+                {% if review.photo != ''%}
+                    <img class='user_img' src="/media/{{review.photo}}">
+                {% else%}
+                    <img class='user_img' src="../../static/resources/images/user.png">
+                {% endif %}
+            </div>
+			{% include 'include/form.html' with form=review_form submit_title='수정' enctype='file' %}
+            
+        <div id="img_btn"></div>  
+        <img id="img_img"></div>
 	</div>
 </div>
 
@@ -43,6 +138,7 @@
             });
         });
         function readURL(input) {
+            console.log('hhihihi')
             if (input.files && input.files[0]) {
                var reader = new FileReader();
                reader.onload = function (e) {

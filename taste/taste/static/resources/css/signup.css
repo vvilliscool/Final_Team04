@@ -131,7 +131,10 @@ li:nth-child(1) > label > input:checked{
     border: 2px solid blue;
 } 
 */
-
+.help-block{
+    color: red;
+    font-size: 13px;
+}
 
 
 
