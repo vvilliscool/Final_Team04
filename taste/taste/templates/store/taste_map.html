@@ -56,6 +56,11 @@
                         kakao.maps.event.addListener(marker, 'click', makeClickListener(map, marker, infowindow));
                     }
                     // console.log(markers)
+                },
+                error: function(msg) {
+                    console.log('실패')
+                    var mongo = msg['key'];
+                    console.log(mongo)
                 }
             })
         }
@@ -78,6 +83,7 @@
         // 지도를 드래그 했을 때 지도의 가운데 좌표값 기중으로 주위 검색
         kakao.maps.event.addListener(map, 'dragend', function() { 
             var latlng = map.getCenter();
+            console.log(latlng.getLng(), latlng.getLat())
             mongoAjax(latlng.getLng(), latlng.getLat())
 
             setMarkers(null);
