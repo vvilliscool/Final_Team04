@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'resources/css/modify.css' %}">
+
+<div id="body_middle">
+    <p id="middle_text">내 정보 변경</p>
+    <div class="modify_info">
+        <div id="user_info_div">
+            {% if user.img_profile != ''%}
+                <img class='user_img' src="../../media/{{user.img_profile }}">
+            {% else%}
+                <img class='user_img' src="../../static/resources/images/user.png">
+            {% endif %}
+            
+            <div class="user_info" id="info_username"> {{ user.username }} </div>
+            <div class="user_info" id="info_birth"> {{ user.birth_date }} </div>
+        </div>    
+    {% include 'include/form.html' with form=modify_form submit_title='변경' enctype='file' %}
+    <a id='btn_mypage' href="{% url 'member:mypage' %}"><p id='btn_text'>취소</p></a>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $('input').css({'width':'65%','height':'50px'})
+
+        // 1. 프로필 사진
+        $('.form-group:nth-child(2) > label').text('');
+        $('.form-group:nth-child(2) > label').css({'background-image':'url(../../static/resources/images/camera.png)'});
+
+        // 2. 별명
+        $('.form-group:nth-child(3) > label').text('닉 네 임 :');
+        $('.form-group:nth-child(3) > input').attr({'value':'{{ user.nickname }}'})
+
+        // 3. 이메일
+        $('.form-group:nth-child(4) > label').text('이 메 일 :');
+        $('.form-group:nth-child(4) > input').attr({'value':'{{ user.email }}'})
+
+        // 4. 자기소개
+        $('.form-group:nth-child(5) > input').text('{{ user.introduce }}')
+        
+        if ('{{user.introduce}}' == 'None'){ $('.form-group:nth-child(5) > input').attr({'placeholder':'자기소개를 입력하세요.'}) }
+        else{ $('.form-group:nth-child(5) > input').attr({'value':'{{ user.introduce }}'}) }
+    });
+    $(function() {
+            $("#id_img_profile").on('change', function(){
+                readURL(this);
+            });
+        });
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+               var reader = new FileReader();
+               reader.onload = function (e) {
+                  $('.user_img').attr('src', e.target.result);
+               }
+               reader.readAsDataURL(input.files[0]);
+            }
+        }
+    
+</script>
+{% endblock %}

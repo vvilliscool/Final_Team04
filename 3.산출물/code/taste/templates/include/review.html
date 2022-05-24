@@ -1,0 +1,102 @@
+{% load static %}
+
+
+<div class="panel panel-default review-item" id="panel_div">
+    <!--작성자 닉네임과 사진이 들어가야할듯-->
+    <div class="panel-head">
+        <img class="review_author_img" {% if review.author.img_profile != '' %}src="/media/{{ review.author.img_profile }}" {% else %} src="{% static 'resources/images/user.png' %}" {% endif %} alt="" style="width:50px;height:50px;">
+        <p class="review_author_nickname">{{ review.author.nickname }}</p>
+        <div id="user_btn_div">
+        {% if user.is_authenticated %}
+        {% if review.author.nickname == user.nickname %}
+        <a href="{% url 'review:review_edit' review_pk=review.pk %}" class="user_btns" id="user_update"><div></div></a>
+        <a href="{% url 'review:review_delete' review_pk=review.pk %}" class="user_btns" id="user_delete"><div></div></a>
+        {% endif %}
+        {% endif %}
+        </div>
+    </div>
+
+    <div class="panel-img">
+            <!--리뷰 사진-->
+        <a href="{% url 'review:review_detail' review_pk=review.pk %}">
+            <img src="{{ review.photo.url }}" alt="" class="review-image">
+        </a>
+    </div>
+
+    <div class="panel_body">
+        <!-- 1. 좋아요 버튼 -->
+        <div class="btn-container">
+            <form
+			action="{% url 'review:review_like_toggle' review_pk=review.pk %}?next=
+				{% if review_type == 'list' %}
+					{% url 'review:review_list' %}#review-{{ review.pk }}
+				{% elif review_type == 'detail' %}
+					{% url 'review:review_detail' review_pk=review.pk %}
+				{% endif %}"
+			method="post"
+			class="form-inline">
+            {% csrf_token %}
+            <button class="btn btn-default btn-review-toggle" aria-label="Like button">
+                <span
+                    class="glyphicon
+                      {% if review in user.like_reviews.all %}
+                        glyphicon-heart
+                          {% else %}
+                              glyphicon-heart-empty
+                          {% endif %}"
+                    aria-hidden="true"></span>
+            </button>
+        </form>
+        <a class="btn btn-default btn-review-toggle"
+		   onclick="document.getElementById('{{ comment_form.content.id_for_label }}').focus()">
+			<span class="glyphicon glyphicon-pencil"></span>
+		</a>
+        </div>
+        {% with like_count=review.like_users.count %}
+		{% if like_count %}
+		<p class="like_text">
+			{% if like_count < 3 %}
+				<b>
+				{% for user in review.like_users.all %}
+					{{ user.nickname }}{% if not forloop.last %}, {% endif %}
+				{% endfor %}
+				</b>
+				님이 좋아합니다
+			{% else %}
+				<b>좋아요 {{ review.like_users.all.count }}개</b>
+			{% endif %}
+		</p>
+		{% endif %}
+        {% endwith %}
+        <!-- -------------------------------- -->
+        <!-- 2. 리뷰 내용 -->
+        <div class="review_content">
+            <p id="content_text">{{ review.content }}</p>
+        </div>
+        <!-- -------------------------------- -->
+        <!-- 3. 댓글 -->
+        <div class="review_comment">
+            <ul class="comment_list">
+            {% for comment in comments%}
+            {% if review.pk == comment.review.pk %}
+                <li class="comment">
+                    <span class="comment_author">{{ comment.author.nickname }}</span>
+                    <span class="comment_content">{{ comment.content }}</span>
+                </li>
+            {% endif %}
+            {% endfor %}
+            </ul>
+           
+            <form 
+                action="{% url 'review:comment_create' review_pk=review.pk %}?next={% if review_type == 'list' %}{% url 'review:review_list' %}#review-{{ review.pk }} {% elif review_type == 'detail' %}{% url 'review:review_detail' review_pk=review.pk %}{% endif %}"
+                method="post" class="comment-form">
+                    {% csrf_token %}
+                    {{ comment_form.content }}
+                    <button type="submit" id="comment_btn"></button>
+            </form>
+            
+        </div>
+        <!-- -------------------------------- -->
+    </div>
+</div>
+

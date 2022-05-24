@@ -1,0 +1,97 @@
+#menu_text_01{color:black;}
+#review_btn{ display: none; }
+#body_middle{ 
+    height:500px;
+    /* background-color: rgb(209, 40, 74); */
+}
+#middle_content{
+    /* background-color: red; */
+    height: 100%; width: 95%; 
+    margin: 0 auto;
+    position: relative;
+}
+#middle_content_login{
+    /* background-color: aqua; */
+    position: relative; top:15%; 
+    margin: 0 auto;
+    width: 80%; height: 80%;
+}
+
+#body_foot{ top:550px;}
+
+/* 아이디비밀번호 찾기 버튼 */
+#btn_find{
+    text-decoration: none;
+    width:100%; height: 15px;
+}
+#find_text{
+    /* background-color: coral; */
+    position: relative; width:100%; top:-20px;
+    text-align: right;
+    color:black;
+    font-family: SCD2;
+    font-size: 12px;
+}
+
+/* 로그인 폼 */
+#login_form{
+    /* background-color: darkviolet; */
+    /* width:300px; height:180px; */
+    width:100%; height: 50%;
+    position:absolute;
+    top:0px;
+    /* margin-left: 30px; */
+    /* background-color: aqua; */
+    /* position:absolute; */
+}
+
+/* 모든 입력창에 대해 */
+input{
+    background-color: white;
+    border: 1px solid grey;
+    padding-left:10px;
+} 
+
+/* 로그인 버튼 */
+button{
+    background-color: crimson;
+    position: absolute; top:150px;
+    width:300px; height:40px;
+    border: none; border-radius: 5px;
+    color:white;
+    font-size: 15px;
+}
+
+
+/* 회원가입 버튼 */
+#btn_signup{
+    border: 1px solid crimson; border-radius: 5px;
+    position: absolute;  
+    top:200px;
+    font-family: SCD5;
+    text-decoration: none;
+    color:black;
+    /* width:298px; height:40px; */
+    width: 100%; height: 40px;
+    background-color: white;
+}
+#signup_text{
+    font-family: SCD3; font-size: 15px;
+    width: 100%; 
+    text-align: center; top:10px; position: absolute;
+}
+#kakao_login_img{
+    position: relative;
+    top:270px; 
+    width: 100%;
+}
+/* 올바른 사용자 이름/비밀번호 */
+p:nth-child(4){
+    display: none;
+}
+
+p:nth-child(5){
+    color:red;
+    position: absolute; top:125px;
+    font-size: 10px;
+}
