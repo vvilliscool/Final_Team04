@@ -31,7 +31,9 @@
     * Frontend
 
   * 윤형석
+    * NLP
     * Modeling(Clustering)
+    * W2V, LDA
 
 * 데이터 엔지니어링
   * 명재정(부조장)
